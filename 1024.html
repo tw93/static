@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta charset="UTF-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="icon" type="image/svg+xml" href="https://gw.alipayobjects.com/zos/k/he/favicon.svg">
     <title>1024</title>
+    <style>
+        * {
+            font-family: JetBrains Mono, SF Mono, Consolas, PingFang SC,
+            Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial,
+            sans-serif;
+        }
+    </style>
 </head>
 <body>
 <script>
-  var styles = `\
+    var styles = `\
+/*
+* 今天是 2022 年的 1024
+* 我们程序员的一个节日
+* 1G = 1024M，一级棒
+* 用代码画一个 Github 吉祥物章鱼猫 🎉🎉🎉下吧~
+*/
 
 /* 首先我们弄一个写代码的环境 */
-
 body {
-  background-color: #222;
+  background-color: #15141A;
   color: #fff;
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.4;
 }
 
 /* 打算在这里敲代码 */
-
 pre {
   position: fixed;
   top: 0;
@@ -32,143 +46,207 @@ pre {
   margin-top: 0;
   overflow-y: auto;
   box-sizing: border-box;
-  padding: 24px 12px;
+  padding: 24px 16px;
   transition: top 500ms;
-  background-color: #313744;
-  color: #a6c3d4;
+  background-color: #15141A;
+  color: #f694ff;
 }
 
 /* 代码太素了，我们给美化一下 */
-
-pre em:not(.comment) {
+pre em {
   font-style: normal;
 }
-
 .comment {
   color: #707e84;
 }
-
 .selector {
-  color: #c66c75;
+  color: #61ffca;
 }
-
 .selector .key {
-  color: #c66c75;
+  color: #61ffca;
 }
-
 .key {
-  color: #c7ccd4;
+  color: #edecee;
 }
-
 .value {
-  color: #d5927b;
+  color: #ffca85;
 }
 
-/* 开始画 Logo */
-
-.fliggy-engineer {
+/* 好看多了，开始写代码了 */
+.github-box {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: 66px;
+  height: 40vh;
+  background:#fff;
 }
 
 /* 为了更好展示，我们把代码移动一下 */
-
 pre {
-  top: 50%;
-  height: 50%
+  top: 40vh;
+  height: 60vh;
 }
 
-/* 先画我们两侧的标签 */
-
-.code, .innovation {
-  width: 100px;
-  height: 100px;
-  border-top: 36px solid #1e2fd1;
-  border-right: 36px solid #1e2fd1;
-  border-radius: 24px 24px 24px 0;
-  transform: rotate(-135deg);
-  margin: 0 -48px;
-}
-
-/* 转个方向 */
-
-.innovation {
-  transform: rotate(45deg);
-}
-
-/* 再画中间猪猪部分 */
-
-.better-trip {
-  width: 102px;
-  height: 102px;
-  border: 6px solid #ffc900;
-  background-color: #ffc900;
+/* 先搞一个容器，再画一个圆试试 */
+.github {
+  margin-top:5px;
+  margin: auto;
+  background-color: #15141A;
+  display: block;
+  position: relative;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  border-top-right-radius: 0;
-  transform: rotate(45deg);
+}
+.github::before,.github::after,
+.github > i::before, .github > i::after,
+.github > i > i::before,.github > i > i::after{
+  content: "";
+  background-color: #fff;
+  display: block;
+  position: absolute;
 }
 
-/* 我们来移动一下位置 */
-
-.fliggy-engineer {
-  transform: rotate(-45deg);
+/* 脸好像是这个样子 */
+.github::before {
+  width: 120px;
+  height: 108px;
+  border-radius: 50%;
+  top: 41px;
+  left: 40px;
+  box-shadow: 16px 0px 0 -6px #fff, -16px 0px 0 -6px #fff;
+}
+.github::after {
+  width: 46px;
+  height: 62px;
+  border-radius: 14px 14px 0 0;
+  top: 140px;
+  left: 77px;
 }
 
+/* 耳朵貌似这样写是可以的 */
+.github > i::before {
+  width: 40px;
+  height: 40px;
+  border-radius: 15% 70% 15% 70%;
+  top: 35px;
+  left: 40px;
+  transform: rotate(11deg);
+}
+.github > i::after {
+  width: 40px;
+  height: 40px;
+  border-radius: 15% 70% 15% 70%;
+  top: 35px;
+  right: 40px;
+  transform: rotate(79deg);
+}
+
+/* 哈哈哈尾巴不太好画 */
+.github > i > i::before {
+  width: 40px;
+  height: 40px;
+  border-radius: 50% 50%;
+  top: 121px;
+  left: 40px;
+  background-color: transparent;
+  border-bottom: 14px solid #fff;
+  border-left: 6px solid transparent;
+  border-right: 12px solid transparent;
+  transform: rotate(15deg);
+}
+
+/* 再来一个试试看行不行 */
+.github > i > i::after {
+  width: 28px;
+  height: 28px;
+  border-radius: 50% 50%;
+  top: 140px;
+  left: 12px;
+  background-color: transparent;
+  border-top: 9px solid #fff;
+  border-left: 2px solid transparent;
+  border-right: 10px solid transparent;
+  transform: rotate(36deg);
+}
 /* 好！就是这样，画好啦！*/
 
+/*
+ * 你从来不以量取胜，创意是你的生命。
+ * 你一杯咖啡一包烟，你简洁的只有电脑。
+ * 一根线，成就一个世界。
+ * 你纵横八荒，编程于破屋之中，诛杀于千里之外。
+ * 你归隐闹市，穿梭于路人之中，徜徉于芸芸众生。
+ * 你不是码农，而是一名无所不能的工程师。
+ * 祝你 1024 快乐，可以多写喜欢的代码！
+ */
 `;
 
-  var getStyleHtml = function() {
-    return document.getElementById('style-text').innerHTML;
-  };
+    var getStyleHtml = function () {
+        return document.getElementById('style-text').innerHTML;
+    };
 
-  var openComment = false;
+    var openComment = false;
 
-  var writeStyleChar = function(which) {
-    if (which === '/' && !openComment) {
-      openComment = true;
-      styles = getStyleHtml() + which;
-    } else if (which === '/' && openComment) {
-      openComment = false;
-      styles = getStyleHtml().replace(/(\/[^\/]*\*)$/, '<em class="comment">$1/</em>');
-    } else if (which === ':') {
-      styles = getStyleHtml().replace(/([a-zA-Z- ^\n]*)$/, '<em class="key">$1</em>:');
-    } else if (which === ';') {
-      styles = getStyleHtml().replace(/([^:]*)$/, '<em class="value">$1</em>;');
-    } else if (which === '{') {
-      styles = getStyleHtml().replace(/(.*)$/, '<em class="selector">$1</em>{');
-    } else {
-      styles = getStyleHtml() + which;
-    }
-    document.getElementById('style-text').innerHTML = styles;
-    return document.getElementById('style-tag').insertAdjacentHTML('beforeend', which);
-  };
+    var writeStyleChar = function (which) {
+        if (which === '/' && !openComment) {
+            openComment = true;
+            styles = getStyleHtml() + which;
+        } else if (which === '/' && openComment) {
+            openComment = false;
+            styles = getStyleHtml().replace(
+                /(\/[^\/]*\*)$/,
+                '<em class="comment">$1/</em>',
+            );
+        } else if (which === ':') {
+            styles = getStyleHtml().replace(
+                /([a-zA-Z- ^\n]*)$/,
+                '<em class="key">$1</em>:',
+            );
+        } else if (which === ';') {
+            styles = getStyleHtml().replace(
+                /([^:]*)$/,
+                '<em class="value">$1</em>;',
+            );
+        } else if (which === '{') {
+            styles = getStyleHtml().replace(
+                /(.*)$/,
+                '<em class="selector">$1</em>{',
+            );
+        } else {
+            styles = getStyleHtml() + which;
+        }
+        document.getElementById('style-text').innerHTML = styles;
+        return document
+            .getElementById('style-tag')
+            .insertAdjacentHTML('beforeend', which);
+    };
 
-  var writeStyles = function(message, index, interval) {
-    if (index < message.length) {
-      const pre = document.getElementById('style-text');
-      pre.scrollTop = pre.scrollHeight;
-      writeStyleChar(message[index++]);
-      return setTimeout(() => writeStyles(message, index, interval), interval);
-    }
-  };
+    var writeStyles = function (message, index, interval) {
+        if (index < message.length) {
+            const pre = document.getElementById('style-text');
+            pre.scrollTop = pre.scrollHeight;
+            writeStyleChar(message[index++]);
+            return setTimeout(
+                () => writeStyles(message, index, interval),
+                interval,
+            );
+        }
+    };
 
-  document.body.insertAdjacentHTML(
-    'beforeend',
-    `\
+    document.body.insertAdjacentHTML(
+        'beforeend',
+        `\
   <style id="style-tag"></style>
-  <div class="fliggy-engineer">
-    <div class="code"></div>
-    <div class="better-trip"></div>
-    <div class="innovation"></div>
+  <div class="github-box">
+    <span class="github"><i><i></i></i></span>
   </div>
   <pre id="style-text"></pre>\
-`);
+`,
+    );
 
-  writeStyles(styles, 0, 24);
+    writeStyles(styles, 0, 16);
 </script>
 </body>
 </html>
