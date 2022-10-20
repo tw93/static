@@ -8,48 +8,25 @@
     />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="https://cdn.fliggy.com/upic/itKdgE.svg"
-    />
+    <link rel="icon" type="image/svg+xml" href="https://cdn.fliggy.com/upic/itKdgE.svg"/>
     <title>祝你1024程序员节快乐~</title>
     <meta name="title" content="祝你1024程序员节快乐" />
+    <meta property="og:title" content="祝你1024程序员节快乐" />
+    <meta property="og:description" content="用代码画一个 Github 章鱼猫庆祝下吧~"/>
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://o1o.vercel.app/1024.html" />
-    <meta property="og:title" content="祝你1024程序员节快乐" />
-    <meta
-      property="og:description"
-      content="用代码画一个 Github 章鱼猫庆祝下吧~"
-    />
-    <meta
-      property="og:image"
-      content="https://cdn.fliggy.com/upic/4w40M2.png"
-    />
-    <link
-      rel="icon"
-      href="https://cdn.fliggy.com/upic/4w40M2.png"
-      type="image/x-icon"
-    />
+    <meta property="og:image" content="https://cdn.fliggy.com/upic/4w40M2.png"/>
     <meta name="twitter:site" content="https://o1o.vercel.app/1024.html" />
     <meta property="twitter:card" content="summary" />
     <meta property="twitter:url" content="https://o1o.vercel.app/1024.html" />
     <meta property="twitter:title" content="祝你1024程序员节快乐" />
-    <meta
-      property="twitter:description"
-      content="用代码画一个 Github 章鱼猫庆祝下吧~"
-    />
-    <meta
-      property="twitter:image"
-      content="https://cdn.fliggy.com/upic/yGvBne.png"
-    />
+    <meta property="twitter:description" content="用代码画一个 Github 章鱼猫庆祝下吧~"/>
+    <meta property="twitter:image" content="https://cdn.fliggy.com/upic/yGvBne.png"/>
     <style>
       @font-face {
         font-family: 'JetBrains Mono';
-        src: url('https://gw.alipayobjects.com/os/k/app/JetBrainsMono-Regular.woff2')
-            format('woff2'),
-          url('https://gw.alipayobjects.com/os/k/app/JetBrainsMono-Regular.ttf')
-            format('truetype');
+        src: url('https://gw.alipayobjects.com/os/k/app/JetBrainsMono-Regular.woff2') format('woff2'),
+          url('https://gw.alipayobjects.com/os/k/app/JetBrainsMono-Regular.ttf') format('truetype');
       }
       * {
         font-family: JetBrains Mono, SF Mono, PingFang SC, Hiragino Sans GB,
@@ -59,7 +36,7 @@
   </head>
   <body>
     <script>
-      var styles = `\
+      let styles = `\
 /*
 * 今天是 2022 年的 1024
 * 我们程序员的一个节日
@@ -69,15 +46,16 @@
 
 /* 首先我们弄一个写代码的环境 */
 body {
-  margin: 0;
   font-size: 14px;
   line-height: 1.4;
   background-color: #15141A;
   color: #fff;
+  margin: 0;
 }
 
 /* 打算在这里敲代码 */
 pre {
+  padding: 24px 16px;
   position: fixed;
   top: 0;
   width: 100%;
@@ -85,7 +63,6 @@ pre {
   margin-top: 0;
   overflow-y: auto;
   box-sizing: border-box;
-  padding: 24px 16px;
   transition: top 500ms;
   color: #f694ff;
   background-color: #15141A;
@@ -218,7 +195,7 @@ pre {
  * 你纵横八荒，编程于破屋之中，诛杀于千里之外。
  * 你归隐闹市，穿梭于路人之中，徜徉于芸芸众生。
  * 你不是码农，而是一名无所不能的工程师。
- * 祝你 1024 快乐，可以写喜欢的代码！
+ * 祝你 1024 快乐，以后写的代码都是你喜欢的！
  */
 
 `;
@@ -263,30 +240,25 @@ pre {
           .insertAdjacentHTML('beforeend', which);
       };
 
-      const writeStyles = function (message, index, interval) {
+      const writeStyles = function (message, index) {
         if (index < message.length) {
           const pre = document.getElementById('style-text');
           pre.scrollTop = pre.scrollHeight;
           writeStyleChar(message[index++]);
-          return setTimeout(
-            () => writeStyles(message, index, interval),
-            interval,
-          );
+          return requestAnimationFrame(() => writeStyles(message, index));
         }
       };
 
       document.body.insertAdjacentHTML(
         'beforeend',
-        `\
-  <style id="style-tag"></style>
-  <div class="github-box">
-    <span class="github"><i><i></i></i></span>
-  </div>
-  <pre id="style-text"></pre>\
+        `\<style id="style-tag"></style>
+          <div class="github-box">
+            <span class="github"><i><i></i></i></span>
+         </div>
+         <pre id="style-text"></pre>\
 `,
       );
-
-      writeStyles(styles, 0, 16);
+      writeStyles(styles, 0);
     </script>
   </body>
 </html>
