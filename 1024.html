@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
+  <head>
+    <meta charset="UTF-8" />
     <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"
     />
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-    <link rel="icon" type="image/svg+xml" href="https://gw.alipayobjects.com/zos/k/he/favicon.svg">
-    <title>1024</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://static.tw93.fun/img/20221020225725231.png"
+    />
+    <title>祝你1024快乐</title>
+    <meta name="title" content="祝你1024快乐" />
+    <link
+      rel="shortcut icon"
+      href="https://static.tw93.fun/img/20221020225725231.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="icon"
+      href="https://static.tw93.fun/img/20221020225725231.png"
+      type="image/x-icon"
+    />
     <style>
-        * {
-            font-family: JetBrains Mono, SF Mono, Consolas, PingFang SC,
-            Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial,
-            sans-serif;
-        }
+      * {
+        font-family: JetBrains Mono, SF Mono, Consolas, PingFang SC,
+          Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial,
+          sans-serif;
+      }
     </style>
-</head>
-<body>
-<script>
-    var styles = `\
+  </head>
+  <body>
+    <script>
+      var styles = `\
 /*
 * 今天是 2022 年的 1024
 * 我们程序员的一个节日
@@ -183,59 +198,59 @@ pre {
  */
 `;
 
-    var getStyleHtml = function () {
+      var getStyleHtml = function () {
         return document.getElementById('style-text').innerHTML;
-    };
+      };
 
-    var openComment = false;
+      var openComment = false;
 
-    var writeStyleChar = function (which) {
+      var writeStyleChar = function (which) {
         if (which === '/' && !openComment) {
-            openComment = true;
-            styles = getStyleHtml() + which;
+          openComment = true;
+          styles = getStyleHtml() + which;
         } else if (which === '/' && openComment) {
-            openComment = false;
-            styles = getStyleHtml().replace(
-                /(\/[^\/]*\*)$/,
-                '<em class="comment">$1/</em>',
-            );
+          openComment = false;
+          styles = getStyleHtml().replace(
+            /(\/[^\/]*\*)$/,
+            '<em class="comment">$1/</em>',
+          );
         } else if (which === ':') {
-            styles = getStyleHtml().replace(
-                /([a-zA-Z- ^\n]*)$/,
-                '<em class="key">$1</em>:',
-            );
+          styles = getStyleHtml().replace(
+            /([a-zA-Z- ^\n]*)$/,
+            '<em class="key">$1</em>:',
+          );
         } else if (which === ';') {
-            styles = getStyleHtml().replace(
-                /([^:]*)$/,
-                '<em class="value">$1</em>;',
-            );
+          styles = getStyleHtml().replace(
+            /([^:]*)$/,
+            '<em class="value">$1</em>;',
+          );
         } else if (which === '{') {
-            styles = getStyleHtml().replace(
-                /(.*)$/,
-                '<em class="selector">$1</em>{',
-            );
+          styles = getStyleHtml().replace(
+            /(.*)$/,
+            '<em class="selector">$1</em>{',
+          );
         } else {
-            styles = getStyleHtml() + which;
+          styles = getStyleHtml() + which;
         }
         document.getElementById('style-text').innerHTML = styles;
         return document
-            .getElementById('style-tag')
-            .insertAdjacentHTML('beforeend', which);
-    };
+          .getElementById('style-tag')
+          .insertAdjacentHTML('beforeend', which);
+      };
 
-    var writeStyles = function (message, index, interval) {
+      var writeStyles = function (message, index, interval) {
         if (index < message.length) {
-            const pre = document.getElementById('style-text');
-            pre.scrollTop = pre.scrollHeight;
-            writeStyleChar(message[index++]);
-            return setTimeout(
-                () => writeStyles(message, index, interval),
-                interval,
-            );
+          const pre = document.getElementById('style-text');
+          pre.scrollTop = pre.scrollHeight;
+          writeStyleChar(message[index++]);
+          return setTimeout(
+            () => writeStyles(message, index, interval),
+            interval,
+          );
         }
-    };
+      };
 
-    document.body.insertAdjacentHTML(
+      document.body.insertAdjacentHTML(
         'beforeend',
         `\
   <style id="style-tag"></style>
@@ -244,9 +259,9 @@ pre {
   </div>
   <pre id="style-text"></pre>\
 `,
-    );
+      );
 
-    writeStyles(styles, 0, 16);
-</script>
-</body>
+      writeStyles(styles, 0, 16);
+    </script>
+  </body>
 </html>
