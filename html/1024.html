@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <title>1024</title>
+</head>
+<body>
+<script>
+  var styles = `\
+
+/* 首先我们弄一个写代码的环境 */
+
+body {
+  background-color: #222;
+  color: #fff;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* 打算在这里敲代码 */
+
+pre {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin-top: 0;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 24px 12px;
+  transition: top 500ms;
+  background-color: #313744;
+  color: #a6c3d4;
+}
+
+/* 代码太素了，我们给美化一下 */
+
+pre em:not(.comment) {
+  font-style: normal;
+}
+
+.comment {
+  color: #707e84;
+}
+
+.selector {
+  color: #c66c75;
+}
+
+.selector .key {
+  color: #c66c75;
+}
+
+.key {
+  color: #c7ccd4;
+}
+
+.value {
+  color: #d5927b;
+}
+
+/* 开始画 Logo */
+
+.fliggy-engineer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 66px;
+}
+
+/* 为了更好展示，我们把代码移动一下 */
+
+pre {
+  top: 50%;
+  height: 50%
+}
+
+/* 先画我们两侧的标签 */
+
+.code, .innovation {
+  width: 100px;
+  height: 100px;
+  border-top: 36px solid #1e2fd1;
+  border-right: 36px solid #1e2fd1;
+  border-radius: 24px 24px 24px 0;
+  transform: rotate(-135deg);
+  margin: 0 -48px;
+}
+
+/* 转个方向 */
+
+.innovation {
+  transform: rotate(45deg);
+}
+
+/* 再画中间猪猪部分 */
+
+.better-trip {
+  width: 102px;
+  height: 102px;
+  border: 6px solid #ffc900;
+  background-color: #ffc900;
+  border-radius: 50%;
+  border-top-right-radius: 0;
+  transform: rotate(45deg);
+}
+
+/* 我们来移动一下位置 */
+
+.fliggy-engineer {
+  transform: rotate(-45deg);
+}
+
+/* 好！就是这样，画好啦！*/
+
+`;
+
+  var getStyleHtml = function() {
+    return document.getElementById('style-text').innerHTML;
+  };
+
+  var openComment = false;
+
+  var writeStyleChar = function(which) {
+    if (which === '/' && !openComment) {
+      openComment = true;
+      styles = getStyleHtml() + which;
+    } else if (which === '/' && openComment) {
+      openComment = false;
+      styles = getStyleHtml().replace(/(\/[^\/]*\*)$/, '<em class="comment">$1/</em>');
+    } else if (which === ':') {
+      styles = getStyleHtml().replace(/([a-zA-Z- ^\n]*)$/, '<em class="key">$1</em>:');
+    } else if (which === ';') {
+      styles = getStyleHtml().replace(/([^:]*)$/, '<em class="value">$1</em>;');
+    } else if (which === '{') {
+      styles = getStyleHtml().replace(/(.*)$/, '<em class="selector">$1</em>{');
+    } else {
+      styles = getStyleHtml() + which;
+    }
+    document.getElementById('style-text').innerHTML = styles;
+    return document.getElementById('style-tag').insertAdjacentHTML('beforeend', which);
+  };
+
+  var writeStyles = function(message, index, interval) {
+    if (index < message.length) {
+      const pre = document.getElementById('style-text');
+      pre.scrollTop = pre.scrollHeight;
+      writeStyleChar(message[index++]);
+      return setTimeout(() => writeStyles(message, index, interval), interval);
+    }
+  };
+
+  document.body.insertAdjacentHTML(
+    'beforeend',
+    `\
+  <style id="style-tag"></style>
+  <div class="fliggy-engineer">
+    <div class="code"></div>
+    <div class="better-trip"></div>
+    <div class="innovation"></div>
+  </div>
+  <pre id="style-text"></pre>\
+`);
+
+  writeStyles(styles, 0, 24);
+</script>
+</body>
+</html>
