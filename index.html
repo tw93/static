@@ -8,28 +8,46 @@
     />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <link rel="icon" type="image/svg+xml" href="https://tw93.netlify.app/img/github.svg"/>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://tw93.netlify.app/img/github.svg"
+    />
     <title>祝你1024程序员节快乐~</title>
     <meta name="title" content="祝你1024程序员节快乐" />
-    <meta name="author" content="Tw93">
+    <meta name="author" content="Tw93" />
     <meta property="og:title" content="祝你1024程序员节快乐" />
-    <meta property="og:description" content="用代码画一个 Github 章鱼猫庆祝下吧~"/>
+    <meta
+      property="og:description"
+      content="用代码画一个 Github 章鱼猫庆祝下吧~"
+    />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://tw93.netlify.app" />
-    <meta property="og:image" content="https://tw93.netlify.app/img/1024-icon.png"/>
+    <meta
+      property="og:image"
+      content="https://tw93.netlify.app/img/1024-icon.png"
+    />
 
-    <meta name="twitter:creator" content="@HiTw93">
+    <meta name="twitter:creator" content="@HiTw93" />
     <meta name="twitter:site" content="https://tw93.netlify.app" />
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://tw93.netlify.app" />
-    <meta property="twitter:image" content="https://tw93.netlify.app/img/1024-banner.png"/>
+    <meta
+      property="twitter:image"
+      content="https://tw93.netlify.app/img/1024-banner.png"
+    />
     <meta property="twitter:title" content="祝你1024程序员节快乐" />
-    <meta property="twitter:description" content="用代码画一个 Github 章鱼猫庆祝下吧~"/>
+    <meta
+      property="twitter:description"
+      content="用代码画一个 Github 章鱼猫庆祝下吧~"
+    />
     <style>
       @font-face {
         font-family: 'JetBrains Mono';
-        src: url('https://gw.alipayobjects.com/os/k/app/JetBrainsMono-Regular.woff2') format('woff2'),
-          url('https://gw.alipayobjects.com/os/k/app/JetBrainsMono-Regular.ttf') format('truetype');
+        src: url('https://gw.alipayobjects.com/os/k/app/JetBrainsMono-Regular.woff2')
+            format('woff2'),
+          url('https://gw.alipayobjects.com/os/k/app/JetBrainsMono-Regular.ttf')
+            format('truetype');
       }
       * {
         font-family: JetBrains Mono, SF Mono, PingFang SC, Hiragino Sans GB,
@@ -41,151 +59,152 @@
     <script>
       let styles = `\
 /*
-* 今天是 2022 年的 1024
+* 今天是 2022-10-24
 * 我们程序员的一个节日
 * 1G = 1024M，一级棒
-* 用代码画一个 Github 章鱼猫庆祝下吧~
+* 来画一个 Github 吉祥物章鱼猫庆祝下吧~
 */
 
-/* 首先我们弄一个写代码的环境 */
+/* 好了，我要开始写了 */
 body {
+  margin: 0;
   font-size: 14px;
   line-height: 1.4;
-  background-color: #15141A;
-  color: #fff;
-  margin: 0;
+  color: #61ffca;
+  background-color: #15141a;
 }
 
-/* 代码太素了，我们给美化一下 */
+/* 好像代码不太好写，我们先来折腾下皮肤 */
 pre {
-  padding: 24px 16px;
   position: fixed;
   top: 0;
   width: 100%;
   height: 100%;
+  padding: 24px 16px;
   margin-top: 0;
   overflow-y: auto;
   box-sizing: border-box;
-  transition: top 500ms;
-  color: #f694ff;
-  background-color: #15141A;
+  transition: all 500ms;
 }
+
+/* 这不得来代码颜色高亮下 */
 pre em {
   font-style: normal;
 }
-.comment {
-  color: #707e84;
+
+.selector, .selector .key {
+  color: #f694ff;
 }
-.selector {
-  color: #61ffca;
-}
-.selector .key {
-  color: #61ffca;
-}
-.key {
+
+.key, .comment {
   color: #edecee;
 }
+
 .value {
   color: #ffca85;
 }
 
-/* 好看多了，可以开始画章鱼猫了 */
-.github-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 40vh;
-  background:#fff;
-}
-
-/* 为了更好展示，我们把代码移动一下 */
+/* 为了更好展示，我们把代码移到下面来 */
 pre {
   top: 40vh;
   height: 60vh;
 }
 
+/* 好看多了，可以开始画章鱼猫了 */
+.github-box {
+  width: 100%;
+  height: 40vh;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* 搞个容器，画一个圆试试 */
 .github {
-  background-color: #15141A;
+  width: 200px;
+  height: 200px;
+  background-color: #15141a;
+  border-radius: 50%;
   margin: auto;
   display: block;
   position: relative;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
 }
-.github::before, .github::after,
-.github > i::before, .github > i::after,
-.github > i > i::before, .github > i > i::after{
-  content: "";
-  background-color: #fff;
+
+.github::before,.github::after,.github>i::before,.github>i::after,.github>i>i::before,.github>i>i::after {
+  content: '';
   display: block;
   position: absolute;
+  background-color: #fff;
 }
 
 /* 脸好像是这个样子 */
 .github::before {
   width: 120px;
   height: 108px;
-  border-radius: 50%;
   top: 41px;
   left: 40px;
+  border-radius: 50%;
   box-shadow: 16px 0px 0 -6px #fff, -16px 0px 0 -6px #fff;
 }
+
+/* 来画一个很简单的脖子 */
 .github::after {
   width: 46px;
   height: 62px;
-  border-radius: 14px 14px 0 0;
   top: 140px;
   left: 77px;
+  border-radius: 14px 14px 0 0;
 }
 
 /* 耳朵貌似这样写是可以的 */
-.github > i::before {
+.github>i::before {
   width: 40px;
   height: 40px;
-  border-radius: 15% 70% 15% 70%;
   top: 35px;
   left: 40px;
   transform: rotate(11deg);
+  border-radius: 15% 70% 15% 70%;
 }
-.github > i::after {
+
+/* 再来一只耳朵 */
+.github>i::after {
   width: 40px;
   height: 40px;
-  border-radius: 15% 70% 15% 70%;
   top: 35px;
   right: 40px;
   transform: rotate(79deg);
+  border-radius: 15% 70% 15% 70%;
 }
 
-/* 哈哈哈尾巴不太好画了 */
-.github > i > i::before {
+/* 哈哈哈尾巴不太好画了吧 */
+.github>i>i::before {
   width: 40px;
   height: 40px;
-  border-radius: 50% 50%;
   top: 121px;
   left: 40px;
+  border-radius: 50% 50%;
+  transform: rotate(15deg);
   background-color: transparent;
   border-bottom: 14px solid #fff;
   border-left: 6px solid transparent;
   border-right: 12px solid transparent;
-  transform: rotate(15deg);
 }
 
 /* 再来一个试试看行不行 */
-.github > i > i::after {
+.github>i>i::after {
   width: 28px;
   height: 28px;
-  border-radius: 50% 50%;
   top: 140px;
   left: 12px;
+  border-radius: 50% 50%;
+  transform: rotate(39deg);
   background-color: transparent;
   border-top: 9px solid #fff;
-  border-left: 2px solid transparent;
-  border-right: 10px solid transparent;
-  transform: rotate(36deg);
+  border-left: 1px solid transparent;
+  border-right: 12px solid transparent;
 }
+
 /* 好，就是这样，画好啦！*/
 
 /*
@@ -194,7 +213,7 @@ pre {
  * 纵横八荒，你诛杀于千里之外。
  * 归隐闹市，你徜徉于芸芸众生。
  * 不是码农，你是一名无所不能的工程师。
- * 祝你 1024 快乐，以后写的都是你喜欢的代码！
+ * 祝你 1024 快乐，以后写的都是你喜欢的代码~
  */
 
 `;
@@ -239,12 +258,15 @@ pre {
           .insertAdjacentHTML('beforeend', which);
       };
 
-      const writeStyles = function (message, index) {
+      const writeStyles = function (message, index, interval) {
         if (index < message.length) {
           const pre = document.getElementById('style-text');
           pre.scrollTop = pre.scrollHeight;
           writeStyleChar(message[index++]);
-          return requestAnimationFrame(() => writeStyles(message, index));
+          return setTimeout(
+            () => writeStyles(message, index, interval),
+            interval,
+          );
         }
       };
 
@@ -257,7 +279,7 @@ pre {
          <pre id="style-text"></pre>\
 `,
       );
-      writeStyles(styles, 0);
+      writeStyles(styles, 0, 24);
     </script>
   </body>
 </html>
