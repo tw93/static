@@ -443,3 +443,4 @@ rules:
   - DOMAIN-SUFFIX,aliyun.com,DIRECT
   - DOMAIN-SUFFIX,wx.qq.com,US
   - DOMAIN-SUFFIX,formulae.brew.sh,US
+  - DOMAIN-SUFFIX,diabrowser.com,US
