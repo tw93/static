@@ -441,6 +441,6 @@ rules:
   - DOMAIN-SUFFIX,fliggy.com,DIRECT
   - DOMAIN-SUFFIX,sspai.com,DIRECT
   - DOMAIN-SUFFIX,aliyun.com,DIRECT
-  - DOMAIN-SUFFIX,wx.qq.com,US
+  - DOMAIN-SUFFIX,wx.qq.com,HK
   - DOMAIN-SUFFIX,formulae.brew.sh,US
   - DOMAIN-SUFFIX,diabrowser.com,US
