@@ -442,5 +442,6 @@ rules:
   - DOMAIN-SUFFIX,sspai.com,DIRECT
   - DOMAIN-SUFFIX,aliyun.com,DIRECT
   - DOMAIN-SUFFIX,wx.qq.com,HK
+  - DOMAIN-SUFFIX,v2ex.com,HK
   - DOMAIN-SUFFIX,formulae.brew.sh,US
   - DOMAIN-SUFFIX,diabrowser.com,US
