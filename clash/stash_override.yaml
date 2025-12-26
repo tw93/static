@@ -432,6 +432,37 @@ rules:
   - DOMAIN-SUFFIX,discord.gg,US
   - DOMAIN-SUFFIX,discordapp.com,US
 
+  # === 新兴 AI 服务 (2024-2025) ===
+  ## Groq (极速推理)
+  - DOMAIN,groq.com,US
+  - DOMAIN,console.groq.com,US
+  - DOMAIN,api.groq.com,US
+  - DOMAIN-SUFFIX,groq.com,US
+
+  ## AI 音乐生成 (Suno / Udio)
+  - DOMAIN,suno.com,US
+  - DOMAIN,suno.ai,US
+  - DOMAIN,studio.suno.ai,US
+  - DOMAIN,cdn.suno.com,US
+  - DOMAIN-SUFFIX,suno.com,US
+  - DOMAIN-SUFFIX,suno.ai,US
+  - DOMAIN,udio.com,US
+  - DOMAIN,www.udio.com,US
+  - DOMAIN,cdn.udio.com,US
+  - DOMAIN-SUFFIX,udio.com,US
+
+  ## AI 前端/全栈生成
+  - DOMAIN,v0.dev,US
+  - DOMAIN-SUFFIX,v0.dev,US
+  - DOMAIN,bolt.new,US
+  - DOMAIN-SUFFIX,bolt.new,US
+  - DOMAIN-SUFFIX,stackblitz.com,US
+
+  ## Ollama (本地模型下载)
+  - DOMAIN,ollama.com,US
+  - DOMAIN,ollama.ai,US
+  - DOMAIN-SUFFIX,ollama.com,US
+
   # === 内部直连 ===
   - DOMAIN-SUFFIX,antfin.com,DIRECT
   - DOMAIN-SUFFIX,taobao.com,DIRECT
@@ -445,3 +476,5 @@ rules:
   - DOMAIN-SUFFIX,v2ex.com,HK
   - DOMAIN-SUFFIX,formulae.brew.sh,US
   - DOMAIN-SUFFIX,diabrowser.com,US
+  - DOMAIN-SUFFIX,honeycomb.io,US
+  - DOMAIN-SUFFIX,intercom.io,US
