@@ -1,0 +1,91 @@
+#!name=AI Services & GitHub Routing
+#!desc=OpenAI / Claude / GitHub / AI tools route via US, internal domains DIRECT
+#!category=AI
+
+[Rule]
+########################################
+# OpenAI / ChatGPT
+########################################
+DOMAIN,chat.openai.com,US
+DOMAIN,api.openai.com,US
+DOMAIN,platform.openai.com,US
+DOMAIN,accounts.openai.com,US
+DOMAIN,auth.openai.com,US
+DOMAIN,cdn.openai.com,US
+DOMAIN,oai-shared.openai.com,US
+
+DOMAIN-SUFFIX,openai.com,US
+DOMAIN-SUFFIX,chatgpt.com,US
+DOMAIN-SUFFIX,oaistatic.com,US
+DOMAIN-SUFFIX,oaiusercontent.com,US
+DOMAIN-SUFFIX,openaiapi-site.azureedge.net,US
+DOMAIN-SUFFIX,openaicom.imgix.net,US
+DOMAIN-SUFFIX,chatgpt.livekit.cloud,US
+
+########################################
+# Claude / Anthropic
+########################################
+DOMAIN,claude.ai,US
+DOMAIN,api.anthropic.com,US
+DOMAIN,console.anthropic.com,US
+
+DOMAIN-SUFFIX,anthropic.com,US
+DOMAIN-SUFFIX,claude.ai,US
+
+########################################
+# AI IDE / Tools
+########################################
+# Cursor
+DOMAIN,cursor.sh,US
+DOMAIN,api.cursor.sh,US
+DOMAIN,download.cursor.sh,US
+DOMAIN-SUFFIX,cursor.sh,US
+DOMAIN-SUFFIX,cursor.com,US
+
+# Midjourney
+DOMAIN,midjourney.com,US
+DOMAIN-SUFFIX,midjourney.com,US
+
+########################################
+# Google AI / Gemini
+########################################
+DOMAIN,gemini.google.com,US
+DOMAIN,aistudio.google.com,US
+DOMAIN,generativelanguage.googleapis.com,US
+DOMAIN-SUFFIX,googleapis.com,US
+DOMAIN-SUFFIX,deepmind.com,US
+
+########################################
+# GitHub / Dev Infra
+########################################
+DOMAIN-SUFFIX,github.com,US
+DOMAIN-SUFFIX,githubusercontent.com,US
+DOMAIN-SUFFIX,formulae.brew.sh,US
+DOMAIN-SUFFIX,honeycomb.io,US
+
+########################################
+# Auth / SDK / Telemetry (AI related)
+########################################
+DOMAIN-SUFFIX,workos.com,US
+DOMAIN-SUFFIX,launchdarkly.com,US
+DOMAIN-SUFFIX,statsig.com,US
+DOMAIN-SUFFIX,sentry.io,US
+DOMAIN-SUFFIX,stripe.com,US
+DOMAIN-SUFFIX,intercom.io,US
+DOMAIN-SUFFIX,segment.io,US
+
+########################################
+# Internal / Direct
+########################################
+DOMAIN-SUFFIX,antfin.com,DIRECT
+DOMAIN-SUFFIX,antfin-inc.com,DIRECT
+DOMAIN-SUFFIX,alibaba-inc.com,DIRECT
+DOMAIN-SUFFIX,fliggy.com,DIRECT
+DOMAIN-SUFFIX,aliyun.com,DIRECT
+DOMAIN-SUFFIX,sspai.com,DIRECT
+
+########################################
+# CN / Community (HK)
+########################################
+DOMAIN-SUFFIX,v2ex.com,HK
+DOMAIN-SUFFIX,wx.qq.com,HK
