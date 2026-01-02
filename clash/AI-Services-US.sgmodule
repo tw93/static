@@ -2,6 +2,45 @@
 #!desc=OpenAI / Claude / GitHub / AI tools route via US, internal domains DIRECT
 #!category=AI
 
+[General]
+# Skip proxy for CN domains to avoid TLS handshake timeout in Enhanced Mode
+# 阿里系 (Alibaba / Alipay / Taobao / Tmall)
+skip-proxy = %APPEND% *.alicdn.com, *.alipayobjects.com, *.mmstat.com, *.taobaocdn.com, *.tbcache.com, *.alipay.com, *.alipay.cn, *.tmall.com, *.taobao.com, *.aliapp.org, *.aliyun.com, *.aliyuncs.com
+# 腾讯系 (Tencent / WeChat / QQ)
+skip-proxy = %APPEND% *.qq.com, *.tencent.com, *.wechat.com, weixin.com, *.weixin.com, *.weixin.qq.com, *.myqcloud.com, *.gtimg.com, *.qpic.cn, *.qlogo.cn, *.wegame.com.cn
+# 网易系 (NetEase / 163 / 126)
+skip-proxy = %APPEND% *.126.com, *.126.net, *.127.net, *.163.com, *.netease.com, *.ydstatic.com, *.youdao.com
+# 新浪微博 (Sina / Weibo)
+skip-proxy = %APPEND% *.sina.com.cn, *.sinaimg.cn, *.weibo.com, *.weibocdn.com
+# 百度系 (Baidu)
+skip-proxy = %APPEND% *.bdstatic.com, *.baidu.com, *.baidubce.com, *.bcebos.com, *.bdimg.com
+# 京东系 (JD)
+skip-proxy = %APPEND% *.jd.com, *.360buyimg.com, *.jdcloud.com
+# 哔哩哔哩 (Bilibili)
+skip-proxy = %APPEND% *.bilibili.com, *.bilivideo.com, *.hdslb.com, *.biliapi.com
+# 字节跳动系 (ByteDance / Douyin / TikTok China)
+skip-proxy = %APPEND% *.douyin.com, *.douyincdn.com, *.snssdk.com, *.pstatp.com, *.toutiao.com, *.toutiaoimg.com, *.bytedance.com, *.byteimg.com
+# 小米系 (Xiaomi / Mi)
+skip-proxy = %APPEND% *.mi.com, *.xiaomi.com, *.miui.com, *.xiaomiyoupin.com
+# 视频平台 (iQiyi / Youku / Mango TV / Tencent Video)
+skip-proxy = %APPEND% *.iqiyi.com, *.iqiyipic.com, *.qy.net, *.youku.com, *.ykimg.com, *.tudou.com, *.mgtv.com, *.hunantv.com, *.v.qq.com
+# 直播平台 (Douyu / Huya)
+skip-proxy = %APPEND% *.douyu.com, *.douyucdn.cn, *.douyucdn.com, *.huya.com
+# 游戏平台 (Battle.net China / Steam China / Epic China)
+skip-proxy = %APPEND% *.battlenet.com.cn, *.blzstatic.cn, *.steamchina.com, *.csgo.com.cn, *.steamstatic.com.cn, *.epicgames.cn
+# 银行和支付 (Banks / UnionPay) - 证书敏感
+skip-proxy = %APPEND% *.icbc.com.cn, *.ccb.com, *.boc.cn, *.abchina.com, *.cmbchina.com, *.bankcomm.com, *.psbc.com, *.95516.com, *.unionpay.com, *.cebbank.com
+# CDN 服务商 (Upyun / Qiniu / Wangsu)
+skip-proxy = %APPEND% *.upyun.com, *.upaiyun.com, *.qiniucdn.com, *.qiniudn.com, *.qnssl.com, *.qbox.me, *.chinanetcenter.com, *.wscdns.com, *.wangsu.com
+# Apple 中国 (Apple China / iCloud China)
+skip-proxy = %APPEND% *.apple.com.cn, *.icloud.com.cn, *.cdn-apple.com
+# DoH 服务 (防止 DoH 查询本身超时)
+skip-proxy = %APPEND% dns.alidns.com, doh.pub, doh.360.cn
+# 教育和政府 (Education / Government)
+skip-proxy = %APPEND% *.edu.cn, *.gov.cn
+# 其他常用服务
+skip-proxy = %APPEND% *.zhihu.com, *.zhimg.com, *.sspai.com, *.coolapk.com, *.smzdm.com
+
 [Rule]
 ########################################
 # OpenAI / ChatGPT
