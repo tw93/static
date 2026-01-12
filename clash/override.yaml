@@ -36,6 +36,7 @@
 
   # === Claude (Anthropic) ===
   - DOMAIN,claude.ai,US
+  - DOMAIN,claude.com,US
   - DOMAIN,console.anthropic.com,US
   - DOMAIN,api.anthropic.com,US
   - DOMAIN,support.anthropic.com,US
