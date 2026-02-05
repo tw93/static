@@ -1,3 +1,20 @@
+# === 网络优化：防止 AI 流式连接断开 ===
+keep-alive-interval: 30
+tcp-concurrent: true
+
+tun:
+  mtu: 1400
+
+dns:
+  +fake-ip-filter:
+    - +.openai.com
+    - +.chatgpt.com
+    - +.anthropic.com
+    - +.claude.ai
+    - +.googleapis.com
+    - +.cursor.sh
+    - +.cursor.com
+
 +rules:
   # === OpenAI / ChatGPT 主域名 ===
   - DOMAIN,chat.openai.com,US
