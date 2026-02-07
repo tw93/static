@@ -1,5 +1,5 @@
 # === 网络优化：防止 AI 流式连接断开 ===
-keep-alive-interval: 30
+keep-alive-interval: 15
 tcp-concurrent: true
 unified-delay: true
 global-client-fingerprint: chrome
@@ -13,6 +13,8 @@ dns:
     - +.chatgpt.com
     - +.anthropic.com
     - +.claude.ai
+    - +.claude.com
+    - +.claudeusercontent.com
     - +.googleapis.com
     - +.cursor.sh
     - +.cursor.com
@@ -24,6 +26,8 @@ sniffer:
     - +.chatgpt.com
     - +.anthropic.com
     - +.claude.ai
+    - +.claude.com
+    - +.claudeusercontent.com
     - +.googleapis.com
 
 +rules:
@@ -43,12 +47,13 @@ sniffer:
   - DOMAIN-SUFFIX,anthropic.com,US
   - DOMAIN-SUFFIX,claude.ai,US
   - DOMAIN-SUFFIX,claude.com,US
+  - DOMAIN-SUFFIX,claudeusercontent.com,US
 
   # === Google AI / Gemini ===
   - DOMAIN-SUFFIX,googleapis.com,US
   - DOMAIN-SUFFIX,deepmind.com,US
   - DOMAIN-SUFFIX,tensorflow.org,US
-  - DOMAIN-SUFFIX,gemini.google.com,US
+  - DOMAIN,gemini.google.com,US
   - DOMAIN,generativeai.google,US
   - DOMAIN,ai.google,US
   - DOMAIN,bard.google.com,US
