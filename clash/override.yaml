@@ -1,6 +1,8 @@
 # === 网络优化：防止 AI 流式连接断开 ===
 keep-alive-interval: 30
 tcp-concurrent: true
+unified-delay: true
+global-client-fingerprint: chrome
 
 tun:
   mtu: 1400
@@ -15,114 +17,76 @@ dns:
     - +.cursor.sh
     - +.cursor.com
 
+# AI 域名跳过嗅探，避免 sniffer 干扰长连接
+sniffer:
+  skip-domain+:
+    - +.openai.com
+    - +.chatgpt.com
+    - +.anthropic.com
+    - +.claude.ai
+    - +.googleapis.com
+
 +rules:
-  # === OpenAI / ChatGPT 主域名 ===
-  - DOMAIN,chat.openai.com,US
-  - DOMAIN,tcr9i.chat.openai.com,US
-  - DOMAIN,ios.chat.openai.com,US
-  - DOMAIN,android.chat.openai.com,US
-  - DOMAIN,desktop.chat.openai.com,US
-  - DOMAIN,api.openai.com,US
-  - DOMAIN,openai.com,US
-  - DOMAIN,platform.openai.com,US
-  - DOMAIN,labs.openai.com,US
-  - DOMAIN,help.openai.com,US
-  - DOMAIN,status.openai.com,US
-  - DOMAIN,auth0.openai.com,US
-  - DOMAIN,accounts.openai.com,US
-  - DOMAIN,auth.openai.com,US
-  - DOMAIN-SUFFIX,auth.openai.com,US
-  - DOMAIN,setup.auth.openai.com,US
-  - DOMAIN,cdn.openai.com,US
-  - DOMAIN,openai-cdn.com,US
-  - DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,US
-  - DOMAIN,production-openaicom-storage.azureedge.net,US
-  - DOMAIN,oai-shared.openai.com,US
-  - DOMAIN,enterprise.openai.com,US
-  - DOMAIN,team.openai.com,US
-  - DOMAIN,browser-intake-datadoghq.com,US
+  # === OpenAI / ChatGPT ===
   - DOMAIN-SUFFIX,openai.com,US
   - DOMAIN-SUFFIX,chatgpt.com,US
   - DOMAIN-SUFFIX,oaistatic.com,US
   - DOMAIN-SUFFIX,oaiusercontent.com,US
+  - DOMAIN-SUFFIX,openai-cdn.com,US
   - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,US
   - DOMAIN-SUFFIX,openaicom.imgix.net,US
+  - DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,US
+  - DOMAIN,production-openaicom-storage.azureedge.net,US
   - DOMAIN-SUFFIX,chatgpt.livekit.cloud,US
-  - DOMAIN-SUFFIX,sentry.io,US
-  - DOMAIN-SUFFIX,algolia.net,US
 
   # === Claude (Anthropic) ===
-  - DOMAIN,claude.ai,US
-  - DOMAIN,claude.com,US
-  - DOMAIN,console.anthropic.com,US
-  - DOMAIN,api.anthropic.com,US
-  - DOMAIN,support.anthropic.com,US
-  - DOMAIN,docs.anthropic.com,US
-  - DOMAIN,statsig.anthropic.com,US
   - DOMAIN-SUFFIX,anthropic.com,US
   - DOMAIN-SUFFIX,claude.ai,US
+  - DOMAIN-SUFFIX,claude.com,US
+
+  # === Google AI / Gemini ===
+  - DOMAIN-SUFFIX,googleapis.com,US
+  - DOMAIN-SUFFIX,deepmind.com,US
+  - DOMAIN-SUFFIX,tensorflow.org,US
+  - DOMAIN-SUFFIX,gemini.google.com,US
+  - DOMAIN,generativeai.google,US
+  - DOMAIN,ai.google,US
+  - DOMAIN,bard.google.com,US
+  - DOMAIN,aistudio.google.com,US
+  - DOMAIN,makersuite.google.com,US
+
+  # === Cursor (AI IDE) ===
+  - DOMAIN-SUFFIX,cursor.sh,US
+  - DOMAIN-SUFFIX,cursor.com,US
+
+  # === Midjourney ===
+  - DOMAIN-SUFFIX,midjourney.com,US
+
+  # === Cloudflare AI ===
+  - DOMAIN,ai.cloudflare.com,US
+  - DOMAIN-SUFFIX,workers.dev,US
+
+  # === 依赖服务 / SDK / 第三方 ===
   - DOMAIN-SUFFIX,stripe.com,US
   - DOMAIN-SUFFIX,segment.io,US
   - DOMAIN-SUFFIX,intercom.io,US
-
-  # === 依赖服务 / SDK / 第三方上报 ===
+  - DOMAIN-SUFFIX,intercomcdn.com,US
+  - DOMAIN-SUFFIX,sentry.io,US
+  - DOMAIN-SUFFIX,algolia.net,US
   - DOMAIN-SUFFIX,statsig.com,US
   - DOMAIN,statsigapi.net,US
   - DOMAIN,events.statsigapi.net,US
   - DOMAIN-SUFFIX,featuregates.org,US
-  - DOMAIN-SUFFIX,intercomcdn.com,US
-  - DOMAIN,js.intercomcdn.com,US
-  - DOMAIN,js.stripe.com,US
   - DOMAIN,challenges.cloudflare.com,US
+  - DOMAIN,browser-intake-datadoghq.com,US
   - DOMAIN,rum.browser-intake-datadoghq.com,US
-  - DOMAIN,o33249.ingest.sentry.io,US
-  - DOMAIN,o207216.ingest.sentry.io,US
   - DOMAIN,prodregistryv2.org,US
   - DOMAIN,featureassets.org,US
-  - DOMAIN,setup.workos.com,US
-  - DOMAIN,forwarder.workos.com,US
   - DOMAIN-SUFFIX,workos.com,US
-  - DOMAIN,events.launchdarkly.com,US
-  - DOMAIN,clientstream.launchdarkly.com,US
-  - DOMAIN,app.launchdarkly.com,US
-  - DOMAIN-SUFFIX,launchdarkly.com,US
   - DOMAIN,workos.imgix.net,US
-  - DOMAIN,cdn.workos.com,US
   - DOMAIN,images.workoscdn.com,US
+  - DOMAIN-SUFFIX,launchdarkly.com,US
   - DOMAIN-SUFFIX,ct.sendgrid.net,US
-
-  # === AI 相关常见服务 ===
-  ## Google AI
-  - DOMAIN,generativeai.google,US
-  - DOMAIN,ai.google,US
-  - DOMAIN-SUFFIX,googleapis.com,US
-  - DOMAIN-SUFFIX,deepmind.com,US
-  - DOMAIN-SUFFIX,tensorflow.org,US
-
-  ## Cursor (AI IDE)
-  - DOMAIN,cursor.sh,US
-  - DOMAIN,api.cursor.sh,US
-  - DOMAIN,download.cursor.sh,US
-  - DOMAIN-SUFFIX,cursor.sh,US
-  - DOMAIN-SUFFIX,cursor.com,US
-
-  # === Google AI 全家桶 (补充 Gemini) ===
-  - DOMAIN,gemini.google.com,US
-  - DOMAIN,bard.google.com,US
-  - DOMAIN,aistudio.google.com,US
-  - DOMAIN,makersuite.google.com,US
-  - DOMAIN,generativelanguage.googleapis.com,US
-  - DOMAIN-SUFFIX,gemini.google.com,US
-
-  # === AI 图像生成 ===
-  ## Midjourney
-  - DOMAIN,midjourney.com,US
-  - DOMAIN,cdn.midjourney.com,US
-  - DOMAIN-SUFFIX,midjourney.com,US
-
-  ## Cloudflare AI
-  - DOMAIN,ai.cloudflare.com,US
-  - DOMAIN-SUFFIX,workers.dev,US
 
   # === 内部直连 ===
   - DOMAIN-SUFFIX,antfin.com,DIRECT
@@ -138,4 +102,3 @@ dns:
   - DOMAIN-SUFFIX,formulae.brew.sh,US
   - DOMAIN-SUFFIX,diabrowser.com,US
   - DOMAIN-SUFFIX,honeycomb.io,US
-  - DOMAIN-SUFFIX,intercom.io,US
