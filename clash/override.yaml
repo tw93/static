@@ -3,12 +3,23 @@ keep-alive-interval: 15
 tcp-concurrent: true
 unified-delay: true
 global-client-fingerprint: chrome
+find-process-mode: always
 
 tun:
   mtu: 1400
 
 dns:
   +fake-ip-filter:
+    # === 阿里内网/直连域名 (解决内网无法访问问题) ===
+    - +.alibaba-inc.com
+    - +.antfin.com
+    - +.antfin-inc.com
+    - +.atatech.org
+    - +.aliyun.com
+    - +.taobao.com
+    - +.alipay.com
+    - +.alibaba.com
+    # === AI 服务 ===
     - +.openai.com
     - +.chatgpt.com
     - +.anthropic.com
