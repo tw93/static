@@ -4,8 +4,16 @@
  */
 function main(config) {
   const extraRules = [
+    // === 阿里系软件进程白名单（完全不走代理）===
+    "PROCESS-NAME,DingTalk,DIRECT",
+    "PROCESS-NAME,AliLangClient,DIRECT",
+    "PROCESS-NAME,AlilangAgent,DIRECT",
+    "PROCESS-NAME,ALiLangVPN,DIRECT",
+    "PROCESS-NAME,AliEntSafe,DIRECT",
+    "PROCESS-NAME,CloudShell,DIRECT",
+
     // === OpenAI / ChatGPT ===
-    "DOMAIN,chat.openai.com,US",
+    "DOMAIN-SUFFIX,openai.com,US",
     "DOMAIN,tcr9i.chat.openai.com,US",
     "DOMAIN,ios.chat.openai.com,US",
     "DOMAIN,android.chat.openai.com,US",
@@ -125,6 +133,43 @@ function main(config) {
     "DOMAIN-SUFFIX,honeycomb.io,US",
     "DOMAIN-SUFFIX,intercom.io,US"
   ];
+
+  // === 注入 DNS / TUN / Sniffer 配置 ===
+  
+  // 1. 开启 TUN 和 进程匹配增强
+  config["tun"] = {
+    enable: true,
+    stack: "system",
+    "auto-route": true,
+    "auto-detect-interface": true,
+    mtu: 1400
+  };
+  config["find-process-mode"] = "always";
+  config["keep-alive-interval"] = 15;
+  config["tcp-concurrent"] = true;
+  config["unified-delay"] = true;
+
+  // 2. 配置 DNS (解决内网解析)
+  if (!config.dns) config.dns = {};
+  if (!config.dns["fake-ip-filter"]) config.dns["fake-ip-filter"] = [];
+  
+  const aliInternal = [
+    "+.alibaba-inc.com", "+.antfin.com", "+.antfin-inc.com", 
+    "+.atatech.org", "+.aliyun.com", "+.taobao.com", 
+    "+.alipay.com", "+.alibaba.com"
+  ];
+  const aiDomains = [
+    "+.openai.com", "+.chatgpt.com", "+.anthropic.com", 
+    "+.claude.ai", "+.claude.com", "+.claudeusercontent.com", 
+    "+.googleapis.com", "+.cursor.sh", "+.cursor.com"
+  ];
+  
+  config.dns["fake-ip-filter"].push(...aliInternal, ...aiDomains);
+
+  // 3. 配置 Sniffer (AI 优化)
+  if (!config.sniffer) config.sniffer = {};
+  if (!config.sniffer["skip-domain"]) config.sniffer["skip-domain"] = [];
+  config.sniffer["skip-domain"].push(...aiDomains);
 
   if (config.rules && Array.isArray(config.rules)) {
     config.rules.unshift(...extraRules);
