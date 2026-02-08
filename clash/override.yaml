@@ -31,6 +31,14 @@ sniffer:
     - +.googleapis.com
 
 +rules:
+  # === 阿里系软件进程白名单（完全不走代理）===
+  - PROCESS-NAME,DingTalk,DIRECT
+  - PROCESS-NAME,AliLangClient,DIRECT
+  - PROCESS-NAME,AlilangAgent,DIRECT
+  - PROCESS-NAME,ALiLangVPN,DIRECT
+  - PROCESS-NAME,AliEntSafe,DIRECT
+  - PROCESS-NAME,CloudShell,DIRECT
+
   # === OpenAI / ChatGPT ===
   - DOMAIN-SUFFIX,openai.com,US
   - DOMAIN-SUFFIX,chatgpt.com,US
