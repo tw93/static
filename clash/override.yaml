@@ -60,7 +60,7 @@ sniffer:
   - DOMAIN-SUFFIX,openaicom.imgix.net,US
   - DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,US
   - DOMAIN,production-openaicom-storage.azureedge.net,US
-  - DOMAIN-SUFFIX,chatgpt.livekit.cloud,US
+  - DOMAIN-SUFFIX,livekit.cloud,US
 
   # === Claude (Anthropic) ===
   - DOMAIN-SUFFIX,anthropic.com,US
@@ -102,7 +102,7 @@ sniffer:
   - DOMAIN,events.statsigapi.net,US
   - DOMAIN-SUFFIX,featuregates.org,US
   - DOMAIN,challenges.cloudflare.com,US
-  - DOMAIN,browser-intake-datadoghq.com,US
+  - DOMAIN-SUFFIX,browser-intake-datadoghq.com,US
   - DOMAIN,rum.browser-intake-datadoghq.com,US
   - DOMAIN,prodregistryv2.org,US
   - DOMAIN,featureassets.org,US
