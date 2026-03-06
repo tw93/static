@@ -1,128 +1,103 @@
 # === 网络优化：防止 AI 流式连接断开 ===
-keep-alive-interval: 15
-tcp-concurrent: true
-unified-delay: true
-global-client-fingerprint: chrome
-find-process-mode: always
+  keep-alive-idle: 600
+  keep-alive-interval: 15
+  connection-idle-timeout: 600
+  tcp-concurrent: true
+  unified-delay: true
+  global-client-fingerprint: chrome
+  find-process-mode: always
 
-tun:
-  mtu: 1400
+  tun:
+    mtu: 1400
+    stack: system
+    auto-route: true
+    auto-detect-interface: true
+    dns-hijack:
+      - 0.0.0.0:53
 
-dns:
-  +fake-ip-filter:
-    # === 阿里内网/直连域名 (解决内网无法访问问题) ===
-    - +.alibaba-inc.com
-    - +.antfin.com
-    - +.antfin-inc.com
-    - +.atatech.org
-    - +.aliyun.com
-    - +.taobao.com
-    - +.alipay.com
-    - +.alibaba.com
-    # === AI 服务 ===
-    - +.openai.com
-    - +.chatgpt.com
-    - +.anthropic.com
-    - +.claude.ai
-    - +.claude.com
-    - +.claudeusercontent.com
-    - +.googleapis.com
-    - +.cursor.sh
-    - +.cursor.com
+  dns:
+    enable: true
+    enhanced-mode: fake-ip
+    +fake-ip-filter:
+      # === 阿里内网/直连域名 ===
+      - +.alibaba-inc.com
+      - +.antfin.com
+      - +.antfin-inc.com
+      - +.atatech.org
+      - +.aliyun.com
+      - +.taobao.com
+      - +.alipay.com
+      - +.alibaba.com
+      # === AI 服务 ===
+      - +.openai.com
+      - +.chatgpt.com
+      - +.anthropic.com
+      - +.claude.ai
+      - +.claude.com
+      - +.claudeusercontent.com
+      - +.googleapis.com
+      - +.cursor.sh
+      - +.cursor.com
 
-# AI 域名跳过嗅探，避免 sniffer 干扰长连接
-sniffer:
-  skip-domain+:
-    - +.openai.com
-    - +.chatgpt.com
-    - +.anthropic.com
-    - +.claude.ai
-    - +.claude.com
-    - +.claudeusercontent.com
-    - +.googleapis.com
+  sniffer:
+    enable: false
 
-+rules:
-  # === 阿里系软件进程白名单（完全不走代理）===
-  - PROCESS-NAME,DingTalk,DIRECT
-  - PROCESS-NAME,AliLangClient,DIRECT
-  - PROCESS-NAME,AlilangAgent,DIRECT
-  - PROCESS-NAME,ALiLangVPN,DIRECT
-  - PROCESS-NAME,AliEntSafe,DIRECT
-  - PROCESS-NAME,CloudShell,DIRECT
+  +rules:
+    # === 阿里系软件进程白名单 ===
+    - PROCESS-NAME,DingTalk,DIRECT
+    - PROCESS-NAME,AliLangClient,DIRECT
+    - PROCESS-NAME,AlilangAgent,DIRECT
+    - PROCESS-NAME,ALiLangVPN,DIRECT
+    - PROCESS-NAME,AliEntSafe,DIRECT
+    - PROCESS-NAME,CloudShell,DIRECT
 
-  # === OpenAI / ChatGPT ===
-  - DOMAIN-SUFFIX,openai.com,US
-  - DOMAIN-SUFFIX,chatgpt.com,US
-  - DOMAIN-SUFFIX,oaistatic.com,US
-  - DOMAIN-SUFFIX,oaiusercontent.com,US
-  - DOMAIN-SUFFIX,openai-cdn.com,US
-  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,US
-  - DOMAIN-SUFFIX,openaicom.imgix.net,US
-  - DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,US
-  - DOMAIN,production-openaicom-storage.azureedge.net,US
-  - DOMAIN-SUFFIX,livekit.cloud,US
+    # === OpenAI / ChatGPT ===
+    - DOMAIN-SUFFIX,openai.com,US
+    - DOMAIN-SUFFIX,chatgpt.com,US
+    - DOMAIN-SUFFIX,oaistatic.com,US
+    - DOMAIN-SUFFIX,oaiusercontent.com,US
+    - DOMAIN-SUFFIX,openai-cdn.com,US
+    - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,US
+    - DOMAIN-SUFFIX,openaicom.imgix.net,US
+    - DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,US
+    - DOMAIN,production-openaicom-storage.azureedge.net,US
+    - DOMAIN-SUFFIX,livekit.cloud,US
 
-  # === Claude (Anthropic) ===
-  - DOMAIN-SUFFIX,anthropic.com,US
-  - DOMAIN-SUFFIX,claude.ai,US
-  - DOMAIN-SUFFIX,claude.com,US
-  - DOMAIN-SUFFIX,claudeusercontent.com,US
+    # === Claude (Anthropic) ===
+    - DOMAIN-SUFFIX,anthropic.com,US
+    - DOMAIN-SUFFIX,claude.ai,US
+    - DOMAIN-SUFFIX,claude.com,US
+    - DOMAIN-SUFFIX,claudeusercontent.com,US
 
-  # === Google AI / Gemini ===
-  - DOMAIN-SUFFIX,googleapis.com,US
-  - DOMAIN-SUFFIX,deepmind.com,US
-  - DOMAIN-SUFFIX,tensorflow.org,US
-  - DOMAIN,gemini.google.com,US
-  - DOMAIN,generativeai.google,US
-  - DOMAIN,ai.google,US
-  - DOMAIN,bard.google.com,US
-  - DOMAIN,aistudio.google.com,US
-  - DOMAIN,makersuite.google.com,US
+    # === Google AI ===
+    - DOMAIN-SUFFIX,googleapis.com,US
+    - DOMAIN-SUFFIX,deepmind.com,US
+    - DOMAIN,gemini.google.com,US
 
-  # === Cursor (AI IDE) ===
-  - DOMAIN-SUFFIX,cursor.sh,US
-  - DOMAIN-SUFFIX,cursor.com,US
+    # === Cursor ===
+    - DOMAIN-SUFFIX,cursor.sh,US
+    - DOMAIN-SUFFIX,cursor.com,US
 
-  # === Midjourney ===
-  - DOMAIN-SUFFIX,midjourney.com,US
+    # === 依赖服务 ===
+    - DOMAIN-SUFFIX,stripe.com,US
+    - DOMAIN-SUFFIX,segment.io,US
+    - DOMAIN-SUFFIX,intercom.io,US
+    - DOMAIN-SUFFIX,sentry.io,US
+    - DOMAIN-SUFFIX,algolia.net,US
+    - DOMAIN-SUFFIX,statsig.com,US
+    - DOMAIN,challenges.cloudflare.com,US
+    - DOMAIN-SUFFIX,workos.com,US
+    - DOMAIN-SUFFIX,launchdarkly.com,US
 
-  # === Cloudflare AI ===
-  - DOMAIN,ai.cloudflare.com,US
-  - DOMAIN-SUFFIX,workers.dev,US
-
-  # === 依赖服务 / SDK / 第三方 ===
-  - DOMAIN-SUFFIX,stripe.com,US
-  - DOMAIN-SUFFIX,segment.io,US
-  - DOMAIN-SUFFIX,intercom.io,US
-  - DOMAIN-SUFFIX,intercomcdn.com,US
-  - DOMAIN-SUFFIX,sentry.io,US
-  - DOMAIN-SUFFIX,algolia.net,US
-  - DOMAIN-SUFFIX,statsig.com,US
-  - DOMAIN,statsigapi.net,US
-  - DOMAIN,events.statsigapi.net,US
-  - DOMAIN-SUFFIX,featuregates.org,US
-  - DOMAIN,challenges.cloudflare.com,US
-  - DOMAIN-SUFFIX,browser-intake-datadoghq.com,US
-  - DOMAIN,rum.browser-intake-datadoghq.com,US
-  - DOMAIN,prodregistryv2.org,US
-  - DOMAIN,featureassets.org,US
-  - DOMAIN-SUFFIX,workos.com,US
-  - DOMAIN,workos.imgix.net,US
-  - DOMAIN,images.workoscdn.com,US
-  - DOMAIN-SUFFIX,launchdarkly.com,US
-  - DOMAIN-SUFFIX,ct.sendgrid.net,US
-
-  # === 内部直连 ===
-  - DOMAIN-SUFFIX,antfin.com,DIRECT
-  - DOMAIN-SUFFIX,taobao.com,DIRECT
-  - DOMAIN-SUFFIX,alibaba-inc.com,DIRECT
-  - DOMAIN-SUFFIX,antfin-inc.com,DIRECT
-  - DOMAIN-SUFFIX,atatech.org,DIRECT
-  - DOMAIN-SUFFIX,fliggy.com,DIRECT
-  - DOMAIN-SUFFIX,sspai.com,DIRECT
-  - DOMAIN-SUFFIX,aliyun.com,DIRECT
-  - DOMAIN-SUFFIX,wx.qq.com,HK
-  - DOMAIN-SUFFIX,v2ex.com,HK
-  - DOMAIN-SUFFIX,formulae.brew.sh,US
-  - DOMAIN-SUFFIX,diabrowser.com,US
-  - DOMAIN-SUFFIX,honeycomb.io,US
+    # === 内部直连 ===
+    - DOMAIN-SUFFIX,antfin.com,DIRECT
+    - DOMAIN-SUFFIX,taobao.com,DIRECT
+    - DOMAIN-SUFFIX,alibaba-inc.com,DIRECT
+    - DOMAIN-SUFFIX,antfin-inc.com,DIRECT
+    - DOMAIN-SUFFIX,atatech.org,DIRECT
+    - DOMAIN-SUFFIX,fliggy.com,DIRECT
+    - DOMAIN-SUFFIX,aliyun.com,DIRECT
+    - DOMAIN-SUFFIX,wx.qq.com,HK
+    - DOMAIN-SUFFIX,v2ex.com,HK
+    - DOMAIN-SUFFIX,formulae.brew.sh,US
+    - DOMAIN-SUFFIX,diabrowser.com,US
