@@ -19,6 +19,12 @@
     stack: mixed
     auto-route: true
     auto-detect-interface: true
+    # 排除阿里内网 IP 段
+    exclude-route-address:
+      - 10.0.0.0/8
+      - 172.16.0.0/12
+      - 192.168.0.0/16
+      - 100.64.0.0/10
     # 只排除浏览器（走系统代理），其他全部走 TUN（包括 Codex）
     exclude-process:
       - Google Chrome
