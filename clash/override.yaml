@@ -34,6 +34,7 @@
       - Arc Helper
       - Firefox
       - Firefox Helper
+      - Helium
 
   # DNS 优化 - 增加解析缓存和并发
   dns:
