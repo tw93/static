@@ -5,6 +5,12 @@
   tcp-concurrent: true
   unified-delay: true
   find-process-mode: always
+  profile:
+    store-selected: true
+    store-fake-ip: true
+  # HTTP/2 和传输优化 - 解决 response body 解码错误
+  disable-keep-alive: false
+  buffer-size: 8192
 
   tun:
     mtu: 1500
@@ -14,12 +20,24 @@
     dns-hijack:
       - 0.0.0.0:53
 
+  # DNS 优化 - 增加解析缓存和并发
   dns:
     enable: true
     enhanced-mode: fake-ip
+    fake-ip-range: 198.18.0.1/16
+    cache-algorithm: arc
+    # 禁用 IPv6 解析防止问题
+    prefer-h3: false
+    respect-rules: true
     proxy-server-nameserver:
       - https://223.5.5.5/dns-query
       - https://1.1.1.1/dns-query
+    default-nameserver:
+      - 223.5.5.5
+      - 119.29.29.29
+    nameserver:
+      - https://doh.pub/dns-query
+      - https://dns.alidns.com/dns-query
     +fake-ip-filter:
       # === 阿里内网/直连域名 ===
       - +.alibaba-inc.com
@@ -46,7 +64,42 @@
       - +.githubcopilot.com
 
   sniffer:
-    enable: false
+    enable: true
+    force-dns-mapping: true
+    parse-pure-ip: true
+    override-destination: false
+    sniff:
+      HTTP:
+        ports: [80, 8080-8880]
+        override-destination: true
+      TLS:
+        ports: [443, 8443]
+      QUIC:
+        ports: [443, 8443]
+    skip-domain:
+      # 内网域名
+      - +.alibaba-inc.com
+      - +.antfin.com
+      - +.antfin-inc.com
+      - +.atatech.org
+      - +.aliyun.com
+      - +.taobao.com
+      - +.alipay.com
+      - +.alibaba.com
+      # AI 服务 - 避免嗅探干扰流式传输
+      - +.openai.com
+      - +.chatgpt.com
+      - +.oaistatic.com
+      - +.oaiusercontent.com
+      - +.anthropic.com
+      - +.claude.ai
+      - +.claude.com
+      - +.claudeusercontent.com
+      - +.googleapis.com
+      - +.cursor.sh
+      - +.cursor.com
+      - +.github.com
+      - +.githubcopilot.com
 
   +rules:
     # === 阿里系软件进程白名单 ===
