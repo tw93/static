@@ -73,6 +73,12 @@
       - +.taobao.com
       - +.alipay.com
       - +.alibaba.com
+      - +.aliyun-inc.com
+      - +.alimama.com
+      - +.dingtalk.com
+      - +.yuque.com
+      - aliyuque.antfin.com
+      - work.alibaba-inc.com
       # === AI 服务 ===
       - +.openai.com
       - +.chatgpt.com
@@ -127,6 +133,14 @@
       - +.githubcopilot.com
 
   +rules:
+    # === 阿里内网域名白名单 ===
+    - DOMAIN,aliyuque.antfin.com,DIRECT
+    - DOMAIN,work.alibaba-inc.com,DIRECT
+    - DOMAIN-SUFFIX,aliyun-inc.com,DIRECT
+    - DOMAIN-SUFFIX,alimama.com,DIRECT
+    - DOMAIN-SUFFIX,dingtalk.com,DIRECT
+    - DOMAIN-SUFFIX,yuque.com,DIRECT
+
     # === 阿里系软件进程白名单 ===
     - PROCESS-NAME,DingTalk,DIRECT
     - PROCESS-NAME,AliLangClient,DIRECT
