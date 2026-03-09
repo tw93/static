@@ -117,6 +117,12 @@ function main(config) {
     "DOMAIN,ai.cloudflare.com,US",
     "DOMAIN-SUFFIX,workers.dev,US",
 
+    // === GitHub / Copilot ===
+    "DOMAIN-SUFFIX,github.com,US",
+    "DOMAIN-SUFFIX,githubusercontent.com,US",
+    "DOMAIN-SUFFIX,githubcopilot.com,US",
+    "DOMAIN-SUFFIX,copilot.github.com,US",
+
     // === Internal / Direct ===
     "DOMAIN-SUFFIX,antfin.com,DIRECT",
     "DOMAIN-SUFFIX,taobao.com,DIRECT",
@@ -139,13 +145,15 @@ function main(config) {
   // 1. 开启 TUN 和 进程匹配增强
   config["tun"] = {
     enable: true,
-    stack: "system",
+    stack: "mixed",
     "auto-route": true,
     "auto-detect-interface": true,
-    mtu: 1400
+    mtu: 1500
   };
   config["find-process-mode"] = "always";
-  config["keep-alive-interval"] = 15;
+  config["keep-alive-idle"] = 600;
+  config["keep-alive-interval"] = 10;
+  config["connection-idle-timeout"] = 0;
   config["tcp-concurrent"] = true;
   config["unified-delay"] = true;
 
@@ -159,9 +167,10 @@ function main(config) {
     "+.alipay.com", "+.alibaba.com"
   ];
   const aiDomains = [
-    "+.openai.com", "+.chatgpt.com", "+.anthropic.com", 
-    "+.claude.ai", "+.claude.com", "+.claudeusercontent.com", 
-    "+.googleapis.com", "+.cursor.sh", "+.cursor.com"
+    "+.openai.com", "+.chatgpt.com", "+.oaistatic.com", "+.oaiusercontent.com",
+    "+.anthropic.com", "+.claude.ai", "+.claude.com", "+.claudeusercontent.com",
+    "+.googleapis.com", "+.cursor.sh", "+.cursor.com",
+    "+.github.com", "+.githubcopilot.com"
   ];
   
   config.dns["fake-ip-filter"].push(...aliInternal, ...aiDomains);

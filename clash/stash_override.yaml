@@ -93,6 +93,11 @@ rules:
   - DOMAIN-SUFFIX,cursor.sh,US
   - DOMAIN-SUFFIX,cursor.com,US
 
+  # === GitHub / Copilot ===
+  - DOMAIN-SUFFIX,github.com,US
+  - DOMAIN-SUFFIX,githubusercontent.com,US
+  - DOMAIN-SUFFIX,githubcopilot.com,US
+
   # === Google AI 全家桶 (补充 Gemini) ===
   - DOMAIN,gemini.google.com,US
   - DOMAIN,bard.google.com,US
