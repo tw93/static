@@ -1,15 +1,15 @@
 # === 网络优化：防止 AI 流式连接断开 ===
   keep-alive-idle: 600
-  keep-alive-interval: 15
-  connection-idle-timeout: 600
+  keep-alive-interval: 10
+  connection-idle-timeout: 0
   tcp-concurrent: true
   unified-delay: true
   global-client-fingerprint: chrome
   find-process-mode: always
 
   tun:
-    mtu: 1400
-    stack: system
+    mtu: 1500
+    stack: mixed
     auto-route: true
     auto-detect-interface: true
     dns-hijack:
@@ -31,6 +31,8 @@
       # === AI 服务 ===
       - +.openai.com
       - +.chatgpt.com
+      - +.oaistatic.com
+      - +.oaiusercontent.com
       - +.anthropic.com
       - +.claude.ai
       - +.claude.com
@@ -38,6 +40,8 @@
       - +.googleapis.com
       - +.cursor.sh
       - +.cursor.com
+      - +.github.com
+      - +.githubcopilot.com
 
   sniffer:
     enable: false

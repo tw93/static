@@ -99,6 +99,7 @@ DOMAIN-SUFFIX,deepmind.com,US
 ########################################
 DOMAIN-SUFFIX,github.com,US
 DOMAIN-SUFFIX,githubusercontent.com,US
+DOMAIN-SUFFIX,githubcopilot.com,US
 DOMAIN-SUFFIX,formulae.brew.sh,US
 DOMAIN-SUFFIX,honeycomb.io,US
 
