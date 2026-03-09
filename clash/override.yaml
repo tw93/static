@@ -19,74 +19,49 @@
     stack: mixed
     auto-route: true
     auto-detect-interface: true
-    dns-hijack:
-      - 0.0.0.0:53
-    # 排除浏览器（浏览器直接走系统 HTTP 代理）
-    exclude-process:
-      # Chromium 系
-      - Google Chrome
-      - Google Chrome Helper
-      - Google Chrome Helper (Renderer)
-      - Chromium
-      - Chromium Helper
-      - Microsoft Edge
-      - Microsoft Edge Helper
-      - Microsoft Edge Helper (Renderer)
-      - Brave Browser
-      - Brave Browser Helper
-      - Brave Browser Helper (Renderer)
-      - Opera
-      - Opera Helper
-      - Vivaldi
-      - Vivaldi Helper
-      - Arc
-      - Arc Helper
-      # Safari 系
-      - Safari
-      - Safari Technology Preview
-      - WebKitNetworking
-      - com.apple.WebKit.Networking
-      - com.apple.Safari.SandboxBroker
-      # Firefox 系
-      - Firefox
-      - Firefox Helper
-      - Firefox Nightly
-      - Firefox Developer Edition
-      # 其他
-      - Tor Browser
-      - Tor Browser Helper
-      - SigmaOS
-      - Orion
-      - Orion Helper
-      - Floorp
-      - LibreWolf
-      - Min
-      - Beaker Browser
-      # 基于 Web 的 App
-      - Notion
-      - Notion Helper
-      - Helium
-      - Fluid
-      - Unite
-      - Coherence X
-      - Wavebox
-      - Station
-      - Rambox
-      - Ferdium
-      - Franz
-      - Slack
-      - Slack Helper
-      - Discord
-      - Discord Helper
-      - Telegram
-      - Linear
-      - Fig
-      - Warp
-      - Notion Calendar
-      - Cron
-      - Routine
-      - Raycast
-      - Setapp
+    # 只让命令行工具走 TUN，浏览器走系统代理
+    include-process:
+      - curl
+      - wget
+      - git
+      - git-remote-https
+      - ssh
+      - python
+      - python3
+      - node
+      - npm
+      - yarn
+      - pnpm
+      - deno
+      - bun
+      - go
+      - cargo
+      - rustc
+      - codex
+      - codex-cli
+      - openai
+      - anthropic
+      - docker
+      - docker-compose
+      - kubectl
+      - helm
+      - terraform
+      - aws
+      - gcloud
+      - az
+      - azcopy
+      - rsync
+      - scp
+      - sftp
+      - telnet
+      - nc
+      - ncat
+      - openssl
+      - dig
+      - nslookup
+      - host
+      - ping
+      - traceroute
 
   # DNS 优化 - 增加解析缓存和并发
   dns:
