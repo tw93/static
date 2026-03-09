@@ -4,7 +4,6 @@
   connection-idle-timeout: 0
   tcp-concurrent: true
   unified-delay: true
-  find-process-mode: always
   profile:
     store-selected: true
     store-fake-ip: true
@@ -13,34 +12,6 @@
   buffer-size: 8192
   # 禁用 IPv6（无 IPv6 环境）
   ipv6: false
-
-  tun:
-    mtu: 1500
-    stack: mixed
-    auto-route: true
-    auto-detect-interface: true
-    # 排除阿里内网 IP 段
-    exclude-route-address:
-      - 10.0.0.0/8
-      - 172.16.0.0/12
-      - 192.168.0.0/16
-      - 100.64.0.0/10
-    # 只排除浏览器（走系统代理），其他全部走 TUN（包括 Codex）
-    exclude-process:
-      - Google Chrome
-      - Google Chrome Helper
-      - Google Chrome Helper (Renderer)
-      - Safari
-      - Safari Technology Preview
-      - WebKitNetworking
-      - com.apple.WebKit.Networking
-      - Microsoft Edge
-      - Microsoft Edge Helper
-      - Arc
-      - Arc Helper
-      - Firefox
-      - Firefox Helper
-      - Helium
 
   # DNS 优化 - 增加解析缓存和并发
   dns:
@@ -101,42 +72,7 @@
       - +.githubcopilot.com
 
   sniffer:
-    enable: true
-    force-dns-mapping: true
-    parse-pure-ip: true
-    override-destination: false
-    sniff:
-      HTTP:
-        ports: [80, 8080-8880]
-        override-destination: true
-      TLS:
-        ports: [443, 8443]
-      QUIC:
-        ports: [443, 8443]
-    skip-domain:
-      # 内网域名
-      - +.alibaba-inc.com
-      - +.antfin.com
-      - +.antfin-inc.com
-      - +.atatech.org
-      - +.aliyun.com
-      - +.taobao.com
-      - +.alipay.com
-      - +.alibaba.com
-      # AI 服务 - 避免嗅探干扰流式传输
-      - +.openai.com
-      - +.chatgpt.com
-      - +.oaistatic.com
-      - +.oaiusercontent.com
-      - +.anthropic.com
-      - +.claude.ai
-      - +.claude.com
-      - +.claudeusercontent.com
-      - +.googleapis.com
-      - +.cursor.sh
-      - +.cursor.com
-      - +.github.com
-      - +.githubcopilot.com
+    enable: false
 
   +rules:
     # === 阿里内网域名白名单 ===
