@@ -11,6 +11,8 @@
   # HTTP/2 和传输优化 - 解决 response body 解码错误
   disable-keep-alive: false
   buffer-size: 8192
+  # 禁用 IPv6（无 IPv6 环境）
+  ipv6: false
 
   tun:
     mtu: 1500
@@ -29,6 +31,7 @@
     # 禁用 IPv6 解析防止问题
     prefer-h3: false
     respect-rules: true
+    ipv6: false
     proxy-server-nameserver:
       - https://223.5.5.5/dns-query
       - https://1.1.1.1/dns-query
