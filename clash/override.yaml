@@ -74,6 +74,9 @@
     enable: false
 
   +rules:
+    # === Qoder 直连 ===
+    - DOMAIN-SUFFIX,qoder.sh,DIRECT
+
     # === OpenAI / ChatGPT ===
     - DOMAIN-SUFFIX,openai.com,US
     - DOMAIN-SUFFIX,chatgpt.com,US
