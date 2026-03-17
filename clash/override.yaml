@@ -21,7 +21,7 @@
   # 禁用 IPv6（无 IPv6 环境）
   ipv6: false
 
-  TUN 模式 - 系统级代理更稳定（可选，与其他 VPN 冲突时关闭）
+  # TUN 模式 - 系统级代理更稳定（可选，与其他 VPN 冲突时关闭）
   tun:
     enable: true
     stack: gvisor
