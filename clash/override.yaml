@@ -1,122 +1,111 @@
 # === 网络优化：防止 AI 流式连接断开 ===
-  keep-alive-idle: 600
-  keep-alive-interval: 10
-  connection-idle-timeout: 0
-  tcp-concurrent: true
-  unified-delay: true
-  # HTTP/2 和传输优化 - 解决 response body 解码错误
-  disable-keep-alive: false
-  buffer-size: 16384
-  # 非 TUN 模式增强：强制长连接
-  force-domain:
+keep-alive-idle: 600
+keep-alive-interval: 10
+connection-idle-timeout: 600
+tcp-concurrent: true
+unified-delay: true
+disable-keep-alive: false
+buffer-size: 65536
+ipv6: false
+
+hosts:
+  'mtalk.google.com': 108.177.125.188
+  'services.googleapis.cn': 74.125.203.94
+  'clientservices.googleapis.com': 142.250.80.42
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+  tracing: true
+
+dns:
+  enable: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  cache-algorithm: arc
+  prefer-h3: false
+  respect-rules: true
+  ipv6: false
+  proxy-server-nameserver:
+    - https://223.5.5.5/dns-query
+    - https://1.1.1.1/dns-query
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback:
+    - https://8.8.8.8/dns-query
+    - https://1.1.1.1/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+  +fake-ip-filter:
+    # === AI 服务 ===
     - +.openai.com
+    - +.chatgpt.com
+    - +.oaistatic.com
+    - +.oaiusercontent.com
     - +.anthropic.com
     - +.claude.ai
+    - +.claude.com
+    - +.claudeusercontent.com
+    - +.googleapis.com
+    - +.cursor.sh
+    - +.cursor.com
     - +.github.com
-  # 连接池优化
-  profile:
-    store-selected: true
-    store-fake-ip: true
-    tracing: true
-  # 禁用 IPv6（无 IPv6 环境）
-  ipv6: false
+    - +.githubcopilot.com
 
-  # hosts 优化 - Google 服务直连
-  hosts:
-    'mtalk.google.com': 108.177.125.188
-    'services.googleapis.cn': 74.125.203.94
-    'clientservices.googleapis.com': 142.250.80.42
+sniffer:
+  enable: false
 
-  # DNS 优化 - 增加解析缓存和并发
-  dns:
-    enable: true
-    enhanced-mode: fake-ip
-    fake-ip-range: 198.18.0.1/16
-    cache-algorithm: arc
-    # 禁用 IPv6 解析防止问题
-    prefer-h3: false
-    respect-rules: true
-    ipv6: false
-    proxy-server-nameserver:
-      - https://223.5.5.5/dns-query
-      - https://1.1.1.1/dns-query
-    default-nameserver:
-      - 223.5.5.5
-      - 119.29.29.29
-    nameserver:
-      - https://doh.pub/dns-query
-      - https://dns.alidns.com/dns-query
-    fallback:
-      - https://8.8.8.8/dns-query
-      - https://1.1.1.1/dns-query
-    fallback-filter:
-      geoip: true
-      geoip-code: CN
-      ipcidr:
-        - 240.0.0.0/4
-    +fake-ip-filter:
-      # === AI 服务 ===
-      - +.openai.com
-      - +.chatgpt.com
-      - +.oaistatic.com
-      - +.oaiusercontent.com
-      - +.anthropic.com
-      - +.claude.ai
-      - +.claude.com
-      - +.claudeusercontent.com
-      - +.googleapis.com
-      - +.cursor.sh
-      - +.cursor.com
-      - +.github.com
-      - +.githubcopilot.com
++rules:
+  # === Qoder 直连 ===
+  - DOMAIN-SUFFIX,qoder.sh,DIRECT
 
-  sniffer:
-    enable: false
+  # === OpenAI / ChatGPT ===
+  - DOMAIN-SUFFIX,openai.com,US
+  - DOMAIN-SUFFIX,chatgpt.com,US
+  - DOMAIN-SUFFIX,oaistatic.com,US
+  - DOMAIN-SUFFIX,oaiusercontent.com,US
+  - DOMAIN-SUFFIX,openai-cdn.com,US
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,US
+  - DOMAIN-SUFFIX,openaicom.imgix.net,US
+  - DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,US
+  - DOMAIN,production-openaicom-storage.azureedge.net,US
+  - DOMAIN-SUFFIX,livekit.cloud,US
 
-  +rules:
-    # === Qoder 直连 ===
-    - DOMAIN-SUFFIX,qoder.sh,DIRECT
+  # === Claude (Anthropic) ===
+  - DOMAIN-SUFFIX,anthropic.com,US
+  - DOMAIN-SUFFIX,claude.ai,US
+  - DOMAIN-SUFFIX,claude.com,US
+  - DOMAIN-SUFFIX,claudeusercontent.com,US
 
-    # === OpenAI / ChatGPT ===
-    - DOMAIN-SUFFIX,openai.com,US
-    - DOMAIN-SUFFIX,chatgpt.com,US
-    - DOMAIN-SUFFIX,oaistatic.com,US
-    - DOMAIN-SUFFIX,oaiusercontent.com,US
-    - DOMAIN-SUFFIX,openai-cdn.com,US
-    - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,US
-    - DOMAIN-SUFFIX,openaicom.imgix.net,US
-    - DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,US
-    - DOMAIN,production-openaicom-storage.azureedge.net,US
-    - DOMAIN-SUFFIX,livekit.cloud,US
+  # === Google AI ===
+  - DOMAIN-SUFFIX,googleapis.com,US
+  - DOMAIN-SUFFIX,deepmind.com,US
+  - DOMAIN,gemini.google.com,US
 
-    # === Claude (Anthropic) ===
-    - DOMAIN-SUFFIX,anthropic.com,US
-    - DOMAIN-SUFFIX,claude.ai,US
-    - DOMAIN-SUFFIX,claude.com,US
-    - DOMAIN-SUFFIX,claudeusercontent.com,US
+  # === Cursor ===
+  - DOMAIN-SUFFIX,cursor.sh,US
+  - DOMAIN-SUFFIX,cursor.com,US
 
-    # === Google AI ===
-    - DOMAIN-SUFFIX,googleapis.com,US
-    - DOMAIN-SUFFIX,deepmind.com,US
-    - DOMAIN,gemini.google.com,US
+  # === 依赖服务 ===
+  - DOMAIN-SUFFIX,stripe.com,US
+  - DOMAIN-SUFFIX,segment.io,US
+  - DOMAIN-SUFFIX,intercom.io,US
+  - DOMAIN-SUFFIX,sentry.io,US
+  - DOMAIN-SUFFIX,algolia.net,US
+  - DOMAIN-SUFFIX,statsig.com,US
+  - DOMAIN,challenges.cloudflare.com,US
+  - DOMAIN-SUFFIX,workos.com,US
+  - DOMAIN-SUFFIX,launchdarkly.com,US
 
-    # === Cursor ===
-    - DOMAIN-SUFFIX,cursor.sh,US
-    - DOMAIN-SUFFIX,cursor.com,US
-
-    # === 依赖服务 ===
-    - DOMAIN-SUFFIX,stripe.com,US
-    - DOMAIN-SUFFIX,segment.io,US
-    - DOMAIN-SUFFIX,intercom.io,US
-    - DOMAIN-SUFFIX,sentry.io,US
-    - DOMAIN-SUFFIX,algolia.net,US
-    - DOMAIN-SUFFIX,statsig.com,US
-    - DOMAIN,challenges.cloudflare.com,US
-    - DOMAIN-SUFFIX,workos.com,US
-    - DOMAIN-SUFFIX,launchdarkly.com,US
-
-    # === 被迫转发 ===
-    - DOMAIN-SUFFIX,wx.qq.com,HK
-    - DOMAIN-SUFFIX,v2ex.com,HK
-    - DOMAIN-SUFFIX,formulae.brew.sh,US
-    - DOMAIN-SUFFIX,diabrowser.com,US
+  # === 被迫转发 ===
+  - DOMAIN-SUFFIX,wx.qq.com,HK
+  - DOMAIN-SUFFIX,v2ex.com,HK
+  - DOMAIN-SUFFIX,formulae.brew.sh,US
+  - DOMAIN-SUFFIX,diabrowser.com,US

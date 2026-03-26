@@ -48,6 +48,8 @@ rules:
   - DOMAIN,statsig.anthropic.com,US
   - DOMAIN-SUFFIX,anthropic.com,US
   - DOMAIN-SUFFIX,claude.ai,US
+  - DOMAIN-SUFFIX,claude.com,US
+  - DOMAIN-SUFFIX,claudeusercontent.com,US
   - DOMAIN-SUFFIX,stripe.com,US
   - DOMAIN-SUFFIX,segment.io,US
   - DOMAIN-SUFFIX,intercom.io,US
