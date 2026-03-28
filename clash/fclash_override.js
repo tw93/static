@@ -167,14 +167,7 @@ function main(config) {
     "+.atatech.org", "+.aliyun.com", "+.taobao.com", 
     "+.alipay.com", "+.alibaba.com"
   ];
-  const aiDomains = [
-    "+.openai.com", "+.chatgpt.com", "+.oaistatic.com", "+.oaiusercontent.com",
-    "+.anthropic.com", "+.claude.ai", "+.claude.com", "+.claudeusercontent.com",
-    "+.googleapis.com", "+.cursor.sh", "+.cursor.com",
-    "+.github.com", "+.githubcopilot.com"
-  ];
-  
-  config.dns["fake-ip-filter"].push(...aliInternal, ...aiDomains);
+  config.dns["fake-ip-filter"].push(...aliInternal);
 
   // 3. 配置 Sniffer (AI 优化)
   if (!config.sniffer) config.sniffer = {};
