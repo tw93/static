@@ -44,21 +44,7 @@ dns!:
     ipcidr:
       - 240.0.0.0/4
   fake-ip-filter:
-    # === AI 服务（需要真实 IP，不走 fake-ip）===
-    - +.openai.com
-    - +.chatgpt.com
-    - +.oaistatic.com
-    - +.oaiusercontent.com
-    - +.anthropic.com
-    - +.claude.ai
-    - +.claude.com
-    - +.claudeusercontent.com
-    - +.googleapis.com
-    - +.cursor.sh
-    - +.cursor.com
-    - +.github.com
-    - +.githubcopilot.com
-    # === 游戏 / 设备（来自订阅，保留）===
+    # === 游戏 / 设备（需要真实 IP）===
     - "*.lan"
     - "*.srv.nintendo.net"
     - "*.stun.playstation.net"
