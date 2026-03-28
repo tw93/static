@@ -54,7 +54,7 @@ dns!:
 sniffer:
   enable: false
 
-+rules:
+rules.0:
   # === Qoder 直连 ===
   - DOMAIN-SUFFIX,qoder.sh,DIRECT
 
