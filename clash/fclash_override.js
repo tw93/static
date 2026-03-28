@@ -87,6 +87,7 @@ function main(config) {
     "DOMAIN-SUFFIX,ct.sendgrid.net,US",
 
     // === Google AI ===
+    "DOMAIN,accounts.google.com,US",
     "DOMAIN,generativeai.google,US",
     "DOMAIN,ai.google,US",
     "DOMAIN-SUFFIX,googleapis.com,US",
