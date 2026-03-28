@@ -91,6 +91,7 @@ sniffer:
   - DOMAIN-SUFFIX,claudeusercontent.com,US
 
   # === Google AI ===
+  - DOMAIN,accounts.google.com,US
   - DOMAIN-SUFFIX,googleapis.com,US
   - DOMAIN-SUFFIX,deepmind.com,US
   - DOMAIN,gemini.google.com,US

@@ -82,6 +82,7 @@ rules:
 
   # === AI 相关常见服务 ===
   ## Google AI
+  - DOMAIN,accounts.google.com,US
   - DOMAIN,generativeai.google,US
   - DOMAIN,ai.google,US
   - DOMAIN-SUFFIX,googleapis.com,US
