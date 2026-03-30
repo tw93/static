@@ -38,15 +38,22 @@ rules:
   # === Claude (Anthropic) ===
   - DOMAIN,claude.ai,US
   - DOMAIN,claude.com,US
+  - DOMAIN,code.claude.com,US
   - DOMAIN,console.anthropic.com,US
   - DOMAIN,api.anthropic.com,US
+  - DOMAIN,mcp-proxy.anthropic.com,US
   - DOMAIN,support.anthropic.com,US
   - DOMAIN,docs.anthropic.com,US
   - DOMAIN,statsig.anthropic.com,US
+  - DOMAIN,downloads.claude.ai,US
+  - DOMAIN,assets.claude.ai,US
+  - DOMAIN,bridge.claudeusercontent.com,US
+  - DOMAIN,platform.claude.com,US
   - DOMAIN-SUFFIX,anthropic.com,US
   - DOMAIN-SUFFIX,claude.ai,US
   - DOMAIN-SUFFIX,claude.com,US
   - DOMAIN-SUFFIX,claudeusercontent.com,US
+  - DOMAIN-SUFFIX,ant.dev,US
 
   # === Gemini / Google AI ===
   - DOMAIN,accounts.google.com,US
@@ -133,14 +140,22 @@ rules:
   - DOMAIN-SUFFIX,formulae.brew.sh,US
   - DOMAIN-SUFFIX,diabrowser.com,US
 
-  # === 内网直连 ===
+  # === 内网直连 (iDingTalk / AliLang / Alibaba 内网) ===
+  - DOMAIN-SUFFIX,dingtalk.com,DIRECT
+  - DOMAIN-SUFFIX,dingtalkapps.com,DIRECT
+  - DOMAIN-SUFFIX,dingtalk.net,DIRECT
+  - DOMAIN-SUFFIX,alicdn.com,DIRECT
+  - DOMAIN-SUFFIX,aliway.com,DIRECT
   - DOMAIN-SUFFIX,antfin.com,DIRECT
   - DOMAIN-SUFFIX,antfin-inc.com,DIRECT
   - DOMAIN-SUFFIX,alibaba-inc.com,DIRECT
+  - DOMAIN-SUFFIX,alibaba.com,DIRECT
   - DOMAIN-SUFFIX,atatech.org,DIRECT
   - DOMAIN-SUFFIX,alipay.com,DIRECT
   - DOMAIN-SUFFIX,taobao.com,DIRECT
   - DOMAIN-SUFFIX,aliyun.com,DIRECT
+  - DOMAIN-SUFFIX,aliyun-inc.com,DIRECT
+  - DOMAIN-SUFFIX,aliyuncs.com,DIRECT
   - DOMAIN-SUFFIX,fliggy.com,DIRECT
   - DOMAIN-SUFFIX,yuque.com,DIRECT
   - DOMAIN-SUFFIX,sspai.com,DIRECT
