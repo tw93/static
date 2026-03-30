@@ -53,6 +53,7 @@ dns!:
     - +.claude.ai
     - +.claude.com
     - +.claudeusercontent.com
+    - +.ant.dev
     - +.googleapis.com
     - +.cursor.sh
     - +.cursor.com
@@ -67,12 +68,20 @@ dns!:
     - +.antfin.com
     - +.antfin-inc.com
     - +.alibaba-inc.com
+    - +.alibaba.com
     - +.atatech.org
     - +.alipay.com
     - +.taobao.com
     - +.aliyun.com
+    - +.aliyun-inc.com
+    - +.aliyuncs.com
     - +.fliggy.com
     - +.yuque.com
+    - +.dingtalk.com
+    - +.dingtalkapps.com
+    - +.dingtalk.net
+    - +.alicdn.com
+    - +.aliway.com
     # === 游戏 / 设备（来自订阅，保留）===
     - "*.lan"
     - "*.srv.nintendo.net"
@@ -104,6 +113,7 @@ sniffer:
   - DOMAIN-SUFFIX,claude.ai,US
   - DOMAIN-SUFFIX,claude.com,US
   - DOMAIN-SUFFIX,claudeusercontent.com,US
+  - DOMAIN-SUFFIX,ant.dev,US
 
   # === Gemini / Google AI ===
   - DOMAIN,accounts.google.com,US
@@ -150,12 +160,20 @@ sniffer:
   - DOMAIN-SUFFIX,antfin.com,DIRECT
   - DOMAIN-SUFFIX,antfin-inc.com,DIRECT
   - DOMAIN-SUFFIX,alibaba-inc.com,DIRECT
+  - DOMAIN-SUFFIX,alibaba.com,DIRECT
   - DOMAIN-SUFFIX,atatech.org,DIRECT
   - DOMAIN-SUFFIX,alipay.com,DIRECT
   - DOMAIN-SUFFIX,taobao.com,DIRECT
   - DOMAIN-SUFFIX,aliyun.com,DIRECT
+  - DOMAIN-SUFFIX,aliyun-inc.com,DIRECT
+  - DOMAIN-SUFFIX,aliyuncs.com,DIRECT
   - DOMAIN-SUFFIX,fliggy.com,DIRECT
   - DOMAIN-SUFFIX,yuque.com,DIRECT
+  - DOMAIN-SUFFIX,dingtalk.com,DIRECT
+  - DOMAIN-SUFFIX,dingtalkapps.com,DIRECT
+  - DOMAIN-SUFFIX,dingtalk.net,DIRECT
+  - DOMAIN-SUFFIX,alicdn.com,DIRECT
+  - DOMAIN-SUFFIX,aliway.com,DIRECT
 
   # === 被迫转发 ===
   - DOMAIN-SUFFIX,wx.qq.com,HK
