@@ -35,12 +35,6 @@ dns!:
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
-  nameserver-policy:
-    # === 纯内网域名走 AliLang VPN 推送的内网 DNS（仅限无公网解析的域名）===
-    "+.alibaba-inc.com": 30.30.30.30
-    "+.antfin-inc.com": 30.30.30.30
-    "+.aliyun-inc.com": 30.30.30.30
-    "+.hz.ali.com": 30.30.30.30
   fallback:
     - https://8.8.8.8/dns-query
     - https://1.1.1.1/dns-query
