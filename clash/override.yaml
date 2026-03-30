@@ -64,25 +64,6 @@ dns!:
     - +.groq.com
     - +.cohere.com
     - +.mistral.ai
-    # === 内网域名（TUN 模式下需要真实 DNS 解析才能 DIRECT）===
-    - +.antfin.com
-    - +.antfin-inc.com
-    - +.alibaba-inc.com
-    - +.alibaba.com
-    - +.atatech.org
-    - +.alipay.com
-    - +.taobao.com
-    - +.aliyun.com
-    - +.aliyun-inc.com
-    - +.aliyuncs.com
-    - +.fliggy.com
-    - +.yuque.com
-    - +.dingtalk.com
-    - +.dingtalkapps.com
-    - +.dingtalk.net
-    - +.alicdn.com
-    - +.aliway.com
-    - +.antgroup.com
     # === 游戏 / 设备（来自订阅，保留）===
     - "*.lan"
     - "*.srv.nintendo.net"
@@ -94,15 +75,6 @@ tun:
   enable: true
   auto-route: true
   auto-detect-interface: true
-  route-exclude-address:
-    - 59.82.0.0/16
-    - 203.119.0.0/16
-    - 10.0.0.0/8
-    - 11.122.0.0/15
-    - 11.124.0.0/16
-    - 11.158.0.0/15
-    - 11.160.0.0/13
-    - 11.238.0.0/15
 
 sniffer:
   enable: false
