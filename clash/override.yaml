@@ -44,7 +44,36 @@ dns!:
     ipcidr:
       - 240.0.0.0/4
   fake-ip-filter:
-    # === 游戏 / 设备（需要真实 IP）===
+    # === AI 服务（需要真实 IP，不走 fake-ip）===
+    - +.openai.com
+    - +.chatgpt.com
+    - +.oaistatic.com
+    - +.oaiusercontent.com
+    - +.anthropic.com
+    - +.claude.ai
+    - +.claude.com
+    - +.claudeusercontent.com
+    - +.googleapis.com
+    - +.cursor.sh
+    - +.cursor.com
+    - +.github.com
+    - +.githubcopilot.com
+    - +.x.ai
+    - +.grok.com
+    - +.groq.com
+    - +.cohere.com
+    - +.mistral.ai
+    # === 内网域名（TUN 模式下需要真实 DNS 解析才能 DIRECT）===
+    - +.antfin.com
+    - +.antfin-inc.com
+    - +.alibaba-inc.com
+    - +.atatech.org
+    - +.alipay.com
+    - +.taobao.com
+    - +.aliyun.com
+    - +.fliggy.com
+    - +.yuque.com
+    # === 游戏 / 设备（来自订阅，保留）===
     - "*.lan"
     - "*.srv.nintendo.net"
     - "*.stun.playstation.net"
@@ -54,11 +83,11 @@ dns!:
 sniffer:
   enable: false
 
-rules.0:
++rules:
   # === Qoder 直连 ===
   - DOMAIN-SUFFIX,qoder.sh,DIRECT
 
-  # === OpenAI / ChatGPT ===
+  # === OpenAI / ChatGPT / Codex ===
   - DOMAIN-SUFFIX,openai.com,US
   - DOMAIN-SUFFIX,chatgpt.com,US
   - DOMAIN-SUFFIX,oaistatic.com,US
@@ -76,15 +105,35 @@ rules.0:
   - DOMAIN-SUFFIX,claude.com,US
   - DOMAIN-SUFFIX,claudeusercontent.com,US
 
-  # === Google AI ===
+  # === Gemini / Google AI ===
   - DOMAIN,accounts.google.com,US
   - DOMAIN-SUFFIX,googleapis.com,US
   - DOMAIN-SUFFIX,deepmind.com,US
   - DOMAIN,gemini.google.com,US
+  - DOMAIN,aistudio.google.com,US
+  - DOMAIN,generativelanguage.googleapis.com,US
+  - DOMAIN,ai.google.dev,US
+  - DOMAIN-SUFFIX,google-gemini.dev,US
+
+  # === Grok (xAI) ===
+  - DOMAIN-SUFFIX,x.ai,US
+  - DOMAIN-SUFFIX,grok.com,US
+  - DOMAIN,api.x.ai,US
+
+  # === Groq ===
+  - DOMAIN-SUFFIX,groq.com,US
 
   # === Cursor ===
   - DOMAIN-SUFFIX,cursor.sh,US
   - DOMAIN-SUFFIX,cursor.com,US
+
+  # === 其他 AI ===
+  - DOMAIN-SUFFIX,cohere.com,US
+  - DOMAIN-SUFFIX,mistral.ai,US
+  - DOMAIN-SUFFIX,together.ai,US
+  - DOMAIN-SUFFIX,replicate.com,US
+  - DOMAIN-SUFFIX,huggingface.co,US
+  - DOMAIN-SUFFIX,perplexity.ai,US
 
   # === 依赖服务 ===
   - DOMAIN-SUFFIX,stripe.com,US
@@ -96,6 +145,17 @@ rules.0:
   - DOMAIN,challenges.cloudflare.com,US
   - DOMAIN-SUFFIX,workos.com,US
   - DOMAIN-SUFFIX,launchdarkly.com,US
+
+  # === 内网直连 ===
+  - DOMAIN-SUFFIX,antfin.com,DIRECT
+  - DOMAIN-SUFFIX,antfin-inc.com,DIRECT
+  - DOMAIN-SUFFIX,alibaba-inc.com,DIRECT
+  - DOMAIN-SUFFIX,atatech.org,DIRECT
+  - DOMAIN-SUFFIX,alipay.com,DIRECT
+  - DOMAIN-SUFFIX,taobao.com,DIRECT
+  - DOMAIN-SUFFIX,aliyun.com,DIRECT
+  - DOMAIN-SUFFIX,fliggy.com,DIRECT
+  - DOMAIN-SUFFIX,yuque.com,DIRECT
 
   # === 被迫转发 ===
   - DOMAIN-SUFFIX,wx.qq.com,HK
