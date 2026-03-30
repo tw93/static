@@ -38,6 +38,19 @@ dns!:
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
+  nameserver-policy:
+    # === 阿里内网域名走 AliLang VPN 推送的内网 DNS ===
+    "+.alibaba-inc.com": 30.30.30.30
+    "+.antfin.com": 30.30.30.30
+    "+.antfin-inc.com": 30.30.30.30
+    "+.atatech.org": 30.30.30.30
+    "+.alipay.com": 30.30.30.30
+    "+.aliyun-inc.com": 30.30.30.30
+    "+.hz.ali.com": 30.30.30.30
+    "+.alibaba.com": 30.30.30.30
+    "+.dingtalk.com": 30.30.30.30
+    "+.aliway.com": 30.30.30.30
+    "+.yuque.com": 30.30.30.30
   fallback:
     - https://8.8.8.8/dns-query
     - https://1.1.1.1/dns-query
