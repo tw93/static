@@ -195,6 +195,14 @@ sniffer:
   - DOMAIN-SUFFIX,aliway.com,DIRECT
   - DOMAIN-SUFFIX,antgroup.com,DIRECT
 
+  # === 阿里内网 IP 段（AliLang VPN 路由，TUN 下不拦截）===
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,11.122.0.0/15,DIRECT,no-resolve
+  - IP-CIDR,11.124.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,11.158.0.0/15,DIRECT,no-resolve
+  - IP-CIDR,11.160.0.0/13,DIRECT,no-resolve
+  - IP-CIDR,11.238.0.0/15,DIRECT,no-resolve
+
   # === 被迫转发 ===
   - DOMAIN-SUFFIX,wx.qq.com,HK
   - DOMAIN-SUFFIX,v2ex.com,HK
