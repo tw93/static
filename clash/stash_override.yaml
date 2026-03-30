@@ -1,9 +1,9 @@
 name: AI Services & GitHub 路由规则
-desc: OpenAI/Claude/GitHub 等 AI 服务走美国节点，内网直连
+desc: OpenAI/Claude/Gemini/Grok 等 AI 服务走美国节点，内网直连
 category: 'AI'
 
 rules:
-  # === OpenAI / ChatGPT 主域名 ===
+  # === OpenAI / ChatGPT / Codex ===
   - DOMAIN,chat.openai.com,US
   - DOMAIN,tcr9i.chat.openai.com,US
   - DOMAIN,ios.chat.openai.com,US
@@ -18,7 +18,6 @@ rules:
   - DOMAIN,auth0.openai.com,US
   - DOMAIN,accounts.openai.com,US
   - DOMAIN,auth.openai.com,US
-  - DOMAIN-SUFFIX,auth.openai.com,US
   - DOMAIN,setup.auth.openai.com,US
   - DOMAIN,cdn.openai.com,US
   - DOMAIN,openai-cdn.com,US
@@ -35,8 +34,6 @@ rules:
   - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,US
   - DOMAIN-SUFFIX,openaicom.imgix.net,US
   - DOMAIN-SUFFIX,chatgpt.livekit.cloud,US
-  - DOMAIN-SUFFIX,sentry.io,US
-  - DOMAIN-SUFFIX,algolia.net,US
 
   # === Claude (Anthropic) ===
   - DOMAIN,claude.ai,US
@@ -50,16 +47,69 @@ rules:
   - DOMAIN-SUFFIX,claude.ai,US
   - DOMAIN-SUFFIX,claude.com,US
   - DOMAIN-SUFFIX,claudeusercontent.com,US
+
+  # === Gemini / Google AI ===
+  - DOMAIN,accounts.google.com,US
+  - DOMAIN,gemini.google.com,US
+  - DOMAIN,bard.google.com,US
+  - DOMAIN,aistudio.google.com,US
+  - DOMAIN,makersuite.google.com,US
+  - DOMAIN,generativelanguage.googleapis.com,US
+  - DOMAIN,ai.google.dev,US
+  - DOMAIN,generativeai.google,US
+  - DOMAIN,ai.google,US
+  - DOMAIN-SUFFIX,google-gemini.dev,US
+  - DOMAIN-SUFFIX,googleapis.com,US
+  - DOMAIN-SUFFIX,deepmind.com,US
+  - DOMAIN-SUFFIX,tensorflow.org,US
+
+  # === Grok (xAI) ===
+  - DOMAIN,grok.com,US
+  - DOMAIN,api.x.ai,US
+  - DOMAIN-SUFFIX,x.ai,US
+  - DOMAIN-SUFFIX,grok.com,US
+
+  # === Groq ===
+  - DOMAIN,api.groq.com,US
+  - DOMAIN,console.groq.com,US
+  - DOMAIN-SUFFIX,groq.com,US
+
+  # === Cursor (AI IDE) ===
+  - DOMAIN,cursor.sh,US
+  - DOMAIN,api.cursor.sh,US
+  - DOMAIN,download.cursor.sh,US
+  - DOMAIN-SUFFIX,cursor.sh,US
+  - DOMAIN-SUFFIX,cursor.com,US
+
+  # === GitHub / Copilot ===
+  - DOMAIN-SUFFIX,github.com,US
+  - DOMAIN-SUFFIX,githubusercontent.com,US
+  - DOMAIN-SUFFIX,githubcopilot.com,US
+
+  # === 其他 AI ===
+  - DOMAIN-SUFFIX,cohere.com,US
+  - DOMAIN-SUFFIX,mistral.ai,US
+  - DOMAIN-SUFFIX,together.ai,US
+  - DOMAIN-SUFFIX,replicate.com,US
+  - DOMAIN-SUFFIX,huggingface.co,US
+  - DOMAIN-SUFFIX,perplexity.ai,US
+  - DOMAIN,midjourney.com,US
+  - DOMAIN,cdn.midjourney.com,US
+  - DOMAIN-SUFFIX,midjourney.com,US
+  - DOMAIN,ai.cloudflare.com,US
+  - DOMAIN-SUFFIX,workers.dev,US
+
+  # === 依赖服务 / SDK / 第三方上报 ===
   - DOMAIN-SUFFIX,stripe.com,US
   - DOMAIN-SUFFIX,segment.io,US
   - DOMAIN-SUFFIX,intercom.io,US
-
-  # === 依赖服务 / SDK / 第三方上报 ===
+  - DOMAIN-SUFFIX,intercomcdn.com,US
+  - DOMAIN-SUFFIX,sentry.io,US
+  - DOMAIN-SUFFIX,algolia.net,US
   - DOMAIN-SUFFIX,statsig.com,US
   - DOMAIN,statsigapi.net,US
   - DOMAIN,events.statsigapi.net,US
   - DOMAIN-SUFFIX,featuregates.org,US
-  - DOMAIN-SUFFIX,intercomcdn.com,US
   - DOMAIN,js.intercomcdn.com,US
   - DOMAIN,js.stripe.com,US
   - DOMAIN,challenges.cloudflare.com,US
@@ -79,58 +129,22 @@ rules:
   - DOMAIN,cdn.workos.com,US
   - DOMAIN,images.workoscdn.com,US
   - DOMAIN-SUFFIX,ct.sendgrid.net,US
-
-  # === AI 相关常见服务 ===
-  ## Google AI
-  - DOMAIN,accounts.google.com,US
-  - DOMAIN,generativeai.google,US
-  - DOMAIN,ai.google,US
-  - DOMAIN-SUFFIX,googleapis.com,US
-  - DOMAIN-SUFFIX,deepmind.com,US
-  - DOMAIN-SUFFIX,tensorflow.org,US
-
-  ## Cursor (AI IDE)
-  - DOMAIN,cursor.sh,US
-  - DOMAIN,api.cursor.sh,US
-  - DOMAIN,download.cursor.sh,US
-  - DOMAIN-SUFFIX,cursor.sh,US
-  - DOMAIN-SUFFIX,cursor.com,US
-
-  # === GitHub / Copilot ===
-  - DOMAIN-SUFFIX,github.com,US
-  - DOMAIN-SUFFIX,githubusercontent.com,US
-  - DOMAIN-SUFFIX,githubcopilot.com,US
-
-  # === Google AI 全家桶 (补充 Gemini) ===
-  - DOMAIN,gemini.google.com,US
-  - DOMAIN,bard.google.com,US
-  - DOMAIN,aistudio.google.com,US
-  - DOMAIN,makersuite.google.com,US
-  - DOMAIN,generativelanguage.googleapis.com,US
-  - DOMAIN-SUFFIX,gemini.google.com,US
-
-  # === AI 图像生成 ===
-  ## Midjourney
-  - DOMAIN,midjourney.com,US
-  - DOMAIN,cdn.midjourney.com,US
-  - DOMAIN-SUFFIX,midjourney.com,US
-
-  ## Cloudflare AI
-  - DOMAIN,ai.cloudflare.com,US
-  - DOMAIN-SUFFIX,workers.dev,US
-
-  # === 内部直连 ===
-  - DOMAIN-SUFFIX,antfin.com,DIRECT
-  - DOMAIN-SUFFIX,taobao.com,DIRECT
-  - DOMAIN-SUFFIX,alibaba-inc.com,DIRECT
-  - DOMAIN-SUFFIX,antfin-inc.com,DIRECT
-  - DOMAIN-SUFFIX,atatech.org,DIRECT
-  - DOMAIN-SUFFIX,fliggy.com,DIRECT
-  - DOMAIN-SUFFIX,sspai.com,DIRECT
-  - DOMAIN-SUFFIX,aliyun.com,DIRECT
-  - DOMAIN-SUFFIX,wx.qq.com,HK
-  - DOMAIN-SUFFIX,v2ex.com,HK
+  - DOMAIN-SUFFIX,honeycomb.io,US
   - DOMAIN-SUFFIX,formulae.brew.sh,US
   - DOMAIN-SUFFIX,diabrowser.com,US
-  - DOMAIN-SUFFIX,honeycomb.io,US
-  - DOMAIN-SUFFIX,intercom.io,US
+
+  # === 内网直连 ===
+  - DOMAIN-SUFFIX,antfin.com,DIRECT
+  - DOMAIN-SUFFIX,antfin-inc.com,DIRECT
+  - DOMAIN-SUFFIX,alibaba-inc.com,DIRECT
+  - DOMAIN-SUFFIX,atatech.org,DIRECT
+  - DOMAIN-SUFFIX,alipay.com,DIRECT
+  - DOMAIN-SUFFIX,taobao.com,DIRECT
+  - DOMAIN-SUFFIX,aliyun.com,DIRECT
+  - DOMAIN-SUFFIX,fliggy.com,DIRECT
+  - DOMAIN-SUFFIX,yuque.com,DIRECT
+  - DOMAIN-SUFFIX,sspai.com,DIRECT
+
+  # === 被迫转发 ===
+  - DOMAIN-SUFFIX,wx.qq.com,HK
+  - DOMAIN-SUFFIX,v2ex.com,HK
