@@ -82,12 +82,21 @@ dns!:
     - +.dingtalk.net
     - +.alicdn.com
     - +.aliway.com
+    - +.antgroup.com
     # === 游戏 / 设备（来自订阅，保留）===
     - "*.lan"
     - "*.srv.nintendo.net"
     - "*.stun.playstation.net"
     - xbox.*.microsoft.com
     - "*.xboxlive.com"
+
+tun:
+  enable: true
+  stack: system
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
 
 sniffer:
   enable: false
@@ -174,6 +183,7 @@ sniffer:
   - DOMAIN-SUFFIX,dingtalk.net,DIRECT
   - DOMAIN-SUFFIX,alicdn.com,DIRECT
   - DOMAIN-SUFFIX,aliway.com,DIRECT
+  - DOMAIN-SUFFIX,antgroup.com,DIRECT
 
   # === 被迫转发 ===
   - DOMAIN-SUFFIX,wx.qq.com,HK
