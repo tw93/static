@@ -1,6 +1,3 @@
-# === TLS 指纹伪装（trojan 节点生效，SS 节点忽略）===
-global-client-fingerprint: chrome
-
 # === 网络优化：防止 AI 流式连接断开 ===
 keep-alive-idle: 600
 keep-alive-interval: 10
