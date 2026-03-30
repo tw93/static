@@ -146,6 +146,7 @@ rules:
   - DOMAIN-SUFFIX,dingtalk.net,DIRECT
   - DOMAIN-SUFFIX,alicdn.com,DIRECT
   - DOMAIN-SUFFIX,aliway.com,DIRECT
+  - DOMAIN-SUFFIX,antgroup.com,DIRECT
   - DOMAIN-SUFFIX,antfin.com,DIRECT
   - DOMAIN-SUFFIX,antfin-inc.com,DIRECT
   - DOMAIN-SUFFIX,alibaba-inc.com,DIRECT
