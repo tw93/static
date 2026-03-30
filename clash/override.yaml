@@ -94,6 +94,15 @@ tun:
   enable: true
   auto-route: true
   auto-detect-interface: true
+  route-exclude-address:
+    - 59.82.0.0/16
+    - 203.119.0.0/16
+    - 10.0.0.0/8
+    - 11.122.0.0/15
+    - 11.124.0.0/16
+    - 11.158.0.0/15
+    - 11.160.0.0/13
+    - 11.238.0.0/15
 
 sniffer:
   enable: false
