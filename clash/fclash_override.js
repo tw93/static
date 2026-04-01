@@ -3,6 +3,20 @@
  * AI Services & GitHub routing rules
  */
 function main(config) {
+  const aiDomains = [
+    "+.openai.com",
+    "+.chatgpt.com",
+    "+.anthropic.com",
+    "+.claude.ai",
+    "+.googleapis.com",
+    "+.deepmind.com",
+    "+.x.ai",
+    "+.grok.com",
+    "+.groq.com",
+    "+.cursor.sh",
+    "+.cursor.com"
+  ];
+
   const extraRules = [
     // === 阿里系软件进程白名单（完全不走代理）===
     "PROCESS-NAME,DingTalk,DIRECT",
@@ -128,6 +142,8 @@ function main(config) {
     "DOMAIN-SUFFIX,antfin.com,DIRECT",
     "DOMAIN-SUFFIX,taobao.com,DIRECT",
     "DOMAIN-SUFFIX,alibaba-inc.com,DIRECT",
+    "DOMAIN-SUFFIX,alibabacorp.com,DIRECT",
+    "DOMAIN-SUFFIX,alibabadns.com,DIRECT",
     "DOMAIN-SUFFIX,antfin-inc.com,DIRECT",
     "DOMAIN-SUFFIX,atatech.org,DIRECT",
     "DOMAIN-SUFFIX,fliggy.com,DIRECT",
