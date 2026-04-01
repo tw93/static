@@ -20,7 +20,6 @@ profile:
 
 dns!:
   enable: true
-  enhanced-mode: redir-host
   cache-algorithm: arc
   prefer-h3: false
   ipv6: false
@@ -38,51 +37,8 @@ dns!:
     geoip-code: CN
     ipcidr:
       - 240.0.0.0/4
-  nameserver-policy:
-    "+.alibaba-inc.com": "system://"
-    "+.atatech.org": "system://"
-    "+.antfin.com": "system://"
-    "+.antfin-inc.com": "system://"
-    "+.alibaba.com": "system://"
-    "+.alibaba.net": "system://"
-    "+.alibabacorp.com": "system://"
-    "+.alibabadns.com": "system://"
-    "+.aliyun.com": "system://"
-    "+.aliyun-inc.com": "system://"
-    "+.aliyuncs.com": "system://"
-    "+.alicdn.com": "system://"
-    "+.aliway.com": "system://"
-    "+.antgroup.com": "system://"
-    "+.alipay.com": "system://"
-    "+.taobao.com": "system://"
-    "+.fliggy.com": "system://"
-    "+.yuque.com": "system://"
-    "+.dingtalk.com": "system://"
-    "+.dingtalkapps.com": "system://"
-    "+.dingtalk.net": "system://"
-    "+.aliwork.com": "system://"
-    "+.ztna-dingtalk.com": "system://"
-    "+.aliimg.com": "system://"
-
-tun:
-  enable: false
 
 +rules:
-  # === 阿里系进程直连（DingTalk / AliLang / AliEntSafe） ===
-  # iDingTalk.app 内部二进制名是 DingTalk，不是 iDingTalk
-  - PROCESS-NAME,DingTalk,DIRECT
-  - PROCESS-NAME,DingMeeting,DIRECT
-  - PROCESS-NAME,Tblive,DIRECT
-  - PROCESS-NAME,AliLang,DIRECT
-  - PROCESS-NAME,AliLangClient,DIRECT
-  - PROCESS-NAME,AlilangAgent,DIRECT
-  - PROCESS-NAME,ALiLangVPN,DIRECT
-  - PROCESS-NAME,AlilangEnviado,DIRECT
-  - PROCESS-NAME,AliEntSafe,DIRECT
-  - PROCESS-NAME,AliVNCServer,DIRECT
-  - PROCESS-NAME,NetworkDiagnose,DIRECT
-  - PROCESS-NAME,CloudShell,DIRECT
-
   # === Qoder 直连 ===
   - DOMAIN-SUFFIX,qoder.sh,DIRECT
 
@@ -172,7 +128,7 @@ tun:
   - DOMAIN-SUFFIX,ztna-dingtalk.com,DIRECT
   - DOMAIN-SUFFIX,aliimg.com,DIRECT
 
-  # === 阿里内网 IP 段（AliLang VPN 路由，TUN 下不拦截）===
+  # === 阿里内网 IP 段 ===
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,11.122.0.0/15,DIRECT,no-resolve
   - IP-CIDR,11.124.0.0/16,DIRECT,no-resolve
