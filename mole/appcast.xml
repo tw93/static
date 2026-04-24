@@ -6,15 +6,15 @@
     <description>Mole app updates</description>
     <language>en</language>
     <item>
-      <title>Version 1.0.0</title>
-      <sparkle:version>1</sparkle:version>
-      <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+      <title>Version 1.1.0</title>
+      <sparkle:version>2</sparkle:version>
+      <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-      <pubDate>Thu, 24 Apr 2026 12:00:00 +0000</pubDate>
+      <pubDate>Thu, 24 Apr 2026 14:00:00 +0000</pubDate>
       <enclosure
         url="https://cdn.tw93.fun/app/Mole.dmg"
-        sparkle:edSignature="Y956PxYpt0c6jVghY7jNpunXaW14raASWxr+j8uQb21iPPwYxILOidPo0q9CSiXUF4wLaYpcvoPu/mJR9s/iBQ=="
-        length="14463100"
+        sparkle:edSignature="DQMsZ5pqQnFCJj21K9o9BXIfi33LdcjwATY2ljzgdakAdokE5H3fRn9b07bl3HImXuPiq7K1Q6rLU7BgNZINCg=="
+        length="14185114"
         type="application/octet-stream"
       />
     </item>
