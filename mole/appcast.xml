@@ -11,6 +11,14 @@
       <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
       <pubDate>Thu, 24 Apr 2026 14:00:00 +0000</pubDate>
+      <description><![CDATA[
+<h3>What's New</h3>
+<ul>
+  <li>Added auto-update support via Sparkle</li>
+  <li>New Settings panel with Software Update option</li>
+  <li>Performance improvements and bug fixes</li>
+</ul>
+      ]]></description>
       <enclosure
         url="https://cdn.tw93.fun/app/Mole.dmg"
         sparkle:edSignature="DQMsZ5pqQnFCJj21K9o9BXIfi33LdcjwATY2ljzgdakAdokE5H3fRn9b07bl3HImXuPiq7K1Q6rLU7BgNZINCg=="
