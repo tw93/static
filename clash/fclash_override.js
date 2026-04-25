@@ -111,9 +111,18 @@ function main(config) {
     // === Cursor ===
     "DOMAIN,cursor.sh,US",
     "DOMAIN,api.cursor.sh,US",
+    "DOMAIN,api2.cursor.sh,US",
+    "DOMAIN,api3.cursor.sh,US",
+    "DOMAIN,api4.cursor.sh,US",
+    "DOMAIN-SUFFIX,api5.cursor.sh,US",
+    "DOMAIN,repo42.cursor.sh,US",
+    "DOMAIN-SUFFIX,authentication.cursor.sh,US",
+    "DOMAIN,authenticator.cursor.sh,US",
     "DOMAIN,download.cursor.sh,US",
     "DOMAIN-SUFFIX,cursor.sh,US",
     "DOMAIN-SUFFIX,cursor.com,US",
+    "DOMAIN-SUFFIX,cursorapi.com,US",
+    "DOMAIN-SUFFIX,cursor-cdn.com,US",
 
     // === Gemini ===
     "DOMAIN,gemini.google.com,US",
