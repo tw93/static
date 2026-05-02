@@ -1,0 +1,150 @@
+# === 网络优化：防止 AI 流式连接断开 ===
+keep-alive-idle: 600
+keep-alive-interval: 10
+connection-idle-timeout: 600
+tcp-concurrent: true
+unified-delay: true
+disable-keep-alive: false
+buffer-size: 65536
+ipv6: false
+
+# === TUN: mixed 栈在 macOS 下 TCP 不通，改用 system ===
+tun:
+  stack: system
+
+hosts:
+  'mtalk.google.com': 108.177.125.188
+  'services.googleapis.cn': 74.125.203.94
+  'clientservices.googleapis.com': 142.250.80.42
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+  tracing: true
+
+dns!:
+  enable: true
+  cache-algorithm: arc
+  prefer-h3: false
+  ipv6: false
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback:
+    - https://8.8.8.8/dns-query
+    - https://1.1.1.1/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+
++rules:
+  # === Qoder 直连 ===
+  - DOMAIN-SUFFIX,qoder.sh,DIRECT
+
+  # === OpenAI / ChatGPT / Codex ===
+  - DOMAIN-SUFFIX,openai.com,AI
+  - DOMAIN-SUFFIX,chatgpt.com,AI
+  - DOMAIN-SUFFIX,oaistatic.com,AI
+  - DOMAIN-SUFFIX,oaiusercontent.com,AI
+  - DOMAIN-SUFFIX,openai-cdn.com,AI
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI
+  - DOMAIN-SUFFIX,openaicom.imgix.net,AI
+  - DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,AI
+  - DOMAIN,production-openaicom-storage.azureedge.net,AI
+  - DOMAIN-SUFFIX,livekit.cloud,AI
+
+  # === Claude (Anthropic) ===
+  - DOMAIN-SUFFIX,anthropic.com,AI
+  - DOMAIN-SUFFIX,claude.ai,AI
+  - DOMAIN-SUFFIX,claude.com,AI
+  - DOMAIN-SUFFIX,claudeusercontent.com,AI
+  - DOMAIN-SUFFIX,ant.dev,AI
+
+  # === Gemini / Google AI ===
+  - DOMAIN,accounts.google.com,AI
+  - DOMAIN-SUFFIX,googleapis.com,AI
+  - DOMAIN-SUFFIX,deepmind.com,AI
+  - DOMAIN,gemini.google.com,AI
+  - DOMAIN,aistudio.google.com,AI
+  - DOMAIN,generativelanguage.googleapis.com,AI
+  - DOMAIN,ai.google.dev,AI
+  - DOMAIN-SUFFIX,google-gemini.dev,AI
+
+  # === Grok (xAI) ===
+  - DOMAIN-SUFFIX,x.ai,AI
+  - DOMAIN-SUFFIX,grok.com,AI
+  - DOMAIN,api.x.ai,AI
+
+  # === Groq ===
+  - DOMAIN-SUFFIX,groq.com,AI
+
+  # === Cursor ===
+  - DOMAIN-SUFFIX,cursor.sh,AI
+  - DOMAIN-SUFFIX,cursor.com,AI
+  - DOMAIN-SUFFIX,cursorapi.com,AI
+  - DOMAIN-SUFFIX,cursor-cdn.com,AI
+
+  # === 其他 AI ===
+  - DOMAIN-SUFFIX,cohere.com,AI
+  - DOMAIN-SUFFIX,mistral.ai,AI
+  - DOMAIN-SUFFIX,together.ai,AI
+  - DOMAIN-SUFFIX,replicate.com,AI
+  - DOMAIN-SUFFIX,huggingface.co,AI
+  - DOMAIN-SUFFIX,perplexity.ai,AI
+
+  # === 依赖服务 ===
+  - DOMAIN-SUFFIX,stripe.com,AI
+  - DOMAIN-SUFFIX,segment.io,AI
+  - DOMAIN-SUFFIX,intercom.io,AI
+  - DOMAIN-SUFFIX,sentry.io,AI
+  - DOMAIN-SUFFIX,algolia.net,AI
+  - DOMAIN-SUFFIX,statsig.com,AI
+  - DOMAIN,challenges.cloudflare.com,AI
+  - DOMAIN-SUFFIX,workos.com,AI
+  - DOMAIN-SUFFIX,launchdarkly.com,AI
+
+  # === 内网直连 ===
+  - DOMAIN-SUFFIX,antfin.com,DIRECT
+  - DOMAIN-SUFFIX,antfin-inc.com,DIRECT
+  - DOMAIN-SUFFIX,alibaba-inc.com,DIRECT
+  - DOMAIN-SUFFIX,alibaba.com,DIRECT
+  - DOMAIN-SUFFIX,alibabacorp.com,DIRECT
+  - DOMAIN-SUFFIX,alibabadns.com,DIRECT
+  - DOMAIN-SUFFIX,alibaba.net,DIRECT
+  - DOMAIN-SUFFIX,atatech.org,DIRECT
+  - DOMAIN-SUFFIX,alipay.com,DIRECT
+  - DOMAIN-SUFFIX,taobao.com,DIRECT
+  - DOMAIN-SUFFIX,aliyun.com,DIRECT
+  - DOMAIN-SUFFIX,aliyun-inc.com,DIRECT
+  - DOMAIN-SUFFIX,aliyuncs.com,DIRECT
+  - DOMAIN-SUFFIX,fliggy.com,DIRECT
+  - DOMAIN-SUFFIX,yuque.com,DIRECT
+  - DOMAIN-SUFFIX,dingtalk.com,DIRECT
+  - DOMAIN-SUFFIX,dingtalkapps.com,DIRECT
+  - DOMAIN-SUFFIX,dingtalk.net,DIRECT
+  - DOMAIN-SUFFIX,alicdn.com,DIRECT
+  - DOMAIN-SUFFIX,aliway.com,DIRECT
+  - DOMAIN-SUFFIX,antgroup.com,DIRECT
+  - DOMAIN-SUFFIX,aliwork.com,DIRECT
+  - DOMAIN-SUFFIX,ztna-dingtalk.com,DIRECT
+  - DOMAIN-SUFFIX,aliimg.com,DIRECT
+
+  # === 阿里内网 IP 段 ===
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,11.122.0.0/15,DIRECT,no-resolve
+  - IP-CIDR,11.124.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,11.158.0.0/15,DIRECT,no-resolve
+  - IP-CIDR,11.160.0.0/13,DIRECT,no-resolve
+  - IP-CIDR,11.238.0.0/15,DIRECT,no-resolve
+  - IP-CIDR,203.119.0.0/16,DIRECT,no-resolve
+
+  # === 被迫转发 ===
+  - DOMAIN-SUFFIX,wx.qq.com,Proxies
+  - DOMAIN-SUFFIX,v2ex.com,Proxies
+  - DOMAIN-SUFFIX,formulae.brew.sh,AI
+  - DOMAIN-SUFFIX,diabrowser.com,AI
