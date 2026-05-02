@@ -8,6 +8,10 @@ disable-keep-alive: false
 buffer-size: 65536
 ipv6: false
 
+# === TUN: mixed 栈在 macOS 下 TCP 不通，改用 system ===
+tun:
+  stack: system
+
 hosts:
   'mtalk.google.com': 108.177.125.188
   'services.googleapis.cn': 74.125.203.94
