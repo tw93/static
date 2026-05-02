@@ -173,6 +173,16 @@ dns!:
   - IP-CIDR,11.238.0.0/15,DIRECT,no-resolve
   - IP-CIDR,203.119.0.0/16,DIRECT,no-resolve
 
+  # === Apple Push / Relay ===
+  - DOMAIN-SUFFIX,apple-relay.akamaized.net,HK
+  - DOMAIN-SUFFIX,apple-relay.apple.com,HK
+  - DOMAIN-SUFFIX,apple-relay.cloudflare.com,HK
+  - DOMAIN-SUFFIX,apple-relay.fastly-edge.com,HK
+  - DOMAIN-SUFFIX,apple-relay.mask.apple-dns.net,HK
+  - DOMAIN-SUFFIX,push.apple.com,HK
+  - DOMAIN-SUFFIX,api.push.apple.com,HK
+  - DOMAIN-SUFFIX,courier.push.apple.com,HK
+
   # === 被迫转发 ===
   - DOMAIN-SUFFIX,wx.qq.com,HK
   - DOMAIN-SUFFIX,v2ex.com,HK

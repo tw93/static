@@ -123,6 +123,16 @@ rules:
   - DOMAIN-SUFFIX,yuque.com,DIRECT
   - DOMAIN-SUFFIX,sspai.com,DIRECT
 
+  # === Apple Push / Relay ===
+  - DOMAIN-SUFFIX,apple-relay.akamaized.net,HK
+  - DOMAIN-SUFFIX,apple-relay.apple.com,HK
+  - DOMAIN-SUFFIX,apple-relay.cloudflare.com,HK
+  - DOMAIN-SUFFIX,apple-relay.fastly-edge.com,HK
+  - DOMAIN-SUFFIX,apple-relay.mask.apple-dns.net,HK
+  - DOMAIN-SUFFIX,push.apple.com,HK
+  - DOMAIN-SUFFIX,api.push.apple.com,HK
+  - DOMAIN-SUFFIX,courier.push.apple.com,HK
+
   # === 被迫转发 ===
   - DOMAIN-SUFFIX,wx.qq.com,HK
   - DOMAIN-SUFFIX,v2ex.com,HK
