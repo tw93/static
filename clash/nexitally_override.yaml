@@ -11,6 +11,8 @@ ipv6: false
 # === TUN: mixed 栈在 macOS 下 TCP 不通，改用 system ===
 tun:
   stack: system
+  dns-hijack:
+    - "any:53"
 
 hosts:
   'mtalk.google.com': 108.177.125.188
@@ -27,6 +29,21 @@ dns!:
   cache-algorithm: arc
   prefer-h3: false
   ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.local"
+    - "*.home.arpa"
+    - time.*.com
+    - ntp.*.com
+    - +.market.xiaomi.com
+    - +.push.apple.com
+    - swscan.apple.com
+    - mesu.apple.com
+    - stun.*.*
+    - stun.*.*.*
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
