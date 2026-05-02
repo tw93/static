@@ -1,97 +1,61 @@
 name: AI Services & GitHub 路由规则
-desc: OpenAI/Claude/Gemini/Grok 等 AI 服务走美国节点，内网直连
+desc: AI 服务走美国节点，内网直连，DNS 优化
 category: 'AI'
+
+dns:
+  enable: true
+  ipv6: false
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback:
+    - https://8.8.8.8/dns-query
+    - https://1.1.1.1/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
 
 rules:
   # === OpenAI / ChatGPT / Codex ===
-  - DOMAIN,chat.openai.com,US
-  - DOMAIN,tcr9i.chat.openai.com,US
-  - DOMAIN,ios.chat.openai.com,US
-  - DOMAIN,android.chat.openai.com,US
-  - DOMAIN,desktop.chat.openai.com,US
-  - DOMAIN,api.openai.com,US
-  - DOMAIN,openai.com,US
-  - DOMAIN,platform.openai.com,US
-  - DOMAIN,labs.openai.com,US
-  - DOMAIN,help.openai.com,US
-  - DOMAIN,status.openai.com,US
-  - DOMAIN,auth0.openai.com,US
-  - DOMAIN,accounts.openai.com,US
-  - DOMAIN,auth.openai.com,US
-  - DOMAIN,setup.auth.openai.com,US
-  - DOMAIN,cdn.openai.com,US
-  - DOMAIN,openai-cdn.com,US
-  - DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,US
-  - DOMAIN,production-openaicom-storage.azureedge.net,US
-  - DOMAIN,oai-shared.openai.com,US
-  - DOMAIN,enterprise.openai.com,US
-  - DOMAIN,team.openai.com,US
-  - DOMAIN,browser-intake-datadoghq.com,US
   - DOMAIN-SUFFIX,openai.com,US
   - DOMAIN-SUFFIX,chatgpt.com,US
   - DOMAIN-SUFFIX,oaistatic.com,US
   - DOMAIN-SUFFIX,oaiusercontent.com,US
   - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,US
   - DOMAIN-SUFFIX,openaicom.imgix.net,US
-  - DOMAIN-SUFFIX,chatgpt.livekit.cloud,US
+  - DOMAIN-SUFFIX,livekit.cloud,US
+  - DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,US
+  - DOMAIN,production-openaicom-storage.azureedge.net,US
 
   # === Claude (Anthropic) ===
-  - DOMAIN,claude.ai,US
-  - DOMAIN,claude.com,US
-  - DOMAIN,code.claude.com,US
-  - DOMAIN,console.anthropic.com,US
-  - DOMAIN,api.anthropic.com,US
-  - DOMAIN,mcp-proxy.anthropic.com,US
-  - DOMAIN,support.anthropic.com,US
-  - DOMAIN,docs.anthropic.com,US
-  - DOMAIN,statsig.anthropic.com,US
-  - DOMAIN,downloads.claude.ai,US
-  - DOMAIN,assets.claude.ai,US
-  - DOMAIN,bridge.claudeusercontent.com,US
-  - DOMAIN,platform.claude.com,US
   - DOMAIN-SUFFIX,anthropic.com,US
   - DOMAIN-SUFFIX,claude.ai,US
   - DOMAIN-SUFFIX,claude.com,US
   - DOMAIN-SUFFIX,claudeusercontent.com,US
   - DOMAIN-SUFFIX,ant.dev,US
+  - DOMAIN-SUFFIX,claudeaistatus.com,US
 
   # === Gemini / Google AI ===
   - DOMAIN,accounts.google.com,US
   - DOMAIN,gemini.google.com,US
-  - DOMAIN,bard.google.com,US
   - DOMAIN,aistudio.google.com,US
-  - DOMAIN,makersuite.google.com,US
   - DOMAIN,generativelanguage.googleapis.com,US
   - DOMAIN,ai.google.dev,US
-  - DOMAIN,generativeai.google,US
-  - DOMAIN,ai.google,US
-  - DOMAIN-SUFFIX,google-gemini.dev,US
   - DOMAIN-SUFFIX,googleapis.com,US
   - DOMAIN-SUFFIX,deepmind.com,US
+  - DOMAIN-SUFFIX,google-gemini.dev,US
   - DOMAIN-SUFFIX,tensorflow.org,US
 
   # === Grok (xAI) ===
-  - DOMAIN,grok.com,US
-  - DOMAIN,api.x.ai,US
   - DOMAIN-SUFFIX,x.ai,US
   - DOMAIN-SUFFIX,grok.com,US
 
   # === Groq ===
-  - DOMAIN,api.groq.com,US
-  - DOMAIN,console.groq.com,US
   - DOMAIN-SUFFIX,groq.com,US
 
-  # === Cursor (AI IDE) ===
-  - DOMAIN,cursor.sh,US
-  - DOMAIN,api.cursor.sh,US
-  - DOMAIN,api2.cursor.sh,US
-  - DOMAIN,api3.cursor.sh,US
-  - DOMAIN,api4.cursor.sh,US
-  - DOMAIN-SUFFIX,api5.cursor.sh,US
-  - DOMAIN,repo42.cursor.sh,US
-  - DOMAIN-SUFFIX,authentication.cursor.sh,US
-  - DOMAIN,authenticator.cursor.sh,US
-  - DOMAIN,download.cursor.sh,US
+  # === Cursor ===
   - DOMAIN-SUFFIX,cursor.sh,US
   - DOMAIN-SUFFIX,cursor.com,US
   - DOMAIN-SUFFIX,cursorapi.com,US
@@ -109,13 +73,15 @@ rules:
   - DOMAIN-SUFFIX,replicate.com,US
   - DOMAIN-SUFFIX,huggingface.co,US
   - DOMAIN-SUFFIX,perplexity.ai,US
-  - DOMAIN,midjourney.com,US
-  - DOMAIN,cdn.midjourney.com,US
   - DOMAIN-SUFFIX,midjourney.com,US
-  - DOMAIN,ai.cloudflare.com,US
+  - DOMAIN-SUFFIX,openrouter.ai,US
+  - DOMAIN-SUFFIX,windsurf.com,US
+  - DOMAIN-SUFFIX,codeium.com,US
+  - DOMAIN-SUFFIX,v0.dev,US
+  - DOMAIN-SUFFIX,bolt.new,US
   - DOMAIN-SUFFIX,workers.dev,US
 
-  # === 依赖服务 / SDK / 第三方上报 ===
+  # === 依赖服务 ===
   - DOMAIN-SUFFIX,stripe.com,US
   - DOMAIN-SUFFIX,segment.io,US
   - DOMAIN-SUFFIX,intercom.io,US
@@ -123,33 +89,14 @@ rules:
   - DOMAIN-SUFFIX,sentry.io,US
   - DOMAIN-SUFFIX,algolia.net,US
   - DOMAIN-SUFFIX,statsig.com,US
-  - DOMAIN,statsigapi.net,US
-  - DOMAIN,events.statsigapi.net,US
-  - DOMAIN-SUFFIX,featuregates.org,US
-  - DOMAIN,js.intercomcdn.com,US
-  - DOMAIN,js.stripe.com,US
-  - DOMAIN,challenges.cloudflare.com,US
-  - DOMAIN,rum.browser-intake-datadoghq.com,US
-  - DOMAIN,o33249.ingest.sentry.io,US
-  - DOMAIN,o207216.ingest.sentry.io,US
-  - DOMAIN,prodregistryv2.org,US
-  - DOMAIN,featureassets.org,US
-  - DOMAIN,setup.workos.com,US
-  - DOMAIN,forwarder.workos.com,US
   - DOMAIN-SUFFIX,workos.com,US
-  - DOMAIN,events.launchdarkly.com,US
-  - DOMAIN,clientstream.launchdarkly.com,US
-  - DOMAIN,app.launchdarkly.com,US
   - DOMAIN-SUFFIX,launchdarkly.com,US
-  - DOMAIN,workos.imgix.net,US
-  - DOMAIN,cdn.workos.com,US
-  - DOMAIN,images.workoscdn.com,US
-  - DOMAIN-SUFFIX,ct.sendgrid.net,US
   - DOMAIN-SUFFIX,honeycomb.io,US
+  - DOMAIN,challenges.cloudflare.com,US
   - DOMAIN-SUFFIX,formulae.brew.sh,US
   - DOMAIN-SUFFIX,diabrowser.com,US
 
-  # === 内网直连 (iDingTalk / AliLang / Alibaba 内网) ===
+  # === 内网直连 ===
   - DOMAIN-SUFFIX,dingtalk.com,DIRECT
   - DOMAIN-SUFFIX,dingtalkapps.com,DIRECT
   - DOMAIN-SUFFIX,dingtalk.net,DIRECT

@@ -60,6 +60,7 @@ dns!:
   - DOMAIN-SUFFIX,claude.com,AI
   - DOMAIN-SUFFIX,claudeusercontent.com,AI
   - DOMAIN-SUFFIX,ant.dev,AI
+  - DOMAIN-SUFFIX,claudeaistatus.com,AI
 
   # === Gemini / Google AI ===
   - DOMAIN,accounts.google.com,AI
@@ -85,6 +86,12 @@ dns!:
   - DOMAIN-SUFFIX,cursorapi.com,AI
   - DOMAIN-SUFFIX,cursor-cdn.com,AI
 
+  # === GitHub / Copilot ===
+  - DOMAIN-SUFFIX,github.com,AI
+  - DOMAIN-SUFFIX,githubusercontent.com,AI
+  - DOMAIN-SUFFIX,githubcopilot.com,AI
+  - DOMAIN-SUFFIX,copilot.github.com,AI
+
   # === 其他 AI ===
   - DOMAIN-SUFFIX,cohere.com,AI
   - DOMAIN-SUFFIX,mistral.ai,AI
@@ -92,6 +99,12 @@ dns!:
   - DOMAIN-SUFFIX,replicate.com,AI
   - DOMAIN-SUFFIX,huggingface.co,AI
   - DOMAIN-SUFFIX,perplexity.ai,AI
+  - DOMAIN-SUFFIX,openrouter.ai,AI
+  - DOMAIN-SUFFIX,windsurf.com,AI
+  - DOMAIN-SUFFIX,codeium.com,AI
+  - DOMAIN-SUFFIX,v0.dev,AI
+  - DOMAIN-SUFFIX,bolt.new,AI
+  - DOMAIN-SUFFIX,midjourney.com,AI
 
   # === 依赖服务 ===
   - DOMAIN-SUFFIX,stripe.com,AI
