@@ -70,6 +70,7 @@ proxy-groups: #!replace
     type: select
     proxies:
       - HK
+      - HK Auto
       - US
       - DIRECT
 
@@ -77,59 +78,108 @@ proxy-groups: #!replace
     type: select
     proxies:
       - US
+      - US Auto
       - Proxies
       - HK
       - DIRECT
 
   - name: HK
-    type: url-test
+    type: select
     proxies:
-      - 🇭🇰 Hong Kong 09
-      - 🇭🇰 Hong Kong 17
-      - 🇭🇰 Hong Kong 10
       - 🇭🇰 Hong Kong 14
-      - 🇭🇰 Hong Kong 11
+      - HK Auto
+      - 🇭🇰 Hong Kong 17
+      - 🇭🇰 Hong Kong 03
+      - 🇭🇰 Hong Kong 01
+      - 🇭🇰 Hong Kong 09
+      - 🇭🇰 Hong Kong 04
+      - 🇭🇰 Hong Kong 18
+      - 🇭🇰 Hong Kong 15
       - 🇭🇰 Hong Kong 06
       - 🇭🇰 Hong Kong 23
-      - 🇭🇰 Hong Kong 05
-      - 🇭🇰 Hong Kong 08
-      - 🇭🇰 Hong Kong 02
-      - 🇭🇰 Hong Kong 15
-      - 🇭🇰 Hong Kong 16
-      - 🇭🇰 Hong Kong 01
-      - 🇭🇰 Hong Kong 03
-      - 🇭🇰 Hong Kong 04
-      - 🇭🇰 Hong Kong 07
       - 🇭🇰 Hong Kong 12
-      - 🇭🇰 Hong Kong 13
-      - 🇭🇰 Hong Kong 18
+      - 🇭🇰 Hong Kong 16
+      - 🇭🇰 Hong Kong 10
+      - 🇭🇰 Hong Kong 07
+      - 🇭🇰 Hong Kong 02
+      - 🇭🇰 Hong Kong 08
       - 🇭🇰 Hong Kong 19
+      - 🇭🇰 Hong Kong 11
+      - 🇭🇰 Hong Kong 13
+      - 🇭🇰 Hong Kong 05
+
+  - name: HK Auto
+    type: url-test
+    proxies:
+      - 🇭🇰 Hong Kong 14
+      - 🇭🇰 Hong Kong 17
+      - 🇭🇰 Hong Kong 03
+      - 🇭🇰 Hong Kong 01
+      - 🇭🇰 Hong Kong 09
+      - 🇭🇰 Hong Kong 04
+      - 🇭🇰 Hong Kong 18
+      - 🇭🇰 Hong Kong 15
+      - 🇭🇰 Hong Kong 06
+      - 🇭🇰 Hong Kong 23
+      - 🇭🇰 Hong Kong 12
+      - 🇭🇰 Hong Kong 16
+      - 🇭🇰 Hong Kong 10
+      - 🇭🇰 Hong Kong 07
+      - 🇭🇰 Hong Kong 02
+      - 🇭🇰 Hong Kong 08
+      - 🇭🇰 Hong Kong 19
+      - 🇭🇰 Hong Kong 11
+      - 🇭🇰 Hong Kong 13
+      - 🇭🇰 Hong Kong 05
     url: http://www.gstatic.com/generate_204
     interval: 120
     lazy: true
     tolerance: 50
 
   - name: US
-    type: url-test
+    type: select
     proxies:
+      - 🇺🇸 USA San Jose 07
+      - US Auto
+      - 🇺🇸 USA Los Angeles 06
+      - 🇺🇸 USA Seattle 02
       - 🇺🇸 USA Seattle 09
       - 🇺🇸 USA Seattle 08
+      - 🇺🇸 USA Los Angeles 04
+      - 🇺🇸 USA Los Angeles 07
       - 🇺🇸 USA Seattle 04
-      - 🇺🇸 USA Seattle 03
       - 🇺🇸 USA Seattle 01
-      - 🇺🇸 USA Seattle 06
-      - 🇺🇸 USA Seattle 02
-      - 🇺🇸 USA San Jose 07
       - 🇺🇸 USA Seattle 07
+      - 🇺🇸 USA Seattle 03
+      - 🇺🇸 USA Los Angeles 02
+      - 🇺🇸 USA Seattle 06
       - 🇺🇸 USA San Jose 08
       - 🇺🇸 USA Los Angeles 01
-      - 🇺🇸 USA Los Angeles 03
       - 🇺🇸 USA Seattle 05
-      - 🇺🇸 USA Los Angeles 02
-      - 🇺🇸 USA Los Angeles 04
       - 🇺🇸 USA Los Angeles 05
+      - 🇺🇸 USA Los Angeles 03
+
+  - name: US Auto
+    type: url-test
+    proxies:
+      - 🇺🇸 USA San Jose 07
       - 🇺🇸 USA Los Angeles 06
+      - 🇺🇸 USA Seattle 02
+      - 🇺🇸 USA Seattle 09
+      - 🇺🇸 USA Seattle 08
+      - 🇺🇸 USA Los Angeles 04
       - 🇺🇸 USA Los Angeles 07
+      - 🇺🇸 USA Seattle 04
+      - 🇺🇸 USA Seattle 01
+      - 🇺🇸 USA Seattle 07
+      - 🇺🇸 USA Seattle 03
+      - 🇺🇸 USA Los Angeles 02
+      - 🇺🇸 USA Seattle 06
+      - 🇺🇸 USA San Jose 08
+      - 🇺🇸 USA Los Angeles 01
+      - 🇺🇸 USA Seattle 05
+      - 🇺🇸 USA Los Angeles 05
+      - 🇺🇸 USA Los Angeles 03
     url: http://www.gstatic.com/generate_204
     interval: 120
     lazy: true
