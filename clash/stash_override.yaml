@@ -1,6 +1,6 @@
-name: AI Services & GitHub 路由规则
-desc: AI 服务走美国节点，内网直连，DNS 优化
-category: 'AI'
+name: Flower Simple Proxy
+desc: Simplified Flower setup with Proxy, AI Proxy, Hong Kong, United States, and DIRECT only.
+category: Proxy
 
 dns:
   enable: true
@@ -17,92 +17,133 @@ dns:
     ipcidr:
       - 240.0.0.0/4
 
-rules:
-  # === OpenAI / ChatGPT / Codex ===
-  - DOMAIN-SUFFIX,openai.com,US
-  - DOMAIN-SUFFIX,chatgpt.com,US
-  - DOMAIN-SUFFIX,oaistatic.com,US
-  - DOMAIN-SUFFIX,oaiusercontent.com,US
-  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,US
-  - DOMAIN-SUFFIX,openaicom.imgix.net,US
-  - DOMAIN-SUFFIX,livekit.cloud,US
-  - DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,US
-  - DOMAIN,production-openaicom-storage.azureedge.net,US
+proxy-groups: #!replace
+  - name: Proxy
+    type: select
+    proxies:
+      - HK
+      - US
+      - DIRECT
 
-  # === Claude (Anthropic) ===
-  - DOMAIN-SUFFIX,anthropic.com,US
-  - DOMAIN-SUFFIX,claude.ai,US
-  - DOMAIN-SUFFIX,claude.com,US
-  - DOMAIN-SUFFIX,claudeusercontent.com,US
-  - DOMAIN-SUFFIX,ant.dev,US
-  - DOMAIN-SUFFIX,claudeaistatus.com,US
+  - name: AI Proxy
+    type: select
+    proxies:
+      - US
+      - HK
+      - DIRECT
+
+  - name: HK
+    type: select
+    proxies:
+      - 🇭🇰 香港高级 IEPL 专线 2
+      - 🇭🇰 香港标准 IEPL 专线 5
+      - 🇭🇰 香港高级 IEPL 专线 1
+      - 🇭🇰 香港标准 IEPL 专线 2
+      - 🇭🇰 香港标准 IEPL 专线 1
+      - 🇭🇰 香港标准 IEPL 专线 6
+      - 🇭🇰 香港标准 IEPL 专线 4
+      - 🇭🇰 香港标准 IEPL 专线 7
+      - 🇭🇰 香港实验性 IEPL 专线 1
+      - 🇭🇰 香港标准 IEPL 专线 3
+      - 🇭🇰 香港高级 IEPL 专线 3
+      - 🇭🇰 香港标准 IEPL 专线 8
+
+  - name: US
+    type: select
+    proxies:
+      - 🇺🇸 美国标准 IEPL 专线 8
+      - 🇺🇸 美国标准 IEPL 专线 4
+      - 🇺🇸 美国标准 IEPL 专线 7
+      - 🇺🇸 美国标准 IEPL 专线 5
+      - 🇺🇸 美国标准 IEPL 专线 3
+      - 🇺🇸 美国标准 IEPL 专线 2
+      - 🇺🇸 美国高级 IEPL 专线 3
+      - 🇺🇸 美国标准 IEPL 专线 1
+      - 🇺🇸 美国高级 IEPL 专线 1
+      - 🇺🇸 美国高级 IEPL 专线 2
+      - 🇺🇸 美国标准 IEPL 专线 6
+      - 🇺🇸 美国实验性 IEPL 专线 1
+
+rules: #!replace
+  # === Direct ===
+  - DOMAIN-SUFFIX,qoder.sh,DIRECT
+
+  # === OpenAI / ChatGPT / Codex ===
+  - DOMAIN-SUFFIX,openai.com,AI Proxy
+  - DOMAIN-SUFFIX,chatgpt.com,AI Proxy
+  - DOMAIN-SUFFIX,oaistatic.com,AI Proxy
+  - DOMAIN-SUFFIX,oaiusercontent.com,AI Proxy
+  - DOMAIN-SUFFIX,openai-cdn.com,AI Proxy
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI Proxy
+  - DOMAIN-SUFFIX,openaicom.imgix.net,AI Proxy
+  - DOMAIN,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,AI Proxy
+  - DOMAIN,production-openaicom-storage.azureedge.net,AI Proxy
+  - DOMAIN-SUFFIX,livekit.cloud,AI Proxy
+
+  # === Claude / Anthropic ===
+  - DOMAIN-SUFFIX,anthropic.com,AI Proxy
+  - DOMAIN-SUFFIX,claude.ai,AI Proxy
+  - DOMAIN-SUFFIX,claude.com,AI Proxy
+  - DOMAIN-SUFFIX,claudeusercontent.com,AI Proxy
+  - DOMAIN-SUFFIX,ant.dev,AI Proxy
+  - DOMAIN-SUFFIX,claudeaistatus.com,AI Proxy
 
   # === Gemini / Google AI ===
-  - DOMAIN,accounts.google.com,US
-  - DOMAIN,gemini.google.com,US
-  - DOMAIN,aistudio.google.com,US
-  - DOMAIN,generativelanguage.googleapis.com,US
-  - DOMAIN,ai.google.dev,US
-  - DOMAIN-SUFFIX,googleapis.com,US
-  - DOMAIN-SUFFIX,deepmind.com,US
-  - DOMAIN-SUFFIX,google-gemini.dev,US
-  - DOMAIN-SUFFIX,tensorflow.org,US
+  - DOMAIN,accounts.google.com,AI Proxy
+  - DOMAIN-SUFFIX,googleapis.com,AI Proxy
+  - DOMAIN-SUFFIX,deepmind.com,AI Proxy
+  - DOMAIN,gemini.google.com,AI Proxy
+  - DOMAIN,aistudio.google.com,AI Proxy
+  - DOMAIN,generativelanguage.googleapis.com,AI Proxy
+  - DOMAIN,ai.google.dev,AI Proxy
+  - DOMAIN-SUFFIX,google-gemini.dev,AI Proxy
+  - DOMAIN-SUFFIX,tensorflow.org,AI Proxy
 
-  # === Grok (xAI) ===
-  - DOMAIN-SUFFIX,x.ai,US
-  - DOMAIN-SUFFIX,grok.com,US
+  # === xAI / Groq ===
+  - DOMAIN-SUFFIX,x.ai,AI Proxy
+  - DOMAIN-SUFFIX,grok.com,AI Proxy
+  - DOMAIN,api.x.ai,AI Proxy
+  - DOMAIN-SUFFIX,groq.com,AI Proxy
 
-  # === Groq ===
-  - DOMAIN-SUFFIX,groq.com,US
+  # === Coding agents and tools ===
+  - DOMAIN-SUFFIX,cursor.sh,AI Proxy
+  - DOMAIN-SUFFIX,cursor.com,AI Proxy
+  - DOMAIN-SUFFIX,cursorapi.com,AI Proxy
+  - DOMAIN-SUFFIX,cursor-cdn.com,AI Proxy
+  - DOMAIN-SUFFIX,github.com,AI Proxy
+  - DOMAIN-SUFFIX,githubusercontent.com,AI Proxy
+  - DOMAIN-SUFFIX,githubcopilot.com,AI Proxy
+  - DOMAIN-SUFFIX,copilot.github.com,AI Proxy
 
-  # === Cursor ===
-  - DOMAIN-SUFFIX,cursor.sh,US
-  - DOMAIN-SUFFIX,cursor.com,US
-  - DOMAIN-SUFFIX,cursorapi.com,US
-  - DOMAIN-SUFFIX,cursor-cdn.com,US
+  # === Other AI services ===
+  - DOMAIN-SUFFIX,cohere.com,AI Proxy
+  - DOMAIN-SUFFIX,mistral.ai,AI Proxy
+  - DOMAIN-SUFFIX,together.ai,AI Proxy
+  - DOMAIN-SUFFIX,replicate.com,AI Proxy
+  - DOMAIN-SUFFIX,huggingface.co,AI Proxy
+  - DOMAIN-SUFFIX,perplexity.ai,AI Proxy
+  - DOMAIN-SUFFIX,openrouter.ai,AI Proxy
+  - DOMAIN-SUFFIX,windsurf.com,AI Proxy
+  - DOMAIN-SUFFIX,codeium.com,AI Proxy
+  - DOMAIN-SUFFIX,v0.dev,AI Proxy
+  - DOMAIN-SUFFIX,bolt.new,AI Proxy
+  - DOMAIN-SUFFIX,midjourney.com,AI Proxy
+  - DOMAIN-SUFFIX,workers.dev,AI Proxy
 
-  # === GitHub / Copilot ===
-  - DOMAIN-SUFFIX,github.com,US
-  - DOMAIN-SUFFIX,githubusercontent.com,US
-  - DOMAIN-SUFFIX,githubcopilot.com,US
+  # === AI dependencies ===
+  - DOMAIN-SUFFIX,stripe.com,AI Proxy
+  - DOMAIN-SUFFIX,segment.io,AI Proxy
+  - DOMAIN-SUFFIX,intercom.io,AI Proxy
+  - DOMAIN-SUFFIX,intercomcdn.com,AI Proxy
+  - DOMAIN-SUFFIX,sentry.io,AI Proxy
+  - DOMAIN-SUFFIX,algolia.net,AI Proxy
+  - DOMAIN-SUFFIX,statsig.com,AI Proxy
+  - DOMAIN,challenges.cloudflare.com,AI Proxy
+  - DOMAIN-SUFFIX,workos.com,AI Proxy
+  - DOMAIN-SUFFIX,launchdarkly.com,AI Proxy
+  - DOMAIN-SUFFIX,honeycomb.io,AI Proxy
 
-  # === 其他 AI ===
-  - DOMAIN-SUFFIX,cohere.com,US
-  - DOMAIN-SUFFIX,mistral.ai,US
-  - DOMAIN-SUFFIX,together.ai,US
-  - DOMAIN-SUFFIX,replicate.com,US
-  - DOMAIN-SUFFIX,huggingface.co,US
-  - DOMAIN-SUFFIX,perplexity.ai,US
-  - DOMAIN-SUFFIX,midjourney.com,US
-  - DOMAIN-SUFFIX,openrouter.ai,US
-  - DOMAIN-SUFFIX,windsurf.com,US
-  - DOMAIN-SUFFIX,codeium.com,US
-  - DOMAIN-SUFFIX,v0.dev,US
-  - DOMAIN-SUFFIX,bolt.new,US
-  - DOMAIN-SUFFIX,workers.dev,US
-
-  # === 依赖服务 ===
-  - DOMAIN-SUFFIX,stripe.com,US
-  - DOMAIN-SUFFIX,segment.io,US
-  - DOMAIN-SUFFIX,intercom.io,US
-  - DOMAIN-SUFFIX,intercomcdn.com,US
-  - DOMAIN-SUFFIX,sentry.io,US
-  - DOMAIN-SUFFIX,algolia.net,US
-  - DOMAIN-SUFFIX,statsig.com,US
-  - DOMAIN-SUFFIX,workos.com,US
-  - DOMAIN-SUFFIX,launchdarkly.com,US
-  - DOMAIN-SUFFIX,honeycomb.io,US
-  - DOMAIN,challenges.cloudflare.com,US
-  - DOMAIN-SUFFIX,formulae.brew.sh,US
-  - DOMAIN-SUFFIX,diabrowser.com,US
-
-  # === 内网直连 ===
-  - DOMAIN-SUFFIX,dingtalk.com,DIRECT
-  - DOMAIN-SUFFIX,dingtalkapps.com,DIRECT
-  - DOMAIN-SUFFIX,dingtalk.net,DIRECT
-  - DOMAIN-SUFFIX,alicdn.com,DIRECT
-  - DOMAIN-SUFFIX,aliway.com,DIRECT
-  - DOMAIN-SUFFIX,antgroup.com,DIRECT
+  # === Work / internal direct ===
   - DOMAIN-SUFFIX,antfin.com,DIRECT
   - DOMAIN-SUFFIX,antfin-inc.com,DIRECT
   - DOMAIN-SUFFIX,alibaba-inc.com,DIRECT
@@ -110,9 +151,6 @@ rules:
   - DOMAIN-SUFFIX,alibabacorp.com,DIRECT
   - DOMAIN-SUFFIX,alibabadns.com,DIRECT
   - DOMAIN-SUFFIX,alibaba.net,DIRECT
-  - DOMAIN-SUFFIX,aliwork.com,DIRECT
-  - DOMAIN-SUFFIX,ztna-dingtalk.com,DIRECT
-  - DOMAIN-SUFFIX,aliimg.com,DIRECT
   - DOMAIN-SUFFIX,atatech.org,DIRECT
   - DOMAIN-SUFFIX,alipay.com,DIRECT
   - DOMAIN-SUFFIX,taobao.com,DIRECT
@@ -121,9 +159,27 @@ rules:
   - DOMAIN-SUFFIX,aliyuncs.com,DIRECT
   - DOMAIN-SUFFIX,fliggy.com,DIRECT
   - DOMAIN-SUFFIX,yuque.com,DIRECT
+  - DOMAIN-SUFFIX,dingtalk.com,DIRECT
+  - DOMAIN-SUFFIX,dingtalkapps.com,DIRECT
+  - DOMAIN-SUFFIX,dingtalk.net,DIRECT
+  - DOMAIN-SUFFIX,alicdn.com,DIRECT
+  - DOMAIN-SUFFIX,aliway.com,DIRECT
+  - DOMAIN-SUFFIX,antgroup.com,DIRECT
+  - DOMAIN-SUFFIX,aliwork.com,DIRECT
+  - DOMAIN-SUFFIX,ztna-dingtalk.com,DIRECT
+  - DOMAIN-SUFFIX,aliimg.com,DIRECT
   - DOMAIN-SUFFIX,sspai.com,DIRECT
 
-  # === Apple Push / Relay ===
+  # === Work / internal IP ranges ===
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,11.122.0.0/15,DIRECT,no-resolve
+  - IP-CIDR,11.124.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,11.158.0.0/15,DIRECT,no-resolve
+  - IP-CIDR,11.160.0.0/13,DIRECT,no-resolve
+  - IP-CIDR,11.238.0.0/15,DIRECT,no-resolve
+  - IP-CIDR,203.119.0.0/16,DIRECT,no-resolve
+
+  # === Force Hong Kong ===
   - DOMAIN-SUFFIX,apple-relay.akamaized.net,HK
   - DOMAIN-SUFFIX,apple-relay.apple.com,HK
   - DOMAIN-SUFFIX,apple-relay.cloudflare.com,HK
@@ -132,7 +188,8 @@ rules:
   - DOMAIN-SUFFIX,push.apple.com,HK
   - DOMAIN-SUFFIX,api.push.apple.com,HK
   - DOMAIN-SUFFIX,courier.push.apple.com,HK
-
-  # === 被迫转发 ===
   - DOMAIN-SUFFIX,wx.qq.com,HK
   - DOMAIN-SUFFIX,v2ex.com,HK
+
+  # === Default ===
+  - MATCH,Proxy
