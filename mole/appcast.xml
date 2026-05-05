@@ -10,19 +10,23 @@
       <sparkle:version>2</sparkle:version>
       <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-      <pubDate>Thu, 24 Apr 2026 14:00:00 +0000</pubDate>
+      <pubDate>Tue, 05 May 2026 09:00:00 +0000</pubDate>
       <description><![CDATA[
 <h3>What's New</h3>
 <ul>
-  <li>Added auto-update support via Sparkle</li>
-  <li>New Settings panel with Software Update option</li>
-  <li>Performance improvements and bug fixes</li>
+  <li>License activation now talks directly to Dodo Payments, removing the previous payment bridge</li>
+  <li>New onboarding step for purchasing or activating a license on first launch</li>
+  <li>Optimize tasks now require an active license, matching Clean and Uninstall</li>
+  <li>Stronger uninstall safety: refuses to touch Documents, Desktop, Downloads, Pictures, Movies, and Music</li>
+  <li>Stable device fingerprint across app launches even when system identifiers are unavailable</li>
+  <li>Faster Analyze rendering on directories with many entries</li>
+  <li>Refund window updated to 14 days, in line with EU consumer law</li>
 </ul>
       ]]></description>
       <enclosure
         url="https://cdn.tw93.fun/app/Mole.dmg"
-        sparkle:edSignature="DQMsZ5pqQnFCJj21K9o9BXIfi33LdcjwATY2ljzgdakAdokE5H3fRn9b07bl3HImXuPiq7K1Q6rLU7BgNZINCg=="
-        length="14185114"
+        sparkle:edSignature="EZBkuWsWcSiapKoKASzgp0KXP7lQ+uBenVhXpCABLkQmDE4xqR9W5qSrykOLHwOXNkYKFCWjiTGqvKGhAHsrBA=="
+        length="14255745"
         type="application/octet-stream"
       />
     </item>
