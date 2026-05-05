@@ -2,4 +2,6 @@
 .DS_Store
 .idea/
 .vscode
-.claude
+.claude/settings.local.json
+AGENTS.override.md
+CLAUDE.local.md
