@@ -252,6 +252,24 @@ rules: #!replace
   - DOMAIN-SUFFIX,aliimg.com,DIRECT
   - DOMAIN-SUFFIX,sspai.com,DIRECT
 
+  # === WeChat / Tencent direct ===
+  - DOMAIN-SUFFIX,wechat.com,DIRECT
+  - DOMAIN-SUFFIX,wechatlegal.net,DIRECT
+  - DOMAIN-SUFFIX,wechatos.net,DIRECT
+  - DOMAIN-SUFFIX,wechatpay.com,DIRECT
+  - DOMAIN-SUFFIX,weixin.com,DIRECT
+  - DOMAIN-SUFFIX,weixinbridge.com,DIRECT
+  - DOMAIN-SUFFIX,weixinsxy.com,DIRECT
+  - DOMAIN-SUFFIX,weixin.qq.com,DIRECT
+  - DOMAIN-SUFFIX,wx.qq.com,DIRECT
+  - DOMAIN-SUFFIX,wxs.qq.com,DIRECT
+  - DOMAIN-SUFFIX,servicewechat.com,DIRECT
+  - DOMAIN-SUFFIX,tenpay.com,DIRECT
+  - DOMAIN-SUFFIX,qpic.cn,DIRECT
+  - DOMAIN-SUFFIX,qlogo.cn,DIRECT
+  - DOMAIN-SUFFIX,gtimg.com,DIRECT
+  - DOMAIN-SUFFIX,tc.qq.com,DIRECT
+
   # === Work / internal IP ranges ===
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,11.122.0.0/15,DIRECT,no-resolve
@@ -270,7 +288,6 @@ rules: #!replace
   - DOMAIN-SUFFIX,push.apple.com,HK
   - DOMAIN-SUFFIX,api.push.apple.com,HK
   - DOMAIN-SUFFIX,courier.push.apple.com,HK
-  - DOMAIN-SUFFIX,wx.qq.com,HK
   - DOMAIN-SUFFIX,v2ex.com,HK
 
   # === Force AI/US ===
