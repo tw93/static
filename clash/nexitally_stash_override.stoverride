@@ -70,7 +70,6 @@ proxy-groups: #!replace
     type: select
     proxies:
       - HK
-      - HK Auto
       - US
       - DIRECT
 
@@ -78,7 +77,6 @@ proxy-groups: #!replace
     type: select
     proxies:
       - US
-      - US Auto
       - Proxies
       - HK
       - DIRECT
@@ -86,159 +84,56 @@ proxy-groups: #!replace
   - name: HK
     type: select
     proxies:
-      - 🇭🇰 Hong Kong 14
-      - HK Auto
-      - 🇭🇰 Hong Kong 17
-      - 🇭🇰 Hong Kong 03
-      - 🇭🇰 Hong Kong 01
-      - 🇭🇰 Hong Kong 09
-      - 🇭🇰 Hong Kong 04
-      - 🇭🇰 Hong Kong 18
       - 🇭🇰 Hong Kong 15
-      - 🇭🇰 Hong Kong 06
-      - 🇭🇰 Hong Kong 23
+      - 🇭🇰 Hong Kong 18
+      - 🇭🇰 Hong Kong 01
       - 🇭🇰 Hong Kong 12
       - 🇭🇰 Hong Kong 16
-      - 🇭🇰 Hong Kong 10
-      - 🇭🇰 Hong Kong 07
-      - 🇭🇰 Hong Kong 02
-      - 🇭🇰 Hong Kong 08
-      - 🇭🇰 Hong Kong 19
-      - 🇭🇰 Hong Kong 11
-      - 🇭🇰 Hong Kong 13
-      - 🇭🇰 Hong Kong 05
-
-  - name: HK Auto
-    type: url-test
-    proxies:
-      - 🇭🇰 Hong Kong 14
       - 🇭🇰 Hong Kong 17
-      - 🇭🇰 Hong Kong 03
-      - 🇭🇰 Hong Kong 01
-      - 🇭🇰 Hong Kong 09
       - 🇭🇰 Hong Kong 04
-      - 🇭🇰 Hong Kong 18
-      - 🇭🇰 Hong Kong 15
-      - 🇭🇰 Hong Kong 06
-      - 🇭🇰 Hong Kong 23
-      - 🇭🇰 Hong Kong 12
-      - 🇭🇰 Hong Kong 16
-      - 🇭🇰 Hong Kong 10
       - 🇭🇰 Hong Kong 07
-      - 🇭🇰 Hong Kong 02
-      - 🇭🇰 Hong Kong 08
       - 🇭🇰 Hong Kong 19
-      - 🇭🇰 Hong Kong 11
+      - 🇭🇰 Hong Kong 23
+      - 🇭🇰 Hong Kong 03
+      - 🇭🇰 Hong Kong 08
       - 🇭🇰 Hong Kong 13
+      - 🇭🇰 Hong Kong 14
+      - 🇭🇰 Hong Kong 02
+      - 🇭🇰 Hong Kong 09
+      - 🇭🇰 Hong Kong 10
+      - 🇭🇰 Hong Kong 11
       - 🇭🇰 Hong Kong 05
-    url: http://www.gstatic.com/generate_204
-    interval: 120
-    lazy: true
-    tolerance: 50
+      - 🇭🇰 Hong Kong 06
 
   - name: US
     type: select
     proxies:
-      - 🇺🇸 USA San Jose 07
-      - US Auto
-      - 🇺🇸 USA Los Angeles 06
-      - 🇺🇸 USA Seattle 02
-      - 🇺🇸 USA Seattle 09
-      - 🇺🇸 USA Seattle 08
-      - 🇺🇸 USA Los Angeles 04
-      - 🇺🇸 USA Los Angeles 07
       - 🇺🇸 USA Seattle 04
-      - 🇺🇸 USA Seattle 01
+      - 🇺🇸 USA Seattle 09
+      - 🇺🇸 USA Seattle 02
+      - 🇺🇸 USA Seattle 08
       - 🇺🇸 USA Seattle 07
-      - 🇺🇸 USA Seattle 03
-      - 🇺🇸 USA Los Angeles 02
+      - 🇺🇸 USA Seattle 01
+      - 🇺🇸 USA Seattle 05
       - 🇺🇸 USA Seattle 06
       - 🇺🇸 USA San Jose 08
-      - 🇺🇸 USA Los Angeles 01
-      - 🇺🇸 USA Seattle 05
-      - 🇺🇸 USA Los Angeles 05
-      - 🇺🇸 USA Los Angeles 03
-
-  - name: US Auto
-    type: url-test
-    proxies:
       - 🇺🇸 USA San Jose 07
       - 🇺🇸 USA Los Angeles 06
-      - 🇺🇸 USA Seattle 02
-      - 🇺🇸 USA Seattle 09
-      - 🇺🇸 USA Seattle 08
       - 🇺🇸 USA Los Angeles 04
       - 🇺🇸 USA Los Angeles 07
-      - 🇺🇸 USA Seattle 04
-      - 🇺🇸 USA Seattle 01
-      - 🇺🇸 USA Seattle 07
-      - 🇺🇸 USA Seattle 03
-      - 🇺🇸 USA Los Angeles 02
-      - 🇺🇸 USA Seattle 06
-      - 🇺🇸 USA San Jose 08
-      - 🇺🇸 USA Los Angeles 01
-      - 🇺🇸 USA Seattle 05
       - 🇺🇸 USA Los Angeles 05
       - 🇺🇸 USA Los Angeles 03
-    url: http://www.gstatic.com/generate_204
-    interval: 120
-    lazy: true
-    tolerance: 50
+      - 🇺🇸 USA Los Angeles 02
+      - 🇺🇸 USA Seattle 03
+      - 🇺🇸 USA Los Angeles 01
 
-  - name: Netflix
-    type: select
-    proxies:
-      - Proxies
-      - US
-      - HK
-      - DIRECT
-
-  - name: HBO
-    type: select
-    proxies:
-      - Proxies
-      - US
-      - HK
-      - DIRECT
-
-  - name: DisneyPlus
-    type: select
-    proxies:
-      - Proxies
-      - US
-      - HK
-      - DIRECT
-
-  - name: YouTube
-    type: select
-    proxies:
-      - Proxies
-      - US
-      - HK
-      - DIRECT
-
-  - name: Bahamut
-    type: select
-    proxies:
-      - Proxies
-      - HK
-      - DIRECT
-
-  - name: Bilibili
+  - name: Direct
     type: select
     proxies:
       - DIRECT
       - Proxies
-      - HK
 
-  - name: MyTVSuper
-    type: select
-    proxies:
-      - HK
-      - Proxies
-      - DIRECT
-
-  - name: Telegram
+  - name: Final
     type: select
     proxies:
       - Proxies
@@ -246,99 +141,7 @@ proxy-groups: #!replace
       - US
       - DIRECT
 
-  - name: Crypto
-    type: select
-    proxies:
-      - Proxies
-      - HK
-      - US
-      - DIRECT
-
-  - name: Steam
-    type: select
-    proxies:
-      - Proxies
-      - HK
-      - US
-      - DIRECT
-
-  - name: Epic
-    type: select
-    proxies:
-      - Proxies
-      - HK
-      - US
-      - DIRECT
-
-  - name: Xbox
-    type: select
-    proxies:
-      - Proxies
-      - HK
-      - US
-      - DIRECT
-
-  - name: PlayStation
-    type: select
-    proxies:
-      - Proxies
-      - HK
-      - US
-      - DIRECT
-
-  - name: Microsoft
-    type: select
-    proxies:
-      - DIRECT
-      - Proxies
-      - US
-
-  - name: Scholar
-    type: select
-    proxies:
-      - Proxies
-      - US
-      - HK
-      - DIRECT
-
-  - name: Apple
-    type: select
-    proxies:
-      - DIRECT
-      - Proxies
-      - HK
-
-  - name: Google
-    type: select
-    proxies:
-      - Proxies
-      - US
-      - HK
-      - DIRECT
-
-  - name: Tiktok
-    type: select
-    proxies:
-      - Proxies
-      - US
-      - HK
-      - DIRECT
-
-  - name: 🎯Direct
-    type: select
-    proxies:
-      - DIRECT
-      - Proxies
-
-  - name: ✈️Final
-    type: select
-    proxies:
-      - Proxies
-      - HK
-      - US
-      - DIRECT
-
-rules:
+rules: #!replace
   # === Direct ===
   - DOMAIN-SUFFIX,qoder.sh,DIRECT
 
@@ -366,10 +169,14 @@ rules:
   - DOMAIN,accounts.google.com,AI
   - DOMAIN-SUFFIX,googleapis.com,AI
   - DOMAIN-SUFFIX,deepmind.com,AI
+  - DOMAIN-SUFFIX,generativeai.google,AI
   - DOMAIN,gemini.google.com,AI
+  - DOMAIN,bard.google.com,AI
   - DOMAIN,aistudio.google.com,AI
+  - DOMAIN,makersuite.google.com,AI
   - DOMAIN,generativelanguage.googleapis.com,AI
   - DOMAIN,ai.google.dev,AI
+  - DOMAIN,notebooklm.google.com,AI
   - DOMAIN-SUFFIX,google-gemini.dev,AI
   - DOMAIN-SUFFIX,tensorflow.org,AI
 
@@ -396,6 +203,7 @@ rules:
   - DOMAIN-SUFFIX,replicate.com,AI
   - DOMAIN-SUFFIX,huggingface.co,AI
   - DOMAIN-SUFFIX,perplexity.ai,AI
+  - DOMAIN-SUFFIX,pplx.ai,AI
   - DOMAIN-SUFFIX,openrouter.ai,AI
   - DOMAIN-SUFFIX,windsurf.com,AI
   - DOMAIN-SUFFIX,codeium.com,AI
@@ -468,3 +276,6 @@ rules:
   # === Force AI/US ===
   - DOMAIN-SUFFIX,formulae.brew.sh,AI
   - DOMAIN-SUFFIX,diabrowser.com,AI
+
+  # === Default ===
+  - MATCH,Final
