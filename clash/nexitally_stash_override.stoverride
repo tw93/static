@@ -1,5 +1,5 @@
 name: Nexitally Stash Override
-desc: Default traffic auto-selects the fastest Japan, Hong Kong, or Singapore node. AI traffic uses one fixed United States node.
+desc: Default traffic auto-selects the fastest Japan, Hong Kong, or Singapore node. AI traffic auto-selects the fastest United States Seattle node.
 category: Proxy
 
 # === Network tuning for long-lived AI streaming connections ===
@@ -130,9 +130,20 @@ proxy-groups: #!replace
     tolerance: 50
 
   - name: AI
-    type: select
+    type: url-test
     proxies:
+      - 🇺🇸 USA Seattle 01
+      - 🇺🇸 USA Seattle 02
+      - 🇺🇸 USA Seattle 03
+      - 🇺🇸 USA Seattle 04
+      - 🇺🇸 USA Seattle 05
+      - 🇺🇸 USA Seattle 06
+      - 🇺🇸 USA Seattle 07
+      - 🇺🇸 USA Seattle 08
       - 🇺🇸 USA Seattle 09
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
 
   - name: Direct
     type: select
