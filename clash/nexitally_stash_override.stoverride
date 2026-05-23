@@ -220,18 +220,6 @@ proxy-groups: #!replace
     interval: 300
     tolerance: 50
 
-  - name: Direct
-    type: select
-    proxies:
-      - DIRECT
-      - Proxies
-
-  - name: Final
-    type: select
-    proxies:
-      - Proxies
-      - DIRECT
-
 rules: #!replace
   # === Direct ===
   - DOMAIN-SUFFIX,qoder.sh,DIRECT
@@ -404,4 +392,4 @@ rules: #!replace
   - GEOIP,CN,DIRECT
 
   # === Default ===
-  - MATCH,Final
+  - MATCH,Proxies
