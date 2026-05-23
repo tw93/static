@@ -67,32 +67,11 @@ dns: #!replace
 
 proxy-groups: #!replace
   - name: Proxies
-    type: url-test
+    type: select
     proxies:
-      - 🇭🇰 Hong Kong 10
-      - 🇭🇰 Hong Kong 19
-      - 🇭🇰 Hong Kong 06
-      - 🇭🇰 Hong Kong 11
-      - 🇭🇰 Hong Kong 17
-      - 🇭🇰 Hong Kong 12
-      - 🇭🇰 Hong Kong 01
-      - 🇭🇰 Hong Kong 07
-      - 🇭🇰 Hong Kong 13
-      - 🇭🇰 Hong Kong 14
-      - 🇭🇰 Hong Kong 15
-      - 🇺🇸 USA Seattle 01
-      - 🇺🇸 USA Seattle 04
-      - 🇺🇸 USA Seattle 05
-      - 🇺🇸 USA Seattle 06
-      - 🇺🇸 USA Seattle 03
-      - 🇺🇸 USA Seattle 02
-      - 🇺🇸 USA Seattle 07
-      - 🇺🇸 USA Seattle 09
-      - 🇺🇸 USA Seattle 08
-    url: http://www.gstatic.com/generate_204
-    interval: 120
-    lazy: false
-    tolerance: 20
+      - HK
+      - US
+      - DIRECT
 
   - name: AI
     type: select
