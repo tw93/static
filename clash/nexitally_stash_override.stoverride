@@ -80,14 +80,15 @@ proxy-groups: #!replace
       - 🇭🇰 Hong Kong 13
       - 🇭🇰 Hong Kong 14
       - 🇭🇰 Hong Kong 15
-      - 🇺🇸 USA Seattle 07
-      - 🇺🇸 USA Seattle 02
+      - 🇺🇸 USA Seattle 01
+      - 🇺🇸 USA Seattle 04
       - 🇺🇸 USA Seattle 05
       - 🇺🇸 USA Seattle 06
-      - 🇺🇸 USA Seattle 01
-      - 🇺🇸 USA Seattle 09
       - 🇺🇸 USA Seattle 03
-      - 🇺🇸 USA Seattle 04
+      - 🇺🇸 USA Seattle 02
+      - 🇺🇸 USA Seattle 07
+      - 🇺🇸 USA Seattle 09
+      - 🇺🇸 USA Seattle 08
     url: http://www.gstatic.com/generate_204
     interval: 120
     lazy: false
@@ -98,22 +99,47 @@ proxy-groups: #!replace
     proxies:
       - US
       - Proxies
+      - HK
       - DIRECT
 
-  - name: US
-    type: url-test
+  - name: HK
+    type: select
     proxies:
-      - 🇺🇸 USA Seattle 07
-      - 🇺🇸 USA Seattle 02
+      - 🇭🇰 Hong Kong 10
+      - 🇭🇰 Hong Kong 14
+      - 🇭🇰 Hong Kong 06
+      - 🇭🇰 Hong Kong 19
+      - 🇭🇰 Hong Kong 03
+      - 🇭🇰 Hong Kong 08
+      - 🇭🇰 Hong Kong 09
+      - 🇭🇰 Hong Kong 12
+      - 🇭🇰 Hong Kong 15
+      - 🇭🇰 Hong Kong 11
+      - 🇭🇰 Hong Kong 17
+      - 🇭🇰 Hong Kong 16
+      - 🇭🇰 Hong Kong 01
+      - 🇭🇰 Hong Kong 07
+      - 🇭🇰 Hong Kong 13
+      - 🇭🇰 Hong Kong 18
+      - 🇭🇰 Hong Kong 02
+      - 🇭🇰 Hong Kong 04
+      - 🇭🇰 Hong Kong 05
+      - 🇭🇰 Hong Kong 23
+
+  - name: US
+    type: select
+    proxies:
+      - 🇺🇸 USA Seattle 01
+      - 🇺🇸 USA Seattle 04
       - 🇺🇸 USA Seattle 05
       - 🇺🇸 USA Seattle 06
-      - 🇺🇸 USA Seattle 01
-      - 🇺🇸 USA Seattle 09
       - 🇺🇸 USA Seattle 03
-      - 🇺🇸 USA Seattle 04
+      - 🇺🇸 USA Seattle 02
+      - 🇺🇸 USA Seattle 07
+      - 🇺🇸 USA Seattle 09
       - 🇺🇸 USA Seattle 08
-      - 🇺🇸 USA San Jose 07
       - 🇺🇸 USA San Jose 08
+      - 🇺🇸 USA San Jose 07
       - 🇺🇸 USA Los Angeles 05
       - 🇺🇸 USA Los Angeles 01
       - 🇺🇸 USA Los Angeles 03
@@ -121,10 +147,6 @@ proxy-groups: #!replace
       - 🇺🇸 USA Los Angeles 04
       - 🇺🇸 USA Los Angeles 07
       - 🇺🇸 USA Los Angeles 02
-    url: http://www.gstatic.com/generate_204
-    interval: 120
-    lazy: false
-    tolerance: 20
 
   - name: Direct
     type: select
