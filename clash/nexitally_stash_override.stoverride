@@ -1,5 +1,5 @@
 name: Nexitally Stash Override
-desc: Default traffic auto-selects the fastest Japan, Hong Kong, or Singapore node. AI traffic auto-selects the fastest United States Seattle node.
+desc: Default traffic can auto-select or manually choose Japan, Hong Kong, or Singapore nodes. AI traffic can auto-select or manually choose United States Seattle nodes.
 category: Proxy
 
 # === Network tuning for long-lived AI streaming connections ===
@@ -67,6 +67,67 @@ dns: #!replace
 
 proxy-groups: #!replace
   - name: Proxies
+    type: select
+    proxies:
+      - Proxy Auto
+      - 🇯🇵 Japan 01
+      - 🇯🇵 Japan 02
+      - 🇯🇵 Japan 03
+      - 🇯🇵 Japan 04
+      - 🇯🇵 Japan 05
+      - 🇯🇵 Japan 06
+      - 🇯🇵 Japan 07
+      - 🇯🇵 Japan 08
+      - 🇯🇵 Japan 09
+      - 🇯🇵 Japan 10
+      - 🇯🇵 Japan 11
+      - 🇯🇵 Japan 12
+      - 🇯🇵 Japan 13
+      - 🇯🇵 Japan 14
+      - 🇯🇵 Japan 15
+      - 🇯🇵 Japan 16
+      - 🇯🇵 Japan 17
+      - 🇯🇵 Japan 18
+      - 🇯🇵 Japan 19
+      - 🇯🇵 Japan 20
+      - 🇯🇵 Japan 21
+      - 🇯🇵 Japan 24
+      - 🇯🇵 Japan 25
+      - 🇯🇵 Japan 26
+      - 🇯🇵 Japan 27
+      - 🇭🇰 Hong Kong 01
+      - 🇭🇰 Hong Kong 02
+      - 🇭🇰 Hong Kong 03
+      - 🇭🇰 Hong Kong 04
+      - 🇭🇰 Hong Kong 05
+      - 🇭🇰 Hong Kong 06
+      - 🇭🇰 Hong Kong 07
+      - 🇭🇰 Hong Kong 08
+      - 🇭🇰 Hong Kong 09
+      - 🇭🇰 Hong Kong 10
+      - 🇭🇰 Hong Kong 11
+      - 🇭🇰 Hong Kong 12
+      - 🇭🇰 Hong Kong 13
+      - 🇭🇰 Hong Kong 14
+      - 🇭🇰 Hong Kong 15
+      - 🇭🇰 Hong Kong 16
+      - 🇭🇰 Hong Kong 17
+      - 🇭🇰 Hong Kong 18
+      - 🇭🇰 Hong Kong 19
+      - 🇭🇰 Hong Kong 23
+      - 🇸🇬 Singapore 01
+      - 🇸🇬 Singapore 02
+      - 🇸🇬 Singapore 03
+      - 🇸🇬 Singapore 04
+      - 🇸🇬 Singapore 05
+      - 🇸🇬 Singapore 06
+      - 🇸🇬 Singapore 07
+      - 🇸🇬 Singapore 08
+      - 🇸🇬 Singapore 09
+      - 🇸🇬 Singapore 10
+      - 🇸🇬 Singapore 12
+
+  - name: Proxy Auto
     type: url-test
     proxies:
       - 🇯🇵 Japan 01
@@ -130,6 +191,20 @@ proxy-groups: #!replace
     tolerance: 50
 
   - name: AI
+    type: select
+    proxies:
+      - US Auto
+      - 🇺🇸 USA Seattle 01
+      - 🇺🇸 USA Seattle 02
+      - 🇺🇸 USA Seattle 03
+      - 🇺🇸 USA Seattle 04
+      - 🇺🇸 USA Seattle 05
+      - 🇺🇸 USA Seattle 06
+      - 🇺🇸 USA Seattle 07
+      - 🇺🇸 USA Seattle 08
+      - 🇺🇸 USA Seattle 09
+
+  - name: US Auto
     type: url-test
     proxies:
       - 🇺🇸 USA Seattle 01
