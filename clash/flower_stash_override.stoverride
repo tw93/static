@@ -1,21 +1,9 @@
 name: Flower Simple Proxy
-desc: Simplified Flower setup with Proxy, AI Proxy, Hong Kong, United States, and DIRECT only.
+desc: Manual proxy selection for Flower. Proxy and AI Proxy each pick Hong Kong, United States, or DIRECT; HK and US sub-groups list individual nodes.
 category: Proxy
 
-dns:
-  enable: true
-  ipv6: false
-  nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-  fallback:
-    - https://8.8.8.8/dns-query
-    - https://1.1.1.1/dns-query
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
+profile:
+  store-selected: true
 
 proxy-groups: #!replace
   - name: Proxy
@@ -92,10 +80,14 @@ rules: #!replace
   - DOMAIN,accounts.google.com,AI Proxy
   - DOMAIN-SUFFIX,googleapis.com,AI Proxy
   - DOMAIN-SUFFIX,deepmind.com,AI Proxy
+  - DOMAIN-SUFFIX,generativeai.google,AI Proxy
   - DOMAIN,gemini.google.com,AI Proxy
+  - DOMAIN,bard.google.com,AI Proxy
   - DOMAIN,aistudio.google.com,AI Proxy
+  - DOMAIN,makersuite.google.com,AI Proxy
   - DOMAIN,generativelanguage.googleapis.com,AI Proxy
   - DOMAIN,ai.google.dev,AI Proxy
+  - DOMAIN,notebooklm.google.com,AI Proxy
   - DOMAIN-SUFFIX,google-gemini.dev,AI Proxy
   - DOMAIN-SUFFIX,tensorflow.org,AI Proxy
 
@@ -122,6 +114,7 @@ rules: #!replace
   - DOMAIN-SUFFIX,replicate.com,AI Proxy
   - DOMAIN-SUFFIX,huggingface.co,AI Proxy
   - DOMAIN-SUFFIX,perplexity.ai,AI Proxy
+  - DOMAIN-SUFFIX,pplx.ai,AI Proxy
   - DOMAIN-SUFFIX,openrouter.ai,AI Proxy
   - DOMAIN-SUFFIX,windsurf.com,AI Proxy
   - DOMAIN-SUFFIX,codeium.com,AI Proxy
@@ -142,6 +135,7 @@ rules: #!replace
   - DOMAIN-SUFFIX,workos.com,AI Proxy
   - DOMAIN-SUFFIX,launchdarkly.com,AI Proxy
   - DOMAIN-SUFFIX,honeycomb.io,AI Proxy
+  - DOMAIN-SUFFIX,datadoghq.com,AI Proxy
 
   # === Work / internal direct ===
   - DOMAIN-SUFFIX,antfin.com,DIRECT
