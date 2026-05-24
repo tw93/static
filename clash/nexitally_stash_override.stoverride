@@ -5,6 +5,53 @@ category: Proxy
 profile:
   store-selected: true
 
+dns: #!replace
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "*.localdomain"
+    - "*.home.arpa"
+    - "+.cn"
+    - "+.baidu.com"
+    - "+.taobao.com"
+    - "+.tmall.com"
+    - "+.alipay.com"
+    - "+.aliyun.com"
+    - "+.alibaba.com"
+    - "+.alibaba-inc.com"
+    - "+.antfin.com"
+    - "+.antfin-inc.com"
+    - "+.atatech.org"
+    - "+.dingtalk.com"
+    - "+.qq.com"
+    - "+.wechat.com"
+    - "+.weixin.qq.com"
+    - "+.icloud.com"
+    - "+.apple.com"
+    - "+.push.apple.com"
+    - "+.xiaomi.com"
+    - "+.mi.com"
+    - "+.bilibili.com"
+    - "time.*.com"
+    - "ntp.*.com"
+    - "stun.*.*"
+    - "stun.*.*.*"
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  fallback:
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+
 proxy-groups: #!replace
   - name: Proxies
     type: select
