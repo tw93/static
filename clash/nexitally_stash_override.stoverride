@@ -1,73 +1,13 @@
 name: Nexitally Stash Override
-desc: Default traffic auto-selects the fastest Japan, Hong Kong, or Singapore node. AI traffic auto-selects the fastest United States Seattle node.
+desc: Manual proxy selection. Proxies group lists Japan, Hong Kong, Singapore nodes; AI group lists United States Seattle nodes. Splits AI services to the AI group and keeps domestic and work traffic direct.
 category: Proxy
-
-# === Network tuning for long-lived AI streaming connections ===
-keep-alive-idle: 600
-keep-alive-interval: 10
-connection-idle-timeout: 600
-tcp-concurrent: true
-unified-delay: true
-disable-keep-alive: false
-buffer-size: 65536
-ipv6: false
-
-hosts:
-  mtalk.google.com: 108.177.125.188
-  services.googleapis.cn: 74.125.203.94
-  clientservices.googleapis.com: 142.250.80.42
 
 profile:
   store-selected: true
-  store-fake-ip: true
-  tracing: true
-
-dns: #!replace
-  enable: true
-  cache-algorithm: arc
-  prefer-h3: false
-  ipv6: false
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - "*.lan"
-    - "*.localdomain"
-    - "*.local"
-    - "*.home.arpa"
-    - time.*.com
-    - ntp.*.com
-    - +.market.xiaomi.com
-    - +.push.apple.com
-    - swscan.apple.com
-    - mesu.apple.com
-    - stun.*.*
-    - stun.*.*.*
-    - +.alibaba-inc.com
-    - +.antfin.com
-    - +.antfin-inc.com
-    - +.atatech.org
-    - +.aliyun.com
-    - +.taobao.com
-    - +.alipay.com
-    - +.alibaba.com
-  default-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-  nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-  fallback:
-    - https://8.8.8.8/dns-query
-    - https://1.1.1.1/dns-query
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
 
 proxy-groups: #!replace
   - name: Proxies
-    type: url-test
+    type: select
     proxies:
       - 🇯🇵 Japan 01
       - 🇯🇵 Japan 02
@@ -125,12 +65,9 @@ proxy-groups: #!replace
       - 🇸🇬 Singapore 09
       - 🇸🇬 Singapore 10
       - 🇸🇬 Singapore 12
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
 
   - name: AI
-    type: url-test
+    type: select
     proxies:
       - 🇺🇸 USA Seattle 01
       - 🇺🇸 USA Seattle 02
@@ -141,9 +78,6 @@ proxy-groups: #!replace
       - 🇺🇸 USA Seattle 07
       - 🇺🇸 USA Seattle 08
       - 🇺🇸 USA Seattle 09
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
 
   - name: Final
     type: select
@@ -234,6 +168,7 @@ rules: #!replace
   - DOMAIN-SUFFIX,workos.com,AI
   - DOMAIN-SUFFIX,launchdarkly.com,AI
   - DOMAIN-SUFFIX,honeycomb.io,AI
+  - DOMAIN-SUFFIX,datadoghq.com,AI
 
   # === Work / internal direct ===
   - DOMAIN-SUFFIX,antfin.com,DIRECT
@@ -310,9 +245,6 @@ rules: #!replace
   - DOMAIN-SUFFIX,aaplimg.com,DIRECT
   - DOMAIN-SUFFIX,me.com,DIRECT
   - DOMAIN-SUFFIX,appsto.re,DIRECT
-
-  # === Force proxy ===
-  - DOMAIN-SUFFIX,v2ex.com,Proxies
 
   # === Force AI/US ===
   - DOMAIN-SUFFIX,formulae.brew.sh,AI
