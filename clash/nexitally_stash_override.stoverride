@@ -286,7 +286,7 @@ rules: #!replace
   - DOMAIN-SUFFIX,tc.qq.com,DIRECT
 
   # === Work / internal IP ranges ===
-  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - GEOIP,private,DIRECT,no-resolve
   - IP-CIDR,11.122.0.0/15,DIRECT,no-resolve
   - IP-CIDR,11.124.0.0/16,DIRECT,no-resolve
   - IP-CIDR,11.158.0.0/15,DIRECT,no-resolve
