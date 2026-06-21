@@ -70,7 +70,12 @@ dns!:
   - DOMAIN,aistudio.google.com,AI
   - DOMAIN,generativelanguage.googleapis.com,AI
   - DOMAIN,ai.google.dev,AI
+  - DOMAIN-SUFFIX,generativeai.google,AI
+  - DOMAIN,bard.google.com,AI
+  - DOMAIN,makersuite.google.com,AI
+  - DOMAIN,notebooklm.google.com,AI
   - DOMAIN-SUFFIX,google-gemini.dev,AI
+  - DOMAIN-SUFFIX,tensorflow.org,AI
 
   # === Grok (xAI) ===
   - DOMAIN-SUFFIX,x.ai,AI
@@ -99,6 +104,7 @@ dns!:
   - DOMAIN-SUFFIX,replicate.com,AI
   - DOMAIN-SUFFIX,huggingface.co,AI
   - DOMAIN-SUFFIX,perplexity.ai,AI
+  - DOMAIN-SUFFIX,pplx.ai,AI
   - DOMAIN-SUFFIX,openrouter.ai,AI
   - DOMAIN-SUFFIX,windsurf.com,AI
   - DOMAIN-SUFFIX,codeium.com,AI
@@ -116,6 +122,10 @@ dns!:
   - DOMAIN,challenges.cloudflare.com,AI
   - DOMAIN-SUFFIX,workos.com,AI
   - DOMAIN-SUFFIX,launchdarkly.com,AI
+  - DOMAIN-SUFFIX,datadoghq.com,AI
+  - DOMAIN-SUFFIX,honeycomb.io,AI
+  - DOMAIN-SUFFIX,intercomcdn.com,AI
+  - DOMAIN-SUFFIX,workers.dev,AI
 
   # === 内网直连 ===
   - DOMAIN-SUFFIX,antfin.com,DIRECT
