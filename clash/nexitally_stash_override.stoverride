@@ -79,7 +79,6 @@ proxy-groups: #!replace
   - name: Proxies
     type: select
     proxies:
-      - US
       - 🇯🇵 Japan 01
       - 🇯🇵 Japan 02
       - 🇯🇵 Japan 03
@@ -137,29 +136,16 @@ proxy-groups: #!replace
       - 🇸🇬 Singapore 10
       - 🇸🇬 Singapore 12
 
-  - name: US
-    type: select
-    proxies:
-      - 🇺🇸 USA Seattle 03
-      - 🇺🇸 USA Seattle 06
-      - 🇺🇸 USA Seattle 02
-      - 🇺🇸 USA Seattle 01
-      - 🇺🇸 USA Seattle 04
-      - 🇺🇸 USA Seattle 05
-      - 🇺🇸 USA Seattle 07
-      - 🇺🇸 USA Seattle 08
-      - 🇺🇸 USA Seattle 09
-
   - name: AI
     type: select
     proxies:
+      - 🇺🇸 USA Seattle 07
       - 🇺🇸 USA Seattle 03
       - 🇺🇸 USA Seattle 06
       - 🇺🇸 USA Seattle 02
       - 🇺🇸 USA Seattle 01
       - 🇺🇸 USA Seattle 04
       - 🇺🇸 USA Seattle 05
-      - 🇺🇸 USA Seattle 07
       - 🇺🇸 USA Seattle 08
       - 🇺🇸 USA Seattle 09
 
