@@ -139,7 +139,7 @@ proxy-groups: #!replace
   - name: AI
     type: select
     proxies:
-      - 🇺🇸 USA Seattle 07
+      - "🇺🇸 USA Seattle 07 [DIP USA-Seattle]"
       - 🇺🇸 USA Seattle 03
       - 🇺🇸 USA Seattle 06
       - 🇺🇸 USA Seattle 02
@@ -158,6 +158,10 @@ proxy-groups: #!replace
 rules: #!replace
   # === Direct ===
   - DOMAIN-SUFFIX,qoder.sh,DIRECT
+  # Apple code-signing RFC3161 timestamp server: must bypass the proxy or
+  # `codesign --timestamp` fails with "The timestamp service is not available"
+  # during release DMG signing (TUN/fake-ip captures it otherwise).
+  - DOMAIN,timestamp.apple.com,DIRECT
 
   # === OpenAI / ChatGPT / Codex ===
   - DOMAIN-SUFFIX,openai.com,AI
