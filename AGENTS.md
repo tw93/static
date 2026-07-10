@@ -4,6 +4,8 @@
 
 This repository hosts static files used by Tw93 projects, including app downloads, images, appcast files, and web assets.
 
+Deploy surface: pushing `main` is production. Vercel publishes every push immediately, and these URLs are referenced live by other projects; there is no staging.
+
 ## Repository Map
 
 - `app/` - downloadable app artifacts.
