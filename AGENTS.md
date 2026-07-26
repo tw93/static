@@ -18,7 +18,7 @@ Deploy surface: pushing `main` is production. Vercel publishes every push immedi
 - `video/` - hosted video assets.
 - `clash/` - Clash configuration and related public files.
 - `index.html` - simple static index.
-- `vercel.json` - deployment routing/configuration.
+- `vercel.json` - Vercel deployment configuration; today it only silences the GitHub integration, there are no routes or headers in it.
 
 ## Working Rules
 
