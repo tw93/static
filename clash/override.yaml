@@ -84,14 +84,18 @@ dns!:
   - DOMAIN-SUFFIX,claudeaistatus.com,US
 
   # === Gemini / Google AI ===
+  # Region-locked services stay on US; HK exits are blocked by Gemini.
   - DOMAIN,accounts.google.com,US
-  - DOMAIN-SUFFIX,googleapis.com,US
   - DOMAIN-SUFFIX,deepmind.com,US
   - DOMAIN,gemini.google.com,US
   - DOMAIN,aistudio.google.com,US
   - DOMAIN,generativelanguage.googleapis.com,US
   - DOMAIN,ai.google.dev,US
   - DOMAIN-SUFFIX,google-gemini.dev,US
+
+  # === Google APIs (non-Gemini) ===
+  # generativelanguage.googleapis.com above must stay before this suffix rule.
+  - DOMAIN-SUFFIX,googleapis.com,HK
 
   # === Grok (xAI) ===
   - DOMAIN-SUFFIX,x.ai,US
@@ -102,55 +106,50 @@ dns!:
   - DOMAIN-SUFFIX,groq.com,US
 
   # === Cursor ===
-  - DOMAIN-SUFFIX,cursor.sh,US
-  - DOMAIN-SUFFIX,cursor.com,US
-  - DOMAIN-SUFFIX,cursorapi.com,US
-  - DOMAIN-SUFFIX,cursor-cdn.com,US
+  # No US requirement; keep tooling off the AI line so it does not compete
+  # with Claude/OpenAI streaming.
+  - DOMAIN-SUFFIX,cursor.sh,HK
+  - DOMAIN-SUFFIX,cursor.com,HK
+  - DOMAIN-SUFFIX,cursorapi.com,HK
+  - DOMAIN-SUFFIX,cursor-cdn.com,HK
 
   # === GitHub / Copilot ===
-  - DOMAIN-SUFFIX,github.com,US
-  - DOMAIN-SUFFIX,githubusercontent.com,US
-  - DOMAIN-SUFFIX,githubcopilot.com,US
-  - DOMAIN-SUFFIX,copilot.github.com,US
+  - DOMAIN-SUFFIX,github.com,HK
+  - DOMAIN-SUFFIX,githubusercontent.com,HK
+  - DOMAIN-SUFFIX,githubcopilot.com,HK
+  - DOMAIN-SUFFIX,copilot.github.com,HK
 
   # === 其他 AI ===
-  - DOMAIN-SUFFIX,cohere.com,US
-  - DOMAIN-SUFFIX,mistral.ai,US
-  - DOMAIN-SUFFIX,together.ai,US
-  - DOMAIN-SUFFIX,replicate.com,US
-  - DOMAIN-SUFFIX,huggingface.co,US
-  - DOMAIN-SUFFIX,perplexity.ai,US
-  - DOMAIN-SUFFIX,openrouter.ai,US
-  - DOMAIN-SUFFIX,windsurf.com,US
-  - DOMAIN-SUFFIX,codeium.com,US
-  - DOMAIN-SUFFIX,v0.dev,US
-  - DOMAIN-SUFFIX,bolt.new,US
-  - DOMAIN-SUFFIX,midjourney.com,US
+  - DOMAIN-SUFFIX,cohere.com,HK
+  - DOMAIN-SUFFIX,mistral.ai,HK
+  - DOMAIN-SUFFIX,together.ai,HK
+  - DOMAIN-SUFFIX,replicate.com,HK
+  - DOMAIN-SUFFIX,huggingface.co,HK
+  - DOMAIN-SUFFIX,perplexity.ai,HK
+  - DOMAIN-SUFFIX,openrouter.ai,HK
+  - DOMAIN-SUFFIX,windsurf.com,HK
+  - DOMAIN-SUFFIX,codeium.com,HK
+  - DOMAIN-SUFFIX,v0.dev,HK
+  - DOMAIN-SUFFIX,bolt.new,HK
+  - DOMAIN-SUFFIX,midjourney.com,HK
 
-  # === 依赖服务 ===
-  - DOMAIN-SUFFIX,stripe.com,US
-  - DOMAIN-SUFFIX,segment.io,US
-  - DOMAIN-SUFFIX,intercom.io,US
-  - DOMAIN-SUFFIX,sentry.io,US
-  - DOMAIN-SUFFIX,algolia.net,US
-  - DOMAIN-SUFFIX,statsig.com,US
+  # === AI 风控相关（必须与 claude.ai 同出口）===
   - DOMAIN,challenges.cloudflare.com,US
   - DOMAIN-SUFFIX,workos.com,US
-  - DOMAIN-SUFFIX,launchdarkly.com,US
+  - DOMAIN-SUFFIX,stripe.com,US
 
-  # === 内网直连 ===
-  - DOMAIN-SUFFIX,antfin.com,DIRECT
-  - DOMAIN-SUFFIX,antfin-inc.com,DIRECT
-  - DOMAIN-SUFFIX,alibaba-inc.com,DIRECT
-  - DOMAIN-SUFFIX,alibaba.com,DIRECT
-  - DOMAIN-SUFFIX,alibabacorp.com,DIRECT
-  - DOMAIN-SUFFIX,alibabadns.com,DIRECT
-  - DOMAIN-SUFFIX,alibaba.net,DIRECT
-  - DOMAIN-SUFFIX,atatech.org,DIRECT
+  # === 依赖服务（遥测与组件，不要求美国出口）===
+  - DOMAIN-SUFFIX,segment.io,HK
+  - DOMAIN-SUFFIX,intercom.io,HK
+  - DOMAIN-SUFFIX,sentry.io,HK
+  - DOMAIN-SUFFIX,algolia.net,HK
+  - DOMAIN-SUFFIX,statsig.com,HK
+  - DOMAIN-SUFFIX,launchdarkly.com,HK
+
+  # === 国内常用直连 ===
   - DOMAIN-SUFFIX,alipay.com,DIRECT
   - DOMAIN-SUFFIX,taobao.com,DIRECT
   - DOMAIN-SUFFIX,aliyun.com,DIRECT
-  - DOMAIN-SUFFIX,aliyun-inc.com,DIRECT
   - DOMAIN-SUFFIX,aliyuncs.com,DIRECT
   - DOMAIN-SUFFIX,fliggy.com,DIRECT
   - DOMAIN-SUFFIX,yuque.com,DIRECT
@@ -158,20 +157,10 @@ dns!:
   - DOMAIN-SUFFIX,dingtalkapps.com,DIRECT
   - DOMAIN-SUFFIX,dingtalk.net,DIRECT
   - DOMAIN-SUFFIX,alicdn.com,DIRECT
-  - DOMAIN-SUFFIX,aliway.com,DIRECT
-  - DOMAIN-SUFFIX,antgroup.com,DIRECT
-  - DOMAIN-SUFFIX,aliwork.com,DIRECT
-  - DOMAIN-SUFFIX,ztna-dingtalk.com,DIRECT
   - DOMAIN-SUFFIX,aliimg.com,DIRECT
 
-  # === 阿里内网 IP 段 ===
+  # === 内网 IP 段 ===
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,11.122.0.0/15,DIRECT,no-resolve
-  - IP-CIDR,11.124.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,11.158.0.0/15,DIRECT,no-resolve
-  - IP-CIDR,11.160.0.0/13,DIRECT,no-resolve
-  - IP-CIDR,11.238.0.0/15,DIRECT,no-resolve
-  - IP-CIDR,203.119.0.0/16,DIRECT,no-resolve
 
   # === Apple Push / Relay ===
   - DOMAIN-SUFFIX,apple-relay.akamaized.net,HK

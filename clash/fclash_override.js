@@ -18,13 +18,8 @@ function main(config) {
   ];
 
   const extraRules = [
-    // === 阿里系软件进程白名单（完全不走代理）===
+    // === 国内软件进程白名单（完全不走代理）===
     "PROCESS-NAME,DingTalk,DIRECT",
-    "PROCESS-NAME,AliLangClient,DIRECT",
-    "PROCESS-NAME,AlilangAgent,DIRECT",
-    "PROCESS-NAME,ALiLangVPN,DIRECT",
-    "PROCESS-NAME,AliEntSafe,DIRECT",
-    "PROCESS-NAME,CloudShell,DIRECT",
 
     // === OpenAI / ChatGPT ===
     "DOMAIN-SUFFIX,openai.com,US",
@@ -50,7 +45,7 @@ function main(config) {
     "DOMAIN,oai-shared.openai.com,US",
     "DOMAIN,enterprise.openai.com,US",
     "DOMAIN,team.openai.com,US",
-    "DOMAIN,browser-intake-datadoghq.com,US",
+    "DOMAIN,browser-intake-datadoghq.com,HK",
     "DOMAIN-SUFFIX,openai.com,US",
     "DOMAIN-SUFFIX,chatgpt.com,US",
     "DOMAIN-SUFFIX,oaistatic.com,US",
@@ -58,8 +53,8 @@ function main(config) {
     "DOMAIN-SUFFIX,openaiapi-site.azureedge.net,US",
     "DOMAIN-SUFFIX,openaicom.imgix.net,US",
     "DOMAIN-SUFFIX,chatgpt.livekit.cloud,US",
-    "DOMAIN-SUFFIX,sentry.io,US",
-    "DOMAIN-SUFFIX,algolia.net,US",
+    "DOMAIN-SUFFIX,sentry.io,HK",
+    "DOMAIN-SUFFIX,algolia.net,HK",
 
     // === Claude (Anthropic) ===
     "DOMAIN,claude.ai,US",
@@ -70,59 +65,43 @@ function main(config) {
     "DOMAIN,statsig.anthropic.com,US",
     "DOMAIN-SUFFIX,anthropic.com,US",
     "DOMAIN-SUFFIX,claude.ai,US",
-    "DOMAIN-SUFFIX,stripe.com,US",
-    "DOMAIN-SUFFIX,segment.io,US",
-    "DOMAIN-SUFFIX,intercom.io,US",
 
-    // === Dependencies / SDK / Analytics ===
-    "DOMAIN-SUFFIX,statsig.com,US",
-    "DOMAIN,statsigapi.net,US",
-    "DOMAIN,events.statsigapi.net,US",
-    "DOMAIN-SUFFIX,featuregates.org,US",
-    "DOMAIN-SUFFIX,intercomcdn.com,US",
-    "DOMAIN,js.intercomcdn.com,US",
+    // === AI session / risk-control (must share exit with claude.ai) ===
     "DOMAIN,js.stripe.com,US",
+    "DOMAIN-SUFFIX,stripe.com,US",
     "DOMAIN,challenges.cloudflare.com,US",
-    "DOMAIN,rum.browser-intake-datadoghq.com,US",
-    "DOMAIN,o33249.ingest.sentry.io,US",
-    "DOMAIN,o207216.ingest.sentry.io,US",
-    "DOMAIN,prodregistryv2.org,US",
-    "DOMAIN,featureassets.org,US",
     "DOMAIN,setup.workos.com,US",
     "DOMAIN,forwarder.workos.com,US",
     "DOMAIN-SUFFIX,workos.com,US",
-    "DOMAIN,events.launchdarkly.com,US",
-    "DOMAIN,clientstream.launchdarkly.com,US",
-    "DOMAIN,app.launchdarkly.com,US",
-    "DOMAIN-SUFFIX,launchdarkly.com,US",
     "DOMAIN,workos.imgix.net,US",
     "DOMAIN,cdn.workos.com,US",
     "DOMAIN,images.workoscdn.com,US",
-    "DOMAIN-SUFFIX,ct.sendgrid.net,US",
 
-    // === Google AI ===
+    // === Dependencies / SDK / Analytics (exit does not matter) ===
+    "DOMAIN-SUFFIX,segment.io,HK",
+    "DOMAIN-SUFFIX,intercom.io,HK",
+    "DOMAIN-SUFFIX,statsig.com,HK",
+    "DOMAIN,statsigapi.net,HK",
+    "DOMAIN,events.statsigapi.net,HK",
+    "DOMAIN-SUFFIX,featuregates.org,HK",
+    "DOMAIN-SUFFIX,intercomcdn.com,HK",
+    "DOMAIN,js.intercomcdn.com,HK",
+    "DOMAIN,rum.browser-intake-datadoghq.com,HK",
+    "DOMAIN,o33249.ingest.sentry.io,HK",
+    "DOMAIN,o207216.ingest.sentry.io,HK",
+    "DOMAIN,prodregistryv2.org,HK",
+    "DOMAIN,featureassets.org,HK",
+    "DOMAIN,events.launchdarkly.com,HK",
+    "DOMAIN,clientstream.launchdarkly.com,HK",
+    "DOMAIN,app.launchdarkly.com,HK",
+    "DOMAIN-SUFFIX,launchdarkly.com,HK",
+    "DOMAIN-SUFFIX,ct.sendgrid.net,HK",
+
+    // === Google AI (region-locked, keep US; HK exits are blocked) ===
     "DOMAIN,accounts.google.com,US",
     "DOMAIN,generativeai.google,US",
     "DOMAIN,ai.google,US",
-    "DOMAIN-SUFFIX,googleapis.com,US",
     "DOMAIN-SUFFIX,deepmind.com,US",
-    "DOMAIN-SUFFIX,tensorflow.org,US",
-
-    // === Cursor ===
-    "DOMAIN,cursor.sh,US",
-    "DOMAIN,api.cursor.sh,US",
-    "DOMAIN,api2.cursor.sh,US",
-    "DOMAIN,api3.cursor.sh,US",
-    "DOMAIN,api4.cursor.sh,US",
-    "DOMAIN-SUFFIX,api5.cursor.sh,US",
-    "DOMAIN,repo42.cursor.sh,US",
-    "DOMAIN-SUFFIX,authentication.cursor.sh,US",
-    "DOMAIN,authenticator.cursor.sh,US",
-    "DOMAIN,download.cursor.sh,US",
-    "DOMAIN-SUFFIX,cursor.sh,US",
-    "DOMAIN-SUFFIX,cursor.com,US",
-    "DOMAIN-SUFFIX,cursorapi.com,US",
-    "DOMAIN-SUFFIX,cursor-cdn.com,US",
 
     // === Gemini ===
     "DOMAIN,gemini.google.com,US",
@@ -132,29 +111,43 @@ function main(config) {
     "DOMAIN,generativelanguage.googleapis.com,US",
     "DOMAIN-SUFFIX,gemini.google.com,US",
 
+    // === Google APIs (non-Gemini; generativelanguage rule above must stay first) ===
+    "DOMAIN-SUFFIX,googleapis.com,HK",
+    "DOMAIN-SUFFIX,tensorflow.org,HK",
+
+    // === Cursor (tooling, no US requirement) ===
+    "DOMAIN,cursor.sh,HK",
+    "DOMAIN,api.cursor.sh,HK",
+    "DOMAIN,api2.cursor.sh,HK",
+    "DOMAIN,api3.cursor.sh,HK",
+    "DOMAIN,api4.cursor.sh,HK",
+    "DOMAIN-SUFFIX,api5.cursor.sh,HK",
+    "DOMAIN,repo42.cursor.sh,HK",
+    "DOMAIN-SUFFIX,authentication.cursor.sh,HK",
+    "DOMAIN,authenticator.cursor.sh,HK",
+    "DOMAIN,download.cursor.sh,HK",
+    "DOMAIN-SUFFIX,cursor.sh,HK",
+    "DOMAIN-SUFFIX,cursor.com,HK",
+    "DOMAIN-SUFFIX,cursorapi.com,HK",
+    "DOMAIN-SUFFIX,cursor-cdn.com,HK",
+
     // === Midjourney ===
-    "DOMAIN,midjourney.com,US",
-    "DOMAIN,cdn.midjourney.com,US",
-    "DOMAIN-SUFFIX,midjourney.com,US",
+    "DOMAIN,midjourney.com,HK",
+    "DOMAIN,cdn.midjourney.com,HK",
+    "DOMAIN-SUFFIX,midjourney.com,HK",
 
     // === Cloudflare AI ===
     "DOMAIN,ai.cloudflare.com,US",
-    "DOMAIN-SUFFIX,workers.dev,US",
+    "DOMAIN-SUFFIX,workers.dev,HK",
 
-    // === GitHub / Copilot ===
-    "DOMAIN-SUFFIX,github.com,US",
-    "DOMAIN-SUFFIX,githubusercontent.com,US",
-    "DOMAIN-SUFFIX,githubcopilot.com,US",
-    "DOMAIN-SUFFIX,copilot.github.com,US",
+    // === GitHub / Copilot (tooling, no US requirement) ===
+    "DOMAIN-SUFFIX,github.com,HK",
+    "DOMAIN-SUFFIX,githubusercontent.com,HK",
+    "DOMAIN-SUFFIX,githubcopilot.com,HK",
+    "DOMAIN-SUFFIX,copilot.github.com,HK",
 
-    // === Internal / Direct ===
-    "DOMAIN-SUFFIX,antfin.com,DIRECT",
+    // === Domestic / Direct ===
     "DOMAIN-SUFFIX,taobao.com,DIRECT",
-    "DOMAIN-SUFFIX,alibaba-inc.com,DIRECT",
-    "DOMAIN-SUFFIX,alibabacorp.com,DIRECT",
-    "DOMAIN-SUFFIX,alibabadns.com,DIRECT",
-    "DOMAIN-SUFFIX,antfin-inc.com,DIRECT",
-    "DOMAIN-SUFFIX,atatech.org,DIRECT",
     "DOMAIN-SUFFIX,fliggy.com,DIRECT",
     "DOMAIN-SUFFIX,sspai.com,DIRECT",
     "DOMAIN-SUFFIX,aliyun.com,DIRECT",
@@ -162,8 +155,7 @@ function main(config) {
     "DOMAIN-SUFFIX,v2ex.com,HK",
     "DOMAIN-SUFFIX,formulae.brew.sh,US",
     "DOMAIN-SUFFIX,diabrowser.com,US",
-    "DOMAIN-SUFFIX,honeycomb.io,US",
-    "DOMAIN-SUFFIX,intercom.io,US"
+    "DOMAIN-SUFFIX,honeycomb.io,HK"
   ];
 
   // === 注入 DNS / TUN / Sniffer 配置 ===
@@ -183,16 +175,15 @@ function main(config) {
   config["tcp-concurrent"] = true;
   config["unified-delay"] = true;
 
-  // 2. 配置 DNS (解决内网解析)
+  // 2. 配置 DNS (国内域名不吃 fake-ip)
   if (!config.dns) config.dns = {};
   if (!config.dns["fake-ip-filter"]) config.dns["fake-ip-filter"] = [];
-  
-  const aliInternal = [
-    "+.alibaba-inc.com", "+.antfin.com", "+.antfin-inc.com", 
-    "+.atatech.org", "+.aliyun.com", "+.taobao.com", 
+
+  const cnConsumer = [
+    "+.aliyun.com", "+.taobao.com",
     "+.alipay.com", "+.alibaba.com"
   ];
-  config.dns["fake-ip-filter"].push(...aliInternal);
+  config.dns["fake-ip-filter"].push(...cnConsumer);
 
   // 3. 配置 Sniffer (AI 优化)
   if (!config.sniffer) config.sniffer = {};

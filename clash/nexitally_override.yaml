@@ -63,8 +63,9 @@ dns!:
   - DOMAIN-SUFFIX,claudeaistatus.com,AI
 
   # === Gemini / Google AI ===
+  # Region-locked services stay on the AI group; the Proxies group may point
+  # at Hong Kong where Gemini is blocked.
   - DOMAIN,accounts.google.com,AI
-  - DOMAIN-SUFFIX,googleapis.com,AI
   - DOMAIN-SUFFIX,deepmind.com,AI
   - DOMAIN,gemini.google.com,AI
   - DOMAIN,aistudio.google.com,AI
@@ -75,7 +76,11 @@ dns!:
   - DOMAIN,makersuite.google.com,AI
   - DOMAIN,notebooklm.google.com,AI
   - DOMAIN-SUFFIX,google-gemini.dev,AI
-  - DOMAIN-SUFFIX,tensorflow.org,AI
+
+  # === Google APIs (non-Gemini) ===
+  # generativelanguage.googleapis.com above must stay before this suffix rule.
+  - DOMAIN-SUFFIX,googleapis.com,Proxies
+  - DOMAIN-SUFFIX,tensorflow.org,Proxies
 
   # === Grok (xAI) ===
   - DOMAIN-SUFFIX,x.ai,AI
@@ -86,60 +91,55 @@ dns!:
   - DOMAIN-SUFFIX,groq.com,AI
 
   # === Cursor ===
-  - DOMAIN-SUFFIX,cursor.sh,AI
-  - DOMAIN-SUFFIX,cursor.com,AI
-  - DOMAIN-SUFFIX,cursorapi.com,AI
-  - DOMAIN-SUFFIX,cursor-cdn.com,AI
+  # No US requirement; keep tooling off the AI line so it does not compete
+  # with Claude/OpenAI streaming.
+  - DOMAIN-SUFFIX,cursor.sh,Proxies
+  - DOMAIN-SUFFIX,cursor.com,Proxies
+  - DOMAIN-SUFFIX,cursorapi.com,Proxies
+  - DOMAIN-SUFFIX,cursor-cdn.com,Proxies
 
   # === GitHub / Copilot ===
-  - DOMAIN-SUFFIX,github.com,AI
-  - DOMAIN-SUFFIX,githubusercontent.com,AI
-  - DOMAIN-SUFFIX,githubcopilot.com,AI
-  - DOMAIN-SUFFIX,copilot.github.com,AI
+  - DOMAIN-SUFFIX,github.com,Proxies
+  - DOMAIN-SUFFIX,githubusercontent.com,Proxies
+  - DOMAIN-SUFFIX,githubcopilot.com,Proxies
+  - DOMAIN-SUFFIX,copilot.github.com,Proxies
 
   # === 其他 AI ===
-  - DOMAIN-SUFFIX,cohere.com,AI
-  - DOMAIN-SUFFIX,mistral.ai,AI
-  - DOMAIN-SUFFIX,together.ai,AI
-  - DOMAIN-SUFFIX,replicate.com,AI
-  - DOMAIN-SUFFIX,huggingface.co,AI
-  - DOMAIN-SUFFIX,perplexity.ai,AI
-  - DOMAIN-SUFFIX,pplx.ai,AI
-  - DOMAIN-SUFFIX,openrouter.ai,AI
-  - DOMAIN-SUFFIX,windsurf.com,AI
-  - DOMAIN-SUFFIX,codeium.com,AI
-  - DOMAIN-SUFFIX,v0.dev,AI
-  - DOMAIN-SUFFIX,bolt.new,AI
-  - DOMAIN-SUFFIX,midjourney.com,AI
+  - DOMAIN-SUFFIX,cohere.com,Proxies
+  - DOMAIN-SUFFIX,mistral.ai,Proxies
+  - DOMAIN-SUFFIX,together.ai,Proxies
+  - DOMAIN-SUFFIX,replicate.com,Proxies
+  - DOMAIN-SUFFIX,huggingface.co,Proxies
+  - DOMAIN-SUFFIX,perplexity.ai,Proxies
+  - DOMAIN-SUFFIX,pplx.ai,Proxies
+  - DOMAIN-SUFFIX,openrouter.ai,Proxies
+  - DOMAIN-SUFFIX,windsurf.com,Proxies
+  - DOMAIN-SUFFIX,codeium.com,Proxies
+  - DOMAIN-SUFFIX,v0.dev,Proxies
+  - DOMAIN-SUFFIX,bolt.new,Proxies
+  - DOMAIN-SUFFIX,midjourney.com,Proxies
 
-  # === 依赖服务 ===
-  - DOMAIN-SUFFIX,stripe.com,AI
-  - DOMAIN-SUFFIX,segment.io,AI
-  - DOMAIN-SUFFIX,intercom.io,AI
-  - DOMAIN-SUFFIX,sentry.io,AI
-  - DOMAIN-SUFFIX,algolia.net,AI
-  - DOMAIN-SUFFIX,statsig.com,AI
+  # === AI 风控相关（必须与 claude.ai 同出口）===
   - DOMAIN,challenges.cloudflare.com,AI
   - DOMAIN-SUFFIX,workos.com,AI
-  - DOMAIN-SUFFIX,launchdarkly.com,AI
-  - DOMAIN-SUFFIX,datadoghq.com,AI
-  - DOMAIN-SUFFIX,honeycomb.io,AI
-  - DOMAIN-SUFFIX,intercomcdn.com,AI
-  - DOMAIN-SUFFIX,workers.dev,AI
+  - DOMAIN-SUFFIX,stripe.com,AI
 
-  # === 内网直连 ===
-  - DOMAIN-SUFFIX,antfin.com,DIRECT
-  - DOMAIN-SUFFIX,antfin-inc.com,DIRECT
-  - DOMAIN-SUFFIX,alibaba-inc.com,DIRECT
-  - DOMAIN-SUFFIX,alibaba.com,DIRECT
-  - DOMAIN-SUFFIX,alibabacorp.com,DIRECT
-  - DOMAIN-SUFFIX,alibabadns.com,DIRECT
-  - DOMAIN-SUFFIX,alibaba.net,DIRECT
-  - DOMAIN-SUFFIX,atatech.org,DIRECT
+  # === 依赖服务（遥测与组件，不要求美国出口）===
+  - DOMAIN-SUFFIX,segment.io,Proxies
+  - DOMAIN-SUFFIX,intercom.io,Proxies
+  - DOMAIN-SUFFIX,sentry.io,Proxies
+  - DOMAIN-SUFFIX,algolia.net,Proxies
+  - DOMAIN-SUFFIX,statsig.com,Proxies
+  - DOMAIN-SUFFIX,launchdarkly.com,Proxies
+  - DOMAIN-SUFFIX,datadoghq.com,Proxies
+  - DOMAIN-SUFFIX,honeycomb.io,Proxies
+  - DOMAIN-SUFFIX,intercomcdn.com,Proxies
+  - DOMAIN-SUFFIX,workers.dev,Proxies
+
+  # === 国内常用直连 ===
   - DOMAIN-SUFFIX,alipay.com,DIRECT
   - DOMAIN-SUFFIX,taobao.com,DIRECT
   - DOMAIN-SUFFIX,aliyun.com,DIRECT
-  - DOMAIN-SUFFIX,aliyun-inc.com,DIRECT
   - DOMAIN-SUFFIX,aliyuncs.com,DIRECT
   - DOMAIN-SUFFIX,fliggy.com,DIRECT
   - DOMAIN-SUFFIX,yuque.com,DIRECT
@@ -147,20 +147,10 @@ dns!:
   - DOMAIN-SUFFIX,dingtalkapps.com,DIRECT
   - DOMAIN-SUFFIX,dingtalk.net,DIRECT
   - DOMAIN-SUFFIX,alicdn.com,DIRECT
-  - DOMAIN-SUFFIX,aliway.com,DIRECT
-  - DOMAIN-SUFFIX,antgroup.com,DIRECT
-  - DOMAIN-SUFFIX,aliwork.com,DIRECT
-  - DOMAIN-SUFFIX,ztna-dingtalk.com,DIRECT
   - DOMAIN-SUFFIX,aliimg.com,DIRECT
 
-  # === 阿里内网 IP 段 ===
+  # === 内网 IP 段 ===
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,11.122.0.0/15,DIRECT,no-resolve
-  - IP-CIDR,11.124.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,11.158.0.0/15,DIRECT,no-resolve
-  - IP-CIDR,11.160.0.0/13,DIRECT,no-resolve
-  - IP-CIDR,11.238.0.0/15,DIRECT,no-resolve
-  - IP-CIDR,203.119.0.0/16,DIRECT,no-resolve
 
   # === Apple Push / Relay ===
   - DOMAIN-SUFFIX,apple-relay.akamaized.net,Proxies

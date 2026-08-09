@@ -1,5 +1,5 @@
 #!name=AI Services & GitHub Routing
-#!desc=OpenAI / Claude / GitHub / AI tools route via US, internal domains DIRECT
+#!desc=OpenAI / Claude route via US, tooling via HK, domestic domains DIRECT
 #!category=AI
 
 [General]
@@ -74,61 +74,63 @@ DOMAIN-SUFFIX,claude.ai,US
 ########################################
 # AI IDE / Tools
 ########################################
-# Cursor
-DOMAIN,cursor.sh,US
-DOMAIN,api.cursor.sh,US
-DOMAIN,api2.cursor.sh,US
-DOMAIN,api3.cursor.sh,US
-DOMAIN,api4.cursor.sh,US
-DOMAIN-SUFFIX,api5.cursor.sh,US
-DOMAIN,repo42.cursor.sh,US
-DOMAIN-SUFFIX,authentication.cursor.sh,US
-DOMAIN,authenticator.cursor.sh,US
-DOMAIN,download.cursor.sh,US
-DOMAIN-SUFFIX,cursor.sh,US
-DOMAIN-SUFFIX,cursor.com,US
-DOMAIN-SUFFIX,cursorapi.com,US
-DOMAIN-SUFFIX,cursor-cdn.com,US
+# Cursor (tooling, no US requirement)
+DOMAIN,cursor.sh,HK
+DOMAIN,api.cursor.sh,HK
+DOMAIN,api2.cursor.sh,HK
+DOMAIN,api3.cursor.sh,HK
+DOMAIN,api4.cursor.sh,HK
+DOMAIN-SUFFIX,api5.cursor.sh,HK
+DOMAIN,repo42.cursor.sh,HK
+DOMAIN-SUFFIX,authentication.cursor.sh,HK
+DOMAIN,authenticator.cursor.sh,HK
+DOMAIN,download.cursor.sh,HK
+DOMAIN-SUFFIX,cursor.sh,HK
+DOMAIN-SUFFIX,cursor.com,HK
+DOMAIN-SUFFIX,cursorapi.com,HK
+DOMAIN-SUFFIX,cursor-cdn.com,HK
 
 # Midjourney
-DOMAIN,midjourney.com,US
-DOMAIN-SUFFIX,midjourney.com,US
+DOMAIN,midjourney.com,HK
+DOMAIN-SUFFIX,midjourney.com,HK
 
 ########################################
-# Google AI / Gemini
+# Google AI / Gemini (region-locked, keep US; HK exits are blocked)
 ########################################
 DOMAIN,gemini.google.com,US
 DOMAIN,aistudio.google.com,US
 DOMAIN,generativelanguage.googleapis.com,US
-DOMAIN-SUFFIX,googleapis.com,US
 DOMAIN-SUFFIX,deepmind.com,US
+# Non-Gemini Google APIs; generativelanguage rule above must stay first
+DOMAIN-SUFFIX,googleapis.com,HK
 
 ########################################
-# GitHub / Dev Infra
+# GitHub / Dev Infra (tooling, no US requirement)
 ########################################
-DOMAIN-SUFFIX,github.com,US
-DOMAIN-SUFFIX,githubusercontent.com,US
-DOMAIN-SUFFIX,githubcopilot.com,US
+DOMAIN-SUFFIX,github.com,HK
+DOMAIN-SUFFIX,githubusercontent.com,HK
+DOMAIN-SUFFIX,githubcopilot.com,HK
 DOMAIN-SUFFIX,formulae.brew.sh,US
-DOMAIN-SUFFIX,honeycomb.io,US
+DOMAIN-SUFFIX,honeycomb.io,HK
 
 ########################################
-# Auth / SDK / Telemetry (AI related)
+# AI session / risk-control (must share exit with claude.ai)
 ########################################
 DOMAIN-SUFFIX,workos.com,US
-DOMAIN-SUFFIX,launchdarkly.com,US
-DOMAIN-SUFFIX,statsig.com,US
-DOMAIN-SUFFIX,sentry.io,US
 DOMAIN-SUFFIX,stripe.com,US
-DOMAIN-SUFFIX,intercom.io,US
-DOMAIN-SUFFIX,segment.io,US
 
 ########################################
-# Internal / Direct
+# SDK / Telemetry (exit does not matter)
 ########################################
-DOMAIN-SUFFIX,antfin.com,DIRECT
-DOMAIN-SUFFIX,antfin-inc.com,DIRECT
-DOMAIN-SUFFIX,alibaba-inc.com,DIRECT
+DOMAIN-SUFFIX,launchdarkly.com,HK
+DOMAIN-SUFFIX,statsig.com,HK
+DOMAIN-SUFFIX,sentry.io,HK
+DOMAIN-SUFFIX,intercom.io,HK
+DOMAIN-SUFFIX,segment.io,HK
+
+########################################
+# Domestic / Direct
+########################################
 DOMAIN-SUFFIX,fliggy.com,DIRECT
 DOMAIN-SUFFIX,aliyun.com,DIRECT
 DOMAIN-SUFFIX,sspai.com,DIRECT
