@@ -32,7 +32,7 @@ Deploy surface: pushing `main` is production. Vercel publishes every push immedi
 
 - Asset replacement: confirm the target path is intentional and referenced by the owning project.
 - Appcast changes: validate XML structure and confirm download URLs are reachable.
-- Clash config changes: validate syntax and scan for private endpoints or secrets before committing.
+- Clash config changes: inventory every sibling under `clash/` before editing. The public rule set currently spans `.sgmodule`, `.js`, `.stoverride`, and `.yaml` clients; a fix for one client is not complete until the analogous files are marked changed or not applicable. Validate each touched format, scan for private endpoints or secrets, and report checked / changed / not-applicable counts before committing.
 - HTML changes: open or build-check the affected static page when possible.
 - Documentation-only changes: check links and paths.
 
