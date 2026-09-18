@@ -1,5 +1,5 @@
 name: Nexitally Stash Override
-desc: Manual proxy selection. Proxies group lists Japan, Hong Kong, Singapore nodes; AI group lists United States Seattle nodes. Splits AI services to the AI group and keeps domestic traffic direct.
+desc: Manual proxy selection. Proxies group lists Hong Kong, Japan, Singapore nodes in measured-latency order; AI group lists United States Seattle nodes. Splits AI services to the AI group and keeps domestic traffic direct.
 category: Proxy
 
 profile:
@@ -22,7 +22,6 @@ dns: #!replace
     - "+.alipay.com"
     - "+.aliyun.com"
     - "+.alibaba.com"
-    - "+.dingtalk.com"
     - "+.qq.com"
     - "+.wechat.com"
     - "+.weixin.qq.com"
@@ -80,62 +79,62 @@ proxy-groups: #!replace
   - name: Proxies
     type: select
     proxies:
-      - 🇯🇵 Japan 01
-      - 🇯🇵 Japan 02
-      - 🇯🇵 Japan 03
-      - 🇯🇵 Japan 04
-      - 🇯🇵 Japan 05
-      - 🇯🇵 Japan 06
-      - 🇯🇵 Japan 07
-      - 🇯🇵 Japan 08
-      - 🇯🇵 Japan 09
-      - 🇯🇵 Japan 10
-      - 🇯🇵 Japan 11
-      - 🇯🇵 Japan 12
-      - 🇯🇵 Japan 13
-      - 🇯🇵 Japan 14
-      - 🇯🇵 Japan 15
-      - 🇯🇵 Japan 16
-      - 🇯🇵 Japan 17
-      - 🇯🇵 Japan 18
-      - 🇯🇵 Japan 19
-      - 🇯🇵 Japan 20
-      - 🇯🇵 Japan 21
-      - 🇯🇵 Japan 24
-      - 🇯🇵 Japan 25
-      - 🇯🇵 Japan 26
-      - 🇯🇵 Japan 27
+      - 🇭🇰 Hong Kong 19
+      - 🇭🇰 Hong Kong 16
       - 🇭🇰 Hong Kong 01
+      - 🇭🇰 Hong Kong 07
+      - 🇭🇰 Hong Kong 12
+      - 🇭🇰 Hong Kong 23
+      - 🇭🇰 Hong Kong 15
+      - 🇭🇰 Hong Kong 13
+      - 🇭🇰 Hong Kong 17
+      - 🇭🇰 Hong Kong 11
+      - 🇭🇰 Hong Kong 18
+      - 🇭🇰 Hong Kong 08
+      - 🇭🇰 Hong Kong 14
+      - 🇭🇰 Hong Kong 04
+      - 🇭🇰 Hong Kong 06
       - 🇭🇰 Hong Kong 02
       - 🇭🇰 Hong Kong 03
-      - 🇭🇰 Hong Kong 04
-      - 🇭🇰 Hong Kong 05
-      - 🇭🇰 Hong Kong 06
-      - 🇭🇰 Hong Kong 07
-      - 🇭🇰 Hong Kong 08
-      - 🇭🇰 Hong Kong 09
       - 🇭🇰 Hong Kong 10
-      - 🇭🇰 Hong Kong 11
-      - 🇭🇰 Hong Kong 12
-      - 🇭🇰 Hong Kong 13
-      - 🇭🇰 Hong Kong 14
-      - 🇭🇰 Hong Kong 15
-      - 🇭🇰 Hong Kong 16
-      - 🇭🇰 Hong Kong 17
-      - 🇭🇰 Hong Kong 18
-      - 🇭🇰 Hong Kong 19
-      - 🇭🇰 Hong Kong 23
-      - 🇸🇬 Singapore 01
-      - 🇸🇬 Singapore 02
-      - 🇸🇬 Singapore 03
-      - 🇸🇬 Singapore 04
-      - 🇸🇬 Singapore 05
-      - 🇸🇬 Singapore 06
+      - 🇭🇰 Hong Kong 09
+      - 🇭🇰 Hong Kong 05
+      - 🇯🇵 Japan 13
+      - 🇯🇵 Japan 27
+      - 🇯🇵 Japan 16
+      - 🇯🇵 Japan 14
+      - 🇯🇵 Japan 24
+      - 🇯🇵 Japan 18
+      - 🇯🇵 Japan 25
+      - 🇯🇵 Japan 21
+      - 🇯🇵 Japan 17
+      - 🇯🇵 Japan 19
+      - 🇯🇵 Japan 20
+      - 🇯🇵 Japan 07
+      - 🇯🇵 Japan 12
+      - 🇯🇵 Japan 11
+      - 🇯🇵 Japan 10
+      - 🇯🇵 Japan 04
+      - 🇯🇵 Japan 08
+      - 🇯🇵 Japan 03
+      - 🇯🇵 Japan 05
+      - 🇯🇵 Japan 15
+      - 🇯🇵 Japan 02
+      - 🇯🇵 Japan 06
+      - 🇯🇵 Japan 09
+      - 🇯🇵 Japan 01
+      - 🇯🇵 Japan 26
       - 🇸🇬 Singapore 07
-      - 🇸🇬 Singapore 08
-      - 🇸🇬 Singapore 09
-      - 🇸🇬 Singapore 10
+      - 🇸🇬 Singapore 03
       - 🇸🇬 Singapore 12
+      - 🇸🇬 Singapore 06
+      - 🇸🇬 Singapore 04
+      - 🇸🇬 Singapore 02
+      - 🇸🇬 Singapore 05
+      - 🇸🇬 Singapore 01
+      - 🇸🇬 Singapore 08
+      - 🇸🇬 Singapore 10
+      - 🇸🇬 Singapore 09
 
   - name: AI
     type: select
@@ -210,13 +209,16 @@ rules: #!replace
   - DOMAIN,api.x.ai,AI
   - DOMAIN-SUFFIX,groq.com,AI
 
+  # === Cursor ===
+  # Cursor model traffic shares the US exit with the other AI services.
+  - DOMAIN-SUFFIX,cursor.sh,AI
+  - DOMAIN-SUFFIX,cursor.com,AI
+  - DOMAIN-SUFFIX,cursorapi.com,AI
+  - DOMAIN-SUFFIX,cursor-cdn.com,AI
+
   # === Coding agents and tools ===
   # No US requirement; keep them off the slow DIP node so git and tooling
   # traffic does not compete with Claude/OpenAI streaming.
-  - DOMAIN-SUFFIX,cursor.sh,Proxies
-  - DOMAIN-SUFFIX,cursor.com,Proxies
-  - DOMAIN-SUFFIX,cursorapi.com,Proxies
-  - DOMAIN-SUFFIX,cursor-cdn.com,Proxies
   - DOMAIN-SUFFIX,github.com,Proxies
   - DOMAIN-SUFFIX,githubusercontent.com,Proxies
   - DOMAIN-SUFFIX,githubcopilot.com,Proxies
@@ -260,10 +262,6 @@ rules: #!replace
   - DOMAIN-SUFFIX,aliyun.com,DIRECT
   - DOMAIN-SUFFIX,aliyuncs.com,DIRECT
   - DOMAIN-SUFFIX,fliggy.com,DIRECT
-  - DOMAIN-SUFFIX,yuque.com,DIRECT
-  - DOMAIN-SUFFIX,dingtalk.com,DIRECT
-  - DOMAIN-SUFFIX,dingtalkapps.com,DIRECT
-  - DOMAIN-SUFFIX,dingtalk.net,DIRECT
   - DOMAIN-SUFFIX,alicdn.com,DIRECT
   - DOMAIN-SUFFIX,aliimg.com,DIRECT
   - DOMAIN-SUFFIX,sspai.com,DIRECT

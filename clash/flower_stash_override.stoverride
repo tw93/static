@@ -22,7 +22,6 @@ dns: #!replace
     - "+.alipay.com"
     - "+.aliyun.com"
     - "+.alibaba.com"
-    - "+.dingtalk.com"
     - "+.qq.com"
     - "+.wechat.com"
     - "+.weixin.qq.com"
@@ -126,6 +125,10 @@ proxy-groups: #!replace
 rules: #!replace
   # === Direct ===
   - DOMAIN-SUFFIX,qoder.sh,DIRECT
+  # Apple code-signing RFC3161 timestamp server: must bypass the proxy or
+  # `codesign --timestamp` fails with "The timestamp service is not available"
+  # during release DMG signing (TUN/fake-ip captures it otherwise).
+  - DOMAIN,timestamp.apple.com,DIRECT
 
   # === OpenAI / ChatGPT / Codex ===
   - DOMAIN-SUFFIX,openai.com,AI Proxy
@@ -173,13 +176,16 @@ rules: #!replace
   - DOMAIN,api.x.ai,AI Proxy
   - DOMAIN-SUFFIX,groq.com,AI Proxy
 
+  # === Cursor ===
+  # Cursor model traffic shares the US exit with the other AI services.
+  - DOMAIN-SUFFIX,cursor.sh,AI Proxy
+  - DOMAIN-SUFFIX,cursor.com,AI Proxy
+  - DOMAIN-SUFFIX,cursorapi.com,AI Proxy
+  - DOMAIN-SUFFIX,cursor-cdn.com,AI Proxy
+
   # === Coding agents and tools ===
   # No US requirement; keep them off the AI line so git and tooling traffic
   # does not compete with Claude/OpenAI streaming.
-  - DOMAIN-SUFFIX,cursor.sh,Proxy
-  - DOMAIN-SUFFIX,cursor.com,Proxy
-  - DOMAIN-SUFFIX,cursorapi.com,Proxy
-  - DOMAIN-SUFFIX,cursor-cdn.com,Proxy
   - DOMAIN-SUFFIX,github.com,Proxy
   - DOMAIN-SUFFIX,githubusercontent.com,Proxy
   - DOMAIN-SUFFIX,githubcopilot.com,Proxy
@@ -223,10 +229,6 @@ rules: #!replace
   - DOMAIN-SUFFIX,aliyun.com,DIRECT
   - DOMAIN-SUFFIX,aliyuncs.com,DIRECT
   - DOMAIN-SUFFIX,fliggy.com,DIRECT
-  - DOMAIN-SUFFIX,yuque.com,DIRECT
-  - DOMAIN-SUFFIX,dingtalk.com,DIRECT
-  - DOMAIN-SUFFIX,dingtalkapps.com,DIRECT
-  - DOMAIN-SUFFIX,dingtalk.net,DIRECT
   - DOMAIN-SUFFIX,alicdn.com,DIRECT
   - DOMAIN-SUFFIX,aliimg.com,DIRECT
   - DOMAIN-SUFFIX,sspai.com,DIRECT
@@ -235,15 +237,8 @@ rules: #!replace
   - GEOIP,private,DIRECT,no-resolve
 
   # === Force Hong Kong ===
-  - DOMAIN-SUFFIX,apple-relay.akamaized.net,HK
-  - DOMAIN-SUFFIX,apple-relay.apple.com,HK
-  - DOMAIN-SUFFIX,apple-relay.cloudflare.com,HK
-  - DOMAIN-SUFFIX,apple-relay.fastly-edge.com,HK
-  - DOMAIN-SUFFIX,apple-relay.mask.apple-dns.net,HK
-  - DOMAIN-SUFFIX,push.apple.com,HK
-  - DOMAIN-SUFFIX,api.push.apple.com,HK
-  - DOMAIN-SUFFIX,courier.push.apple.com,HK
-  - DOMAIN-SUFFIX,wx.qq.com,HK
+  # Apple relay/push and wx.qq.com moved to DIRECT to match the Nexitally
+  # baseline; v2ex stays on HK because direct access is unreliable.
   - DOMAIN-SUFFIX,v2ex.com,HK
 
   # === WeChat / Tencent direct ===
@@ -255,6 +250,7 @@ rules: #!replace
   - DOMAIN-SUFFIX,weixinbridge.com,DIRECT
   - DOMAIN-SUFFIX,weixinsxy.com,DIRECT
   - DOMAIN-SUFFIX,weixin.qq.com,DIRECT
+  - DOMAIN-SUFFIX,wx.qq.com,DIRECT
   - DOMAIN-SUFFIX,wxs.qq.com,DIRECT
   - DOMAIN-SUFFIX,servicewechat.com,DIRECT
   - DOMAIN-SUFFIX,tenpay.com,DIRECT
@@ -263,9 +259,12 @@ rules: #!replace
   - DOMAIN-SUFFIX,gtimg.com,DIRECT
   - DOMAIN-SUFFIX,tc.qq.com,DIRECT
 
-  # === Apple / iCloud direct (apple-relay & push forced to HK above) ===
+  # === Apple / iCloud direct ===
   - DOMAIN-SUFFIX,apple.com,DIRECT
   - DOMAIN-SUFFIX,apple.com.cn,DIRECT
+  - DOMAIN-SUFFIX,apple-relay.akamaized.net,DIRECT
+  - DOMAIN-SUFFIX,apple-relay.cloudflare.com,DIRECT
+  - DOMAIN-SUFFIX,apple-relay.fastly-edge.com,DIRECT
   - DOMAIN-SUFFIX,apple-dns.net,DIRECT
   - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
   - DOMAIN-SUFFIX,apple-mapkit.com,DIRECT
@@ -281,6 +280,10 @@ rules: #!replace
   - DOMAIN-SUFFIX,aaplimg.com,DIRECT
   - DOMAIN-SUFFIX,me.com,DIRECT
   - DOMAIN-SUFFIX,appsto.re,DIRECT
+
+  # === Force AI/US ===
+  - DOMAIN-SUFFIX,formulae.brew.sh,AI Proxy
+  - DOMAIN-SUFFIX,diabrowser.com,AI Proxy
 
   # === Domestic fallback ===
   - DOMAIN-SUFFIX,cn,DIRECT

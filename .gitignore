@@ -5,3 +5,6 @@
 .claude/settings.local.json
 AGENTS.override.md
 CLAUDE.local.md
+
+# wrangler local cache (generated when publishing clash configs to R2)
+.wrangler/

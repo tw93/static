@@ -18,9 +18,6 @@ function main(config) {
   ];
 
   const extraRules = [
-    // === 国内软件进程白名单（完全不走代理）===
-    "PROCESS-NAME,DingTalk,DIRECT",
-
     // === OpenAI / ChatGPT ===
     "DOMAIN-SUFFIX,openai.com,US",
     "DOMAIN,tcr9i.chat.openai.com,US",
@@ -115,21 +112,21 @@ function main(config) {
     "DOMAIN-SUFFIX,googleapis.com,HK",
     "DOMAIN-SUFFIX,tensorflow.org,HK",
 
-    // === Cursor (tooling, no US requirement) ===
-    "DOMAIN,cursor.sh,HK",
-    "DOMAIN,api.cursor.sh,HK",
-    "DOMAIN,api2.cursor.sh,HK",
-    "DOMAIN,api3.cursor.sh,HK",
-    "DOMAIN,api4.cursor.sh,HK",
-    "DOMAIN-SUFFIX,api5.cursor.sh,HK",
-    "DOMAIN,repo42.cursor.sh,HK",
-    "DOMAIN-SUFFIX,authentication.cursor.sh,HK",
-    "DOMAIN,authenticator.cursor.sh,HK",
-    "DOMAIN,download.cursor.sh,HK",
-    "DOMAIN-SUFFIX,cursor.sh,HK",
-    "DOMAIN-SUFFIX,cursor.com,HK",
-    "DOMAIN-SUFFIX,cursorapi.com,HK",
-    "DOMAIN-SUFFIX,cursor-cdn.com,HK",
+    // === Cursor (model traffic shares the US exit) ===
+    "DOMAIN,cursor.sh,US",
+    "DOMAIN,api.cursor.sh,US",
+    "DOMAIN,api2.cursor.sh,US",
+    "DOMAIN,api3.cursor.sh,US",
+    "DOMAIN,api4.cursor.sh,US",
+    "DOMAIN-SUFFIX,api5.cursor.sh,US",
+    "DOMAIN,repo42.cursor.sh,US",
+    "DOMAIN-SUFFIX,authentication.cursor.sh,US",
+    "DOMAIN,authenticator.cursor.sh,US",
+    "DOMAIN,download.cursor.sh,US",
+    "DOMAIN-SUFFIX,cursor.sh,US",
+    "DOMAIN-SUFFIX,cursor.com,US",
+    "DOMAIN-SUFFIX,cursorapi.com,US",
+    "DOMAIN-SUFFIX,cursor-cdn.com,US",
 
     // === Midjourney ===
     "DOMAIN,midjourney.com,HK",
@@ -151,11 +148,95 @@ function main(config) {
     "DOMAIN-SUFFIX,fliggy.com,DIRECT",
     "DOMAIN-SUFFIX,sspai.com,DIRECT",
     "DOMAIN-SUFFIX,aliyun.com,DIRECT",
-    "DOMAIN-SUFFIX,wx.qq.com,HK",
+    "DOMAIN-SUFFIX,wx.qq.com,DIRECT",
     "DOMAIN-SUFFIX,v2ex.com,HK",
     "DOMAIN-SUFFIX,formulae.brew.sh,US",
     "DOMAIN-SUFFIX,diabrowser.com,US",
-    "DOMAIN-SUFFIX,honeycomb.io,HK"
+    "DOMAIN-SUFFIX,honeycomb.io,HK",
+
+    // === 以下与 Nexitally 基准规则集对齐 ===
+    // Claude / OpenAI 补全
+    "DOMAIN-SUFFIX,claude.com,US",
+    "DOMAIN-SUFFIX,claudeusercontent.com,US",
+    "DOMAIN-SUFFIX,ant.dev,US",
+    "DOMAIN-SUFFIX,claudeaistatus.com,US",
+    "DOMAIN-SUFFIX,livekit.cloud,US",
+
+    // Gemini 补全
+    "DOMAIN,ai.google.dev,US",
+    "DOMAIN,notebooklm.google.com,US",
+    "DOMAIN-SUFFIX,google-gemini.dev,US",
+
+    // xAI / Groq
+    "DOMAIN-SUFFIX,x.ai,US",
+    "DOMAIN-SUFFIX,grok.com,US",
+    "DOMAIN,api.x.ai,US",
+    "DOMAIN-SUFFIX,groq.com,US",
+
+    // 其他 AI 服务
+    "DOMAIN-SUFFIX,cohere.com,HK",
+    "DOMAIN-SUFFIX,mistral.ai,HK",
+    "DOMAIN-SUFFIX,together.ai,HK",
+    "DOMAIN-SUFFIX,replicate.com,HK",
+    "DOMAIN-SUFFIX,huggingface.co,HK",
+    "DOMAIN-SUFFIX,perplexity.ai,HK",
+    "DOMAIN-SUFFIX,pplx.ai,HK",
+    "DOMAIN-SUFFIX,openrouter.ai,HK",
+    "DOMAIN-SUFFIX,windsurf.com,HK",
+    "DOMAIN-SUFFIX,codeium.com,HK",
+    "DOMAIN-SUFFIX,v0.dev,HK",
+    "DOMAIN-SUFFIX,bolt.new,HK",
+    "DOMAIN-SUFFIX,datadoghq.com,HK",
+
+    // 直连
+    "DOMAIN-SUFFIX,qoder.sh,DIRECT",
+    "DOMAIN,timestamp.apple.com,DIRECT",
+    "DOMAIN-SUFFIX,alipay.com,DIRECT",
+    "DOMAIN-SUFFIX,aliyuncs.com,DIRECT",
+    "DOMAIN-SUFFIX,alicdn.com,DIRECT",
+    "DOMAIN-SUFFIX,aliimg.com,DIRECT",
+
+    // 微信 / 腾讯直连
+    "DOMAIN-SUFFIX,wechat.com,DIRECT",
+    "DOMAIN-SUFFIX,wechatlegal.net,DIRECT",
+    "DOMAIN-SUFFIX,wechatos.net,DIRECT",
+    "DOMAIN-SUFFIX,wechatpay.com,DIRECT",
+    "DOMAIN-SUFFIX,weixin.com,DIRECT",
+    "DOMAIN-SUFFIX,weixinbridge.com,DIRECT",
+    "DOMAIN-SUFFIX,weixinsxy.com,DIRECT",
+    "DOMAIN-SUFFIX,weixin.qq.com,DIRECT",
+    "DOMAIN-SUFFIX,wxs.qq.com,DIRECT",
+    "DOMAIN-SUFFIX,servicewechat.com,DIRECT",
+    "DOMAIN-SUFFIX,tenpay.com,DIRECT",
+    "DOMAIN-SUFFIX,qpic.cn,DIRECT",
+    "DOMAIN-SUFFIX,qlogo.cn,DIRECT",
+    "DOMAIN-SUFFIX,gtimg.com,DIRECT",
+    "DOMAIN-SUFFIX,tc.qq.com,DIRECT",
+
+    // Apple / iCloud 直连
+    "DOMAIN-SUFFIX,apple.com,DIRECT",
+    "DOMAIN-SUFFIX,apple.com.cn,DIRECT",
+    "DOMAIN-SUFFIX,apple-relay.akamaized.net,DIRECT",
+    "DOMAIN-SUFFIX,apple-relay.cloudflare.com,DIRECT",
+    "DOMAIN-SUFFIX,apple-relay.fastly-edge.com,DIRECT",
+    "DOMAIN-SUFFIX,apple-dns.net,DIRECT",
+    "DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT",
+    "DOMAIN-SUFFIX,apple-mapkit.com,DIRECT",
+    "DOMAIN-SUFFIX,apple.news,DIRECT",
+    "DOMAIN-SUFFIX,cdn-apple.com,DIRECT",
+    "DOMAIN-SUFFIX,icloud.com,DIRECT",
+    "DOMAIN-SUFFIX,icloud.com.cn,DIRECT",
+    "DOMAIN-SUFFIX,icloud-content.com,DIRECT",
+    "DOMAIN-SUFFIX,itunes.com,DIRECT",
+    "DOMAIN-SUFFIX,itunes.apple.com,DIRECT",
+    "DOMAIN-SUFFIX,music.apple.com,DIRECT",
+    "DOMAIN-SUFFIX,mzstatic.com,DIRECT",
+    "DOMAIN-SUFFIX,aaplimg.com,DIRECT",
+    "DOMAIN-SUFFIX,me.com,DIRECT",
+    "DOMAIN-SUFFIX,appsto.re,DIRECT",
+
+    // 国内兜底
+    "DOMAIN-SUFFIX,cn,DIRECT"
   ];
 
   // === 注入 DNS / TUN / Sniffer 配置 ===
@@ -179,11 +260,62 @@ function main(config) {
   if (!config.dns) config.dns = {};
   if (!config.dns["fake-ip-filter"]) config.dns["fake-ip-filter"] = [];
 
-  const cnConsumer = [
-    "+.aliyun.com", "+.taobao.com",
-    "+.alipay.com", "+.alibaba.com"
+  // 与 Nexitally 基准一致的 fake-ip 排除表(国内域名不吃 fake-ip)
+  const cnFakeIpFilter = [
+    "*.lan",
+    "*.local",
+    "*.localdomain",
+    "*.home.arpa",
+    "+.cn",
+    "+.baidu.com",
+    "+.taobao.com",
+    "+.tmall.com",
+    "+.alipay.com",
+    "+.aliyun.com",
+    "+.alibaba.com",
+    "+.qq.com",
+    "+.wechat.com",
+    "+.weixin.qq.com",
+    "+.icloud.com",
+    "+.icloud-content.com",
+    "+.apple-cloudkit.com",
+    "+.apple.com",
+    "+.push.apple.com",
+    "+.apple-dns.net",
+    "+.cdn-apple.com",
+    "+.mzstatic.com",
+    "+.xiaomi.com",
+    "+.mi.com",
+    "+.bilibili.com",
+    "+.163.com",
+    "+.126.com",
+    "+.netease.com",
+    "+.jd.com",
+    "+.jdcloud.com",
+    "+.360buyimg.com",
+    "+.weibo.com",
+    "+.xiaohongshu.com",
+    "+.xhscdn.com",
+    "+.douyin.com",
+    "+.douyinpic.com",
+    "+.bytedance.com",
+    "+.toutiao.com",
+    "+.snssdk.com",
+    "+.meituan.com",
+    "+.meituan.net",
+    "+.dianping.com",
+    "+.kuaishou.com",
+    "+.gifshow.com",
+    "+.pinduoduo.com",
+    "+.yangkeduo.com",
+    "+.zhihu.com",
+    "+.zhimg.com",
+    "time.*.com",
+    "ntp.*.com",
+    "stun.*.*",
+    "stun.*.*.*"
   ];
-  config.dns["fake-ip-filter"].push(...cnConsumer);
+  config.dns["fake-ip-filter"].push(...cnFakeIpFilter);
 
   // 3. 配置 Sniffer (AI 优化)
   if (!config.sniffer) config.sniffer = {};
