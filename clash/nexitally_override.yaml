@@ -84,6 +84,11 @@ dns!:
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
+  nameserver-policy:
+    "+.reddit.com": [https://1.1.1.1/dns-query, https://8.8.8.8/dns-query]
+    "+.redd.it": [https://1.1.1.1/dns-query, https://8.8.8.8/dns-query]
+    "+.redditmedia.com": [https://1.1.1.1/dns-query, https://8.8.8.8/dns-query]
+    "+.redditstatic.com": [https://1.1.1.1/dns-query, https://8.8.8.8/dns-query]
   fallback:
     - https://8.8.8.8/dns-query
     - https://1.1.1.1/dns-query
@@ -98,6 +103,12 @@ dns!:
   - DOMAIN-SUFFIX,qoder.sh,DIRECT
   # Apple 代码签名时间戳服务: 走代理会让 codesign --timestamp 失败
   - DOMAIN,timestamp.apple.com,DIRECT
+
+  # === Reddit ===
+  - DOMAIN-SUFFIX,reddit.com,AI
+  - DOMAIN-SUFFIX,redd.it,AI
+  - DOMAIN-SUFFIX,redditmedia.com,AI
+  - DOMAIN-SUFFIX,redditstatic.com,AI
 
   # === OpenAI / ChatGPT / Codex ===
   - DOMAIN-SUFFIX,openai.com,AI

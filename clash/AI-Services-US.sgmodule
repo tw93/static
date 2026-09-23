@@ -42,6 +42,12 @@ skip-proxy = %APPEND% *.edu.cn, *.gov.cn
 skip-proxy = %APPEND% *.zhihu.com, *.zhimg.com, *.sspai.com, *.coolapk.com, *.smzdm.com
 
 [Rule]
+# Reddit
+DOMAIN-SUFFIX,reddit.com,US
+DOMAIN-SUFFIX,redd.it,US
+DOMAIN-SUFFIX,redditmedia.com,US
+DOMAIN-SUFFIX,redditstatic.com,US
+
 ########################################
 # OpenAI / ChatGPT
 ########################################

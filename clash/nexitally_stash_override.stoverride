@@ -66,6 +66,11 @@ dns: #!replace
   nameserver:
     - 223.5.5.5
     - 119.29.29.29
+  nameserver-policy:
+    "+.reddit.com": [https://1.1.1.1/dns-query, https://8.8.8.8/dns-query]
+    "+.redd.it": [https://1.1.1.1/dns-query, https://8.8.8.8/dns-query]
+    "+.redditmedia.com": [https://1.1.1.1/dns-query, https://8.8.8.8/dns-query]
+    "+.redditstatic.com": [https://1.1.1.1/dns-query, https://8.8.8.8/dns-query]
   fallback:
     - https://1.1.1.1/dns-query
     - https://8.8.8.8/dns-query
@@ -162,6 +167,12 @@ rules: #!replace
   # `codesign --timestamp` fails with "The timestamp service is not available"
   # during release DMG signing (TUN/fake-ip captures it otherwise).
   - DOMAIN,timestamp.apple.com,DIRECT
+
+  # === Reddit ===
+  - DOMAIN-SUFFIX,reddit.com,AI
+  - DOMAIN-SUFFIX,redd.it,AI
+  - DOMAIN-SUFFIX,redditmedia.com,AI
+  - DOMAIN-SUFFIX,redditstatic.com,AI
 
   # === OpenAI / ChatGPT / Codex ===
   - DOMAIN-SUFFIX,openai.com,AI

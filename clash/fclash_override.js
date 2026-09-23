@@ -18,6 +18,12 @@ function main(config) {
   ];
 
   const extraRules = [
+    // Reddit
+    "DOMAIN-SUFFIX,reddit.com,US",
+    "DOMAIN-SUFFIX,redd.it,US",
+    "DOMAIN-SUFFIX,redditmedia.com,US",
+    "DOMAIN-SUFFIX,redditstatic.com,US",
+
     // === OpenAI / ChatGPT ===
     "DOMAIN-SUFFIX,openai.com,US",
     "DOMAIN,tcr9i.chat.openai.com,US",
@@ -258,6 +264,11 @@ function main(config) {
 
   // 2. 配置 DNS (国内域名不吃 fake-ip)
   if (!config.dns) config.dns = {};
+  if (!config.dns["nameserver-policy"]) config.dns["nameserver-policy"] = {};
+  config.dns["nameserver-policy"]["+.reddit.com"] = ["https://1.1.1.1/dns-query", "https://8.8.8.8/dns-query"];
+  config.dns["nameserver-policy"]["+.redd.it"] = ["https://1.1.1.1/dns-query", "https://8.8.8.8/dns-query"];
+  config.dns["nameserver-policy"]["+.redditmedia.com"] = ["https://1.1.1.1/dns-query", "https://8.8.8.8/dns-query"];
+  config.dns["nameserver-policy"]["+.redditstatic.com"] = ["https://1.1.1.1/dns-query", "https://8.8.8.8/dns-query"];
   if (!config.dns["fake-ip-filter"]) config.dns["fake-ip-filter"] = [];
 
   // 与 Nexitally 基准一致的 fake-ip 排除表(国内域名不吃 fake-ip)
