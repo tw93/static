@@ -130,11 +130,12 @@ proxy-groups: #!replace
 rules: #!replace
   # === Direct ===
   - DOMAIN-SUFFIX,qoder.sh,DIRECT
-  # Apple code-signing RFC3161 timestamp server goes through the Proxy group:
-  # DIRECT dials to it through Stash's HTTP port fail about half the time with
-  # "No route to host" (2026-09-25), which makes `codesign --timestamp` report
-  # "The timestamp service is not available" during release DMG signing.
-  - DOMAIN,timestamp.apple.com,Proxy
+  # Apple code-signing RFC3161 timestamp server stays DIRECT. Routing it through
+  # the proxy group broke release signing on 2026-09-25: through Stash's HTTP
+  # port the group path failed 17 of 30 requests while apple.com DIRECT paths
+  # passed 30 of 30 (ocsp) and 25 of 30 (www), and `codesign --timestamp`
+  # reported "The timestamp service is not available" on three builds.
+  - DOMAIN,timestamp.apple.com,DIRECT
 
   # === Reddit ===
   - DOMAIN-SUFFIX,reddit.com,US
