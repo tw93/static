@@ -4,7 +4,7 @@
 
 This repository hosts static files used by Tw93 projects, including app downloads, images, appcast files, and web assets.
 
-Deploy surface: pushing `main` is production. Vercel publishes every push immediately, and these URLs are referenced live by other projects; there is no staging.
+Deploy surface: pushing `main` publishes the Vercel project. The two Stash override URLs under `cdn.tw93.fun/clash/` serve Cloudflare R2 objects in the `tw93` bucket and need a separate R2 upload after a Git push. Verify the live CDN bytes; there is no staging.
 
 ## Repository Map
 
