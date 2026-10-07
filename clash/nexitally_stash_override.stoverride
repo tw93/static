@@ -1,5 +1,5 @@
 name: Nexitally Stash Override
-desc: Manual proxy selection. Proxies group lists Hong Kong, Japan, Singapore nodes in measured-latency order; AI group lists United States Seattle nodes. Splits AI services to the AI group and keeps domestic traffic direct.
+desc: Manual proxy selection. Proxies group lists Hong Kong, Japan, Singapore nodes with Korea, United States, and Canada backups; AI group lists United States Seattle nodes. Splits AI services to the AI group and keeps domestic traffic direct.
 category: Proxy
 
 profile:
@@ -65,6 +65,9 @@ proxy-groups: #!replace
       - 🇸🇬 Singapore 08
       - 🇸🇬 Singapore 10
       - 🇸🇬 Singapore 09
+      - 🇰🇷 Korea 04
+      - 🇺🇸 USA Seattle 03
+      - 🇨🇦 Canada 01
 
   - name: AI
     type: select
