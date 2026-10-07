@@ -90,6 +90,8 @@ proxy-groups: #!replace
 
 rules: #!replace
   # === Direct ===
+  - PROCESS-NAME,bird,DIRECT
+  - PROCESS-NAME,cloudd,DIRECT
   - DOMAIN-SUFFIX,qoder.sh,DIRECT
   # Apple code-signing RFC3161 timestamp server stays DIRECT. Routing it through
   # the proxy group broke release signing on 2026-09-25: through Stash's HTTP
