@@ -87,6 +87,15 @@ rules: #!replace
   - DOMAIN-SUFFIX,claudeusercontent.com,AI Proxy
   - DOMAIN-SUFFIX,ant.dev,AI Proxy
   - DOMAIN-SUFFIX,claudeaistatus.com,AI Proxy
+  - DOMAIN-SUFFIX,clau.de,AI Proxy
+  - DOMAIN-SUFFIX,claudemcpclient.com,AI Proxy
+  - DOMAIN,servd-anthropic-website.b-cdn.net,AI Proxy
+  - DOMAIN,anthropic.com.cdn.cloudflare.net,AI Proxy
+  - DOMAIN,anthropic.auth0.com,AI Proxy
+  - DOMAIN,anthropic-com.ghost.io,AI Proxy
+  # API ingress ranges: https://platform.claude.com/docs/en/api/ip-addresses
+  - IP-CIDR,160.79.104.0/23,AI Proxy,no-resolve
+  - IP-CIDR6,2607:6bc0::/48,AI Proxy,no-resolve
 
   # === Gemini / Google AI ===
   # Region-locked services stay on AI Proxy; the Proxy group may point at
@@ -149,6 +158,8 @@ rules: #!replace
   - DOMAIN,challenges.cloudflare.com,AI Proxy
   - DOMAIN-SUFFIX,workos.com,AI Proxy
   - DOMAIN-SUFFIX,stripe.com,AI Proxy
+  - DOMAIN-SUFFIX,sift.com,AI Proxy
+  - DOMAIN-SUFFIX,siftscience.com,AI Proxy
 
   # === AI dependencies (telemetry and widgets, exit does not matter) ===
   - DOMAIN-SUFFIX,segment.io,Proxy
@@ -160,6 +171,9 @@ rules: #!replace
   - DOMAIN-SUFFIX,launchdarkly.com,Proxy
   - DOMAIN-SUFFIX,honeycomb.io,Proxy
   - DOMAIN-SUFFIX,datadoghq.com,Proxy
+  - DOMAIN-SUFFIX,browser-intake-us5-datadoghq.com,Proxy
+  - DOMAIN-SUFFIX,statsigapi.net,Proxy
+  - DOMAIN,cdn.usefathom.com,Proxy
 
   # === Domestic consumer direct ===
   - DOMAIN-SUFFIX,alipay.com,DIRECT
