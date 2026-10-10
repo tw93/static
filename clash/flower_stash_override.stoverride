@@ -5,17 +5,6 @@ category: Proxy
 profile:
   store-selected: true
 
-dns:
-  # Stash 4.3.0 (553), the beta core installed 2026-10-09 21:44, drops TCP to fake IPs it cannot
-  # map back ("unmapped fake IP"): curl through TUN got an empty reply on 198.18.0.x while the same
-  # host by real IP returned 200. Release uploads to R2 and the Windows VM's checks go through TUN,
-  # so these hosts resolve to real IPs; the sniffer still routes them by SNI. Drop once a Stash
-  # build maps fake IPs again.
-  fake-ip-filter:
-    - "+.tw93.fun"
-    - "+.r2.cloudflarestorage.com"
-    - "+.mole.fit"
-
 proxy-groups: #!replace
   - name: Proxy
     type: select
