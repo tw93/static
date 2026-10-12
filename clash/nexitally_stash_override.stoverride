@@ -82,6 +82,42 @@ proxy-groups: #!replace
       - 🇺🇸 USA Seattle 08
       - 🇺🇸 USA Seattle 09
 
+  # Kaku web terminal relay. From a China home line, DIRECT reaches fly
+  # through Frankfurt (~300 ms to the relay in Stash's delay test) while a
+  # Japan node enters fly in Tokyo (~55 ms). url-test keeps the fastest Japan
+  # node without touching the Proxies selection.
+  - name: Kaku Relay
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    proxies:
+      - 🇯🇵 Japan 13
+      - 🇯🇵 Japan 27
+      - 🇯🇵 Japan 16
+      - 🇯🇵 Japan 14
+      - 🇯🇵 Japan 24
+      - 🇯🇵 Japan 18
+      - 🇯🇵 Japan 25
+      - 🇯🇵 Japan 21
+      - 🇯🇵 Japan 17
+      - 🇯🇵 Japan 19
+      - 🇯🇵 Japan 20
+      - 🇯🇵 Japan 07
+      - 🇯🇵 Japan 12
+      - 🇯🇵 Japan 11
+      - 🇯🇵 Japan 10
+      - 🇯🇵 Japan 04
+      - 🇯🇵 Japan 08
+      - 🇯🇵 Japan 03
+      - 🇯🇵 Japan 05
+      - 🇯🇵 Japan 15
+      - 🇯🇵 Japan 02
+      - 🇯🇵 Japan 06
+      - 🇯🇵 Japan 09
+      - 🇯🇵 Japan 01
+      - 🇯🇵 Japan 26
+
   - name: Final
     type: select
     proxies:
@@ -99,9 +135,8 @@ rules: #!replace
   # passed 30 of 30 (ocsp) and 25 of 30 (www), and `codesign --timestamp`
   # reported "The timestamp service is not available" on three builds.
   - DOMAIN,timestamp.apple.com,DIRECT
-  # Kaku web terminal relay: direct reaches fly's Asian edge in ~15 ms; through
-  # a US exit every keystroke crossed the Pacific (~700 ms round trip).
-  - DOMAIN,kaku-relay.fly.dev,DIRECT
+  # Kaku web terminal relay goes through Japan; see the Kaku Relay group.
+  - DOMAIN,kaku-relay.fly.dev,Kaku Relay
 
   # === Reddit ===
   - DOMAIN-SUFFIX,reddit.com,AI
