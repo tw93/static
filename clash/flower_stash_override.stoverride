@@ -61,9 +61,6 @@ rules: #!replace
   # passed 30 of 30 (ocsp) and 25 of 30 (www), and `codesign --timestamp`
   # reported "The timestamp service is not available" on three builds.
   - DOMAIN,timestamp.apple.com,DIRECT
-  # Kaku web terminal relay: direct reaches fly's Asian edge in ~15 ms; through
-  # a US exit every keystroke crossed the Pacific (~700 ms round trip).
-  - DOMAIN,kaku-relay.fly.dev,DIRECT
 
   # === Reddit ===
   - DOMAIN-SUFFIX,reddit.com,US
