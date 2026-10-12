@@ -103,6 +103,8 @@ dns!:
   - DOMAIN-SUFFIX,qoder.sh,DIRECT
   # Apple 代码签名时间戳服务: 走代理会让 codesign --timestamp 失败
   - DOMAIN,timestamp.apple.com,DIRECT
+  # Kaku 网页终端中继：直连走亚洲入口，经美国代理每次按键多绕一圈太平洋
+  - DOMAIN,kaku-relay.fly.dev,DIRECT
 
   # === Reddit ===
   - DOMAIN-SUFFIX,reddit.com,AI

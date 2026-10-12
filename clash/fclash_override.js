@@ -197,6 +197,8 @@ function main(config) {
     // 直连
     "DOMAIN-SUFFIX,qoder.sh,DIRECT",
     "DOMAIN,timestamp.apple.com,DIRECT",
+    // Kaku 网页终端中继：直连走亚洲入口，经美国代理每次按键多绕一圈太平洋
+    "DOMAIN,kaku-relay.fly.dev,DIRECT",
     "DOMAIN-SUFFIX,alipay.com,DIRECT",
     "DOMAIN-SUFFIX,aliyuncs.com,DIRECT",
     "DOMAIN-SUFFIX,alicdn.com,DIRECT",
