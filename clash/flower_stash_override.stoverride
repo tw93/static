@@ -1,5 +1,5 @@
 name: Flower Simple Proxy
-desc: Manual proxy selection for Flower. Proxy and AI Proxy each pick Hong Kong, United States, or DIRECT; HK and US sub-groups list individual nodes.
+desc: Manual proxy selection for Flower. Proxy and AI Proxy each pick Hong Kong, United States, or DIRECT; HK and US sub-groups list individual nodes; Kaku Relay sends the Kaku web terminal relay through the fastest Japan node.
 category: Proxy
 
 profile:
@@ -19,6 +19,28 @@ proxy-groups: #!replace
       - US
       - HK
       - DIRECT
+
+  # Kaku web terminal relay (r.kaku.fun on fly in Tokyo, the page on
+  # t.kaku.fun). Measured 2026-10-20 from a China home line, node by node
+  # through an isolated core: every Japan node enters fly at nrt, 110 to 160
+  # ms to the relay and about 28 Mbps up. Standard 4 was the steadiest; the
+  # experimental line is second since it may be withdrawn, Proxy last.
+  - name: Kaku Relay
+    type: select
+    proxies:
+      - 🇯🇵 日本标准 IEPL 专线 4
+      - 🇯🇵 日本实验性 IEPL 专线 1
+      - 🇯🇵 日本标准 IEPL 专线 5
+      - 🇯🇵 日本标准 IEPL 专线 8
+      - 🇯🇵 日本高级 IEPL 专线 2
+      - 🇯🇵 日本标准 IEPL 专线 1
+      - 🇯🇵 日本标准 IEPL 专线 2
+      - 🇯🇵 日本标准 IEPL 专线 3
+      - 🇯🇵 日本标准 IEPL 专线 7
+      - 🇯🇵 日本标准 IEPL 专线 6
+      - 🇯🇵 日本高级 IEPL 专线 3
+      - 🇯🇵 日本高级 IEPL 专线 1
+      - Proxy
 
   - name: HK
     type: select
@@ -61,6 +83,11 @@ rules: #!replace
   # passed 30 of 30 (ocsp) and 25 of 30 (www), and `codesign --timestamp`
   # reported "The timestamp service is not available" on three builds.
   - DOMAIN,timestamp.apple.com,DIRECT
+
+  # === Kaku relay (Japan, see the Kaku Relay group) ===
+  - DOMAIN,r.kaku.fun,Kaku Relay
+  - DOMAIN,t.kaku.fun,Kaku Relay
+  - DOMAIN,kaku-relay.fly.dev,Kaku Relay
 
   # === Reddit ===
   - DOMAIN-SUFFIX,reddit.com,US

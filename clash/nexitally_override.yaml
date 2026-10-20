@@ -98,11 +98,50 @@ dns!:
     ipcidr:
       - 240.0.0.0/4
 
+# Kaku 远程中继 (r.kaku.fun 在 fly 东京, 网页在 t.kaku.fun) 走最快的日本节点。
+# 2026-10-20 在国内家宽逐个节点实测: 日本节点都从 fly nrt 进, 到中继 67 到 75 ms, 上行 25 到 35 Mbps;
+# 香港节点多数落到 sin, 140 到 150 ms, 直连进 fra。Japan 16 最稳, 其余按上行排, Proxies 兜底。
++proxy-groups:
+  - name: Kaku Relay
+    type: select
+    proxies:
+      - 🇯🇵 Japan 16
+      - 🇯🇵 Japan 19
+      - 🇯🇵 Japan 07
+      - 🇯🇵 Japan 03
+      - 🇯🇵 Japan 13
+      - 🇯🇵 Japan 02
+      - 🇯🇵 Japan 20
+      - 🇯🇵 Japan 10
+      - 🇯🇵 Japan 18
+      - 🇯🇵 Japan 25
+      - 🇯🇵 Japan 12
+      - 🇯🇵 Japan 05
+      - 🇯🇵 Japan 08
+      - 🇯🇵 Japan 09
+      - 🇯🇵 Japan 24
+      - 🇯🇵 Japan 15
+      - 🇯🇵 Japan 11
+      - 🇯🇵 Japan 17
+      - 🇯🇵 Japan 27
+      - 🇯🇵 Japan 06
+      - 🇯🇵 Japan 04
+      - 🇯🇵 Japan 14
+      - 🇯🇵 Japan 01
+      - 🇯🇵 Japan 26
+      - 🇯🇵 Japan 21
+      - Proxies
+
 +rules:
   # === 直连 ===
   - DOMAIN-SUFFIX,qoder.sh,DIRECT
   # Apple 代码签名时间戳服务: 走代理会让 codesign --timestamp 失败
   - DOMAIN,timestamp.apple.com,DIRECT
+
+  # === Kaku 远程中继 (日本, 见 Kaku Relay 组) ===
+  - DOMAIN,r.kaku.fun,Kaku Relay
+  - DOMAIN,t.kaku.fun,Kaku Relay
+  - DOMAIN,kaku-relay.fly.dev,Kaku Relay
 
   # === Reddit ===
   - DOMAIN-SUFFIX,reddit.com,AI
