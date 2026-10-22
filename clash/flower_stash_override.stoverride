@@ -83,6 +83,10 @@ rules: #!replace
   # passed 30 of 30 (ocsp) and 25 of 30 (www), and `codesign --timestamp`
   # reported "The timestamp service is not available" on three builds.
   - DOMAIN,timestamp.apple.com,DIRECT
+  # LazyCat (懒猫微服) serves its apps on *.heiyu.space and its client asks proxy
+  # users to let that through; via a proxy node file.tang.heiyu.space closed
+  # the connection (2026-10-22).
+  - DOMAIN-SUFFIX,heiyu.space,DIRECT
 
   # === Kaku relay (Japan, see the Kaku Relay group) ===
   - DOMAIN,r.kaku.fun,Kaku Relay
