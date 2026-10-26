@@ -296,12 +296,24 @@ function main(config) {
   config["unified-delay"] = true;
 
   // 2. 配置 DNS (国内域名不吃 fake-ip)
+  // Rules target Flower's HK / US groups. Other providers name them differently
+  // (Nexitally has Proxies / AI), and a rule pointing at a missing group makes
+  // mihomo reject the whole config, so map each target to a group that exists.
+  const groupNames = new Set((config["proxy-groups"] || []).map((g) => g.name));
+  const fallbacks = { US: ["US", "AI", "Proxies", "Proxy"], HK: ["HK", "Proxies", "Proxy"] };
+  const resolveTarget = (t) => {
+    if (!fallbacks[t]) return t;
+    return fallbacks[t].find((n) => groupNames.has(n)) || [...groupNames][0] || "DIRECT";
+  };
+
   if (!config.dns) config.dns = {};
   if (!config.dns["nameserver-policy"]) config.dns["nameserver-policy"] = {};
-  config.dns["nameserver-policy"]["+.reddit.com"] = ["https://1.1.1.1/dns-query", "https://8.8.8.8/dns-query"];
-  config.dns["nameserver-policy"]["+.redd.it"] = ["https://1.1.1.1/dns-query", "https://8.8.8.8/dns-query"];
-  config.dns["nameserver-policy"]["+.redditmedia.com"] = ["https://1.1.1.1/dns-query", "https://8.8.8.8/dns-query"];
-  config.dns["nameserver-policy"]["+.redditstatic.com"] = ["https://1.1.1.1/dns-query", "https://8.8.8.8/dns-query"];
+  // Dial Reddit's resolvers through its own proxy group: a profile without
+  // fake-ip resolves locally, and 1.1.1.1 / 8.8.8.8 are unreachable direct.
+  const redditVia = resolveTarget("US");
+  for (const d of ["reddit.com", "redd.it", "redditmedia.com", "redditstatic.com"]) {
+    config.dns["nameserver-policy"][`+.${d}`] = [`https://1.1.1.1/dns-query#${redditVia}`, `https://8.8.8.8/dns-query#${redditVia}`];
+  }
   // Domestic sites resolve through AliDNS / DNSPod instead of the provider's DoH,
   // which handed www.baidu.com a 78 ms node against AliDNS's 32 ms (2026-10-26).
   const cnPolicyDomains = [
@@ -380,15 +392,6 @@ function main(config) {
   if (!config.sniffer["skip-domain"]) config.sniffer["skip-domain"] = [];
   config.sniffer["skip-domain"].push(...aiDomains);
 
-  // Rules target Flower's HK / US groups. Other providers name them differently
-  // (Nexitally has Proxies / AI), and a rule pointing at a missing group makes
-  // mihomo reject the whole config, so map each target to a group that exists.
-  const groupNames = new Set((config["proxy-groups"] || []).map((g) => g.name));
-  const fallbacks = { US: ["US", "AI", "Proxies", "Proxy"], HK: ["HK", "Proxies", "Proxy"] };
-  const resolveTarget = (t) => {
-    if (!fallbacks[t]) return t;
-    return fallbacks[t].find((n) => groupNames.has(n)) || [...groupNames][0] || "DIRECT";
-  };
   for (let i = 0; i < extraRules.length; i++) {
     const parts = extraRules[i].split(",");
     const at = parts[parts.length - 1] === "no-resolve" ? parts.length - 2 : parts.length - 1;
