@@ -4,7 +4,7 @@
 
 This repository hosts static files used by Tw93 projects, including app downloads, images, appcast files, and web assets.
 
-Deploy surface: pushing `main` publishes the Vercel project. Every file under `cdn.tw93.fun/clash/` (the Stash overrides and the Clash Party yaml overrides alike) is a Cloudflare R2 object in the `tw93` bucket and needs a separate upload after a Git push: `npx wrangler r2 object put tw93/clash/<file> --file clash/<file> --remote`. Verify the live CDN bytes; there is no staging.
+Deploy surface: pushing `main` publishes the Vercel project. Every file under `cdn.tw93.fun/clash/` (the Stash overrides and the Clash Party yaml overrides alike) is a Cloudflare R2 object in the `tw93` bucket and needs a separate upload after a Git push: `npx wrangler r2 object put tw93/clash/<file> --file clash/<file> --remote`. Verify the live CDN bytes; there is no staging. Upload `fclash_override.js` with `--cache-control "public, max-age=300"`: without it Cloudflare holds `.js` at the edge for 4 hours per URL, and the Android tablet's FlClash fetches the script by a fixed URL, so an update would not reach it.
 
 ## Repository Map
 
