@@ -31,6 +31,22 @@ dns:
     "+.alicdn.com": 223.5.5.5
     "+.aliyun.com": 223.5.5.5
     "+.sspai.com": 223.5.5.5
+    "+.tmall.com": 223.5.5.5
+    "+.alipayobjects.com": 223.5.5.5
+    "+.meituan.com": 223.5.5.5
+    "+.meituan.net": 223.5.5.5
+    "+.dianping.com": 223.5.5.5
+    "+.iqiyi.com": 223.5.5.5
+    "+.iqiyipic.com": 223.5.5.5
+    "+.qy.net": 223.5.5.5
+    "+.jd.com": 223.5.5.5
+    "+.360buyimg.com": 223.5.5.5
+    "+.pinduoduo.com": 223.5.5.5
+    "+.yangkeduo.com": 223.5.5.5
+    "+.pddpic.com": 223.5.5.5
+    "+.163.com": 223.5.5.5
+    "+.126.net": 223.5.5.5
+    "+.netease.com": 223.5.5.5
     "+.cn": 223.5.5.5
 
 proxy-groups: #!replace
@@ -273,6 +289,27 @@ rules: #!replace
   - DOMAIN-SUFFIX,deepseek.com,DIRECT
   - DOMAIN-SUFFIX,xiaoyuzhoufm.com,DIRECT
   - DOMAIN-SUFFIX,zhongguose.com,DIRECT
+
+  # === Domestic apps on the maintainer's phones and tablet ===
+  # On 2026-10-26 www.tmall.com, www.meituan.com and www.iqiyi.com fell to
+  # MATCH and left through Japan: the provider's DoH answered with addresses
+  # GEOIP did not place in CN, while AliDNS gives Hangzhou and Beijing ones.
+  - DOMAIN-SUFFIX,tmall.com,DIRECT
+  - DOMAIN-SUFFIX,alipayobjects.com,DIRECT
+  - DOMAIN-SUFFIX,meituan.com,DIRECT
+  - DOMAIN-SUFFIX,meituan.net,DIRECT
+  - DOMAIN-SUFFIX,dianping.com,DIRECT
+  - DOMAIN-SUFFIX,iqiyi.com,DIRECT
+  - DOMAIN-SUFFIX,iqiyipic.com,DIRECT
+  - DOMAIN-SUFFIX,qy.net,DIRECT
+  - DOMAIN-SUFFIX,jd.com,DIRECT
+  - DOMAIN-SUFFIX,360buyimg.com,DIRECT
+  - DOMAIN-SUFFIX,pinduoduo.com,DIRECT
+  - DOMAIN-SUFFIX,yangkeduo.com,DIRECT
+  - DOMAIN-SUFFIX,pddpic.com,DIRECT
+  - DOMAIN-SUFFIX,163.com,DIRECT
+  - DOMAIN-SUFFIX,126.net,DIRECT
+  - DOMAIN-SUFFIX,netease.com,DIRECT
 
   # === WeChat / Tencent direct ===
   - DOMAIN-SUFFIX,wechat.com,DIRECT
