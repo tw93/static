@@ -5,6 +5,34 @@ category: Proxy
 profile:
   store-selected: true
 
+# Domestic names resolve through AliDNS instead of the provider's DoH. On
+# 2026-10-26 the DoH answer for www.baidu.com took 78 ms round trip against
+# 32 ms for AliDNS's. No #!replace: this merges into the provider's dns block
+# so its nameservers and node-host fake-ip-filter stay as they are.
+dns:
+  nameserver-policy:
+    "+.xiaohongshu.com": 223.5.5.5
+    "+.xhscdn.com": 223.5.5.5
+    "+.bilibili.com": 223.5.5.5
+    "+.hdslb.com": 223.5.5.5
+    "+.bilivideo.com": 223.5.5.5
+    "+.douban.com": 223.5.5.5
+    "+.doubanio.com": 223.5.5.5
+    "+.zhihu.com": 223.5.5.5
+    "+.zhimg.com": 223.5.5.5
+    "+.baidu.com": 223.5.5.5
+    "+.bdstatic.com": 223.5.5.5
+    "+.qq.com": 223.5.5.5
+    "+.deepseek.com": 223.5.5.5
+    "+.xiaoyuzhoufm.com": 223.5.5.5
+    "+.zhongguose.com": 223.5.5.5
+    "+.alipay.com": 223.5.5.5
+    "+.taobao.com": 223.5.5.5
+    "+.alicdn.com": 223.5.5.5
+    "+.aliyun.com": 223.5.5.5
+    "+.sspai.com": 223.5.5.5
+    "+.cn": 223.5.5.5
+
 proxy-groups: #!replace
   # Japan first, ranked by a 30-round Google generate_204 bench on 2026-10-26
   # (avg + 0.5 * std): Japan 13 led at 53 ms avg, 54 ms p95, while Japan 16
@@ -226,6 +254,25 @@ rules: #!replace
   - DOMAIN-SUFFIX,alicdn.com,DIRECT
   - DOMAIN-SUFFIX,aliimg.com,DIRECT
   - DOMAIN-SUFFIX,sspai.com,DIRECT
+
+  # === Frequent domestic sites (from browser history, 2026-10-26) ===
+  # Each one already landed on GEOIP,CN; naming them settles the route
+  # before GEOIP and pairs with the nameserver-policy above.
+  - DOMAIN-SUFFIX,xiaohongshu.com,DIRECT
+  - DOMAIN-SUFFIX,xhscdn.com,DIRECT
+  - DOMAIN-SUFFIX,bilibili.com,DIRECT
+  - DOMAIN-SUFFIX,hdslb.com,DIRECT
+  - DOMAIN-SUFFIX,bilivideo.com,DIRECT
+  - DOMAIN-SUFFIX,douban.com,DIRECT
+  - DOMAIN-SUFFIX,doubanio.com,DIRECT
+  - DOMAIN-SUFFIX,zhihu.com,DIRECT
+  - DOMAIN-SUFFIX,zhimg.com,DIRECT
+  - DOMAIN-SUFFIX,baidu.com,DIRECT
+  - DOMAIN-SUFFIX,bdstatic.com,DIRECT
+  - DOMAIN-SUFFIX,qq.com,DIRECT
+  - DOMAIN-SUFFIX,deepseek.com,DIRECT
+  - DOMAIN-SUFFIX,xiaoyuzhoufm.com,DIRECT
+  - DOMAIN-SUFFIX,zhongguose.com,DIRECT
 
   # === WeChat / Tencent direct ===
   - DOMAIN-SUFFIX,wechat.com,DIRECT
