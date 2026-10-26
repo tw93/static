@@ -1,14 +1,43 @@
 name: Nexitally Stash Override
-desc: Manual proxy selection. Proxies group lists Hong Kong, Japan, Singapore nodes with Korea, United States, and Canada backups; AI group lists United States Seattle nodes. Splits AI services to the AI group and keeps domestic traffic direct.
+desc: Manual proxy selection. Proxies group lists Japan, Hong Kong, Singapore nodes with Korea, United States, and Canada backups; AI group lists United States Seattle nodes. Splits AI services to the AI group and keeps domestic traffic direct.
 category: Proxy
 
 profile:
   store-selected: true
 
 proxy-groups: #!replace
+  # Japan first, ranked by a 30-round Google generate_204 bench on 2026-10-26
+  # (avg + 0.5 * std): Japan 13 led at 53 ms avg, 54 ms p95, while Japan 16
+  # spiked to 285 ms p95. Every Hong Kong and Singapore node returned 503 that
+  # day through their shared entry host, so they stay listed for when it is back.
   - name: Proxies
     type: select
     proxies:
+      - 🇯🇵 Japan 13
+      - 🇯🇵 Japan 06
+      - 🇯🇵 Japan 24
+      - 🇯🇵 Japan 27
+      - 🇯🇵 Japan 02
+      - 🇯🇵 Japan 01
+      - 🇯🇵 Japan 08
+      - 🇯🇵 Japan 18
+      - 🇯🇵 Japan 09
+      - 🇯🇵 Japan 16
+      - 🇯🇵 Japan 25
+      - 🇯🇵 Japan 15
+      - 🇯🇵 Japan 21
+      - 🇯🇵 Japan 17
+      - 🇯🇵 Japan 20
+      - 🇯🇵 Japan 26
+      - 🇯🇵 Japan 04
+      - 🇯🇵 Japan 07
+      - 🇯🇵 Japan 12
+      - 🇯🇵 Japan 14
+      - 🇯🇵 Japan 05
+      - 🇯🇵 Japan 03
+      - 🇯🇵 Japan 10
+      - 🇯🇵 Japan 19
+      - 🇯🇵 Japan 11
       - 🇭🇰 Hong Kong 19
       - 🇭🇰 Hong Kong 16
       - 🇭🇰 Hong Kong 01
@@ -29,31 +58,6 @@ proxy-groups: #!replace
       - 🇭🇰 Hong Kong 10
       - 🇭🇰 Hong Kong 09
       - 🇭🇰 Hong Kong 05
-      - 🇯🇵 Japan 13
-      - 🇯🇵 Japan 27
-      - 🇯🇵 Japan 16
-      - 🇯🇵 Japan 14
-      - 🇯🇵 Japan 24
-      - 🇯🇵 Japan 18
-      - 🇯🇵 Japan 25
-      - 🇯🇵 Japan 21
-      - 🇯🇵 Japan 17
-      - 🇯🇵 Japan 19
-      - 🇯🇵 Japan 20
-      - 🇯🇵 Japan 07
-      - 🇯🇵 Japan 12
-      - 🇯🇵 Japan 11
-      - 🇯🇵 Japan 10
-      - 🇯🇵 Japan 04
-      - 🇯🇵 Japan 08
-      - 🇯🇵 Japan 03
-      - 🇯🇵 Japan 05
-      - 🇯🇵 Japan 15
-      - 🇯🇵 Japan 02
-      - 🇯🇵 Japan 06
-      - 🇯🇵 Japan 09
-      - 🇯🇵 Japan 01
-      - 🇯🇵 Japan 26
       - 🇸🇬 Singapore 07
       - 🇸🇬 Singapore 03
       - 🇸🇬 Singapore 12
