@@ -380,6 +380,22 @@ function main(config) {
   if (!config.sniffer["skip-domain"]) config.sniffer["skip-domain"] = [];
   config.sniffer["skip-domain"].push(...aiDomains);
 
+  // Rules target Flower's HK / US groups. Other providers name them differently
+  // (Nexitally has Proxies / AI), and a rule pointing at a missing group makes
+  // mihomo reject the whole config, so map each target to a group that exists.
+  const groupNames = new Set((config["proxy-groups"] || []).map((g) => g.name));
+  const fallbacks = { US: ["US", "AI", "Proxies", "Proxy"], HK: ["HK", "Proxies", "Proxy"] };
+  const resolveTarget = (t) => {
+    if (!fallbacks[t]) return t;
+    return fallbacks[t].find((n) => groupNames.has(n)) || [...groupNames][0] || "DIRECT";
+  };
+  for (let i = 0; i < extraRules.length; i++) {
+    const parts = extraRules[i].split(",");
+    const at = parts[parts.length - 1] === "no-resolve" ? parts.length - 2 : parts.length - 1;
+    parts[at] = resolveTarget(parts[at]);
+    extraRules[i] = parts.join(",");
+  }
+
   if (config.rules && Array.isArray(config.rules)) {
     config.rules.unshift(...extraRules);
   } else {
