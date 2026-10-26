@@ -16,7 +16,6 @@ hosts:
 profile:
   store-selected: true
   store-fake-ip: true
-  tracing: true
 
 dns!:
   enable: true
