@@ -269,6 +269,17 @@ function main(config) {
   config.dns["nameserver-policy"]["+.redd.it"] = ["https://1.1.1.1/dns-query", "https://8.8.8.8/dns-query"];
   config.dns["nameserver-policy"]["+.redditmedia.com"] = ["https://1.1.1.1/dns-query", "https://8.8.8.8/dns-query"];
   config.dns["nameserver-policy"]["+.redditstatic.com"] = ["https://1.1.1.1/dns-query", "https://8.8.8.8/dns-query"];
+  // Domestic sites resolve through AliDNS / DNSPod instead of the provider's DoH,
+  // which handed www.baidu.com a 78 ms node against AliDNS's 32 ms (2026-10-26).
+  const cnPolicyDomains = [
+    "xiaohongshu.com", "xhscdn.com", "bilibili.com", "hdslb.com", "bilivideo.com",
+    "douban.com", "doubanio.com", "zhihu.com", "zhimg.com", "baidu.com", "bdstatic.com",
+    "qq.com", "deepseek.com", "xiaoyuzhoufm.com", "zhongguose.com",
+    "alipay.com", "taobao.com", "alicdn.com", "aliyun.com", "sspai.com", "cn"
+  ];
+  for (const d of cnPolicyDomains) {
+    config.dns["nameserver-policy"][`+.${d}`] = ["223.5.5.5", "119.29.29.29"];
+  }
   if (!config.dns["fake-ip-filter"]) config.dns["fake-ip-filter"] = [];
 
   // 与 Nexitally 基准一致的 fake-ip 排除表(国内域名不吃 fake-ip)
