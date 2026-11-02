@@ -140,11 +140,6 @@ rules: #!replace
   # === Direct ===
   - PROCESS-NAME,bird,DIRECT
   - PROCESS-NAME,cloudd,DIRECT
-  # UU Remote's peer links dial raw LAN and carrier addresses (10.x, 192.0.0.x)
-  # that fell to MATCH and the Japan node on 2026-11-02, while its 163.com and
-  # netease.com signaling was already DIRECT.
-  - PROCESS-NAME,UURemote,DIRECT
-  - PROCESS-NAME,UURemoteServer,DIRECT
   - DOMAIN-SUFFIX,qoder.sh,DIRECT
   # Apple code-signing RFC3161 timestamp server stays DIRECT. Routing it through
   # the proxy group broke release signing on 2026-09-25: through Stash's HTTP
