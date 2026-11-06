@@ -1,0 +1,63 @@
+name: Back up R2 into this repository
+
+# Files reach R2 from other places too (the notes sync, uPic, release lanes), so once a day this
+# commits every R2 object the repository does not have yet, except installers and archives and
+# anything over 20 MB, which stay on R2 and the LazyCat NAS only. It never changes or deletes a
+# tracked file. The checkout carries no file contents (blob:none, sparse), so the job reads only
+# the file list and the new objects, however large the repository grows.
+
+on:
+  schedule:
+    - cron: "17 19 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: pull-r2
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  pull:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      RCLONE_CONFIG_R2_TYPE: s3
+      RCLONE_CONFIG_R2_PROVIDER: Cloudflare
+      RCLONE_CONFIG_R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      RCLONE_CONFIG_R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      RCLONE_CONFIG_R2_ENDPOINT: https://7f6acbc1590d877081b880608a039338.r2.cloudflarestorage.com
+      RCLONE_CONFIG_R2_ACL: private
+      RCLONE_CONFIG_R2_NO_CHECK_BUCKET: "true"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: .github
+          sparse-checkout-cone-mode: true
+
+      - name: Install rclone
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq rclone && rclone version | head -1
+
+      - name: List R2 objects the repository lacks
+        run: |
+          rclone lsf r2:tw93 --recursive --files-only --max-size 20M --ignore-case \
+            --exclude "*.{exe,nupkg,dmg,zip,pkg,msi,appimage,deb,rpm,7z,tar,gz,tgz,xz,bz2,rar,iso,ipa,apk}" \
+            | sort > r2.txt
+          git ls-files | sort > tracked.txt
+          comm -23 r2.txt tracked.txt > new.txt
+          echo "R2 objects in scope: $(wc -l < r2.txt), new: $(wc -l < new.txt)"
+          head -50 new.txt
+
+      - name: Download and commit
+        run: |
+          [ -s new.txt ] || { echo "nothing new"; exit 0; }
+          rclone copy r2:tw93 . --files-from new.txt --transfers 16 -v
+          git config user.name "Tw93"
+          git config user.email "hitw93@gmail.com"
+          tr '\n' '\0' < new.txt | xargs -0 git add --sparse --
+          n=$(wc -l < new.txt)
+          git commit -q -m "chore: back up $n new R2 objects [skip ci]"
+          git push -q origin HEAD:main
+          git log -1 --format='%h %s'
