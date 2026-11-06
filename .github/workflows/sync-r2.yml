@@ -82,7 +82,15 @@ jobs:
           exit $fail
 
       - name: Refuse files over 20 MB
+        env:
+          EVENT: ${{ github.event_name }}
         run: |
+          # A manual run walks every tracked file, including large ones committed before this rule;
+          # those are listed and skipped. Only a push that adds or changes one fails.
+          if [ "$EVENT" != push ]; then
+            while IFS= read -r f; do echo "::notice::skipped $f (over 20 MB, committed before this rule)"; done < big.txt
+            exit 0
+          fi
           if [ -s big.txt ]; then
             while IFS= read -r f; do echo "::error::$f is over 20 MB; upload large files to R2 directly instead of committing them"; done < big.txt
             exit 1
