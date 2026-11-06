@@ -1,0 +1,7 @@
+{
+  "version": "1.2.2",
+  "package": "pake-desktop-1.2.2-1-x86_64.pkg.tar.zst",
+  "sha256": "80b38786592cc9c9ca61710232f5934542656909e55383fceff3458649c0dcf8",
+  "size": 52141455,
+  "notes": "## English\n\n- The top of the window now shows whether Pake is activated, Create shows how many free apps are left, and Ctrl+Shift+L opens the license card.\n- When the license server is busy, Pake asks you to try again later and keeps working offline for up to 7 days, instead of ending the license.\n\n## 中文\n\n- 窗口顶部会显示 Pake 是否已激活，创建按钮下面会写还剩几个免费应用，按 Ctrl+Shift+L 就能打开许可证。\n- 许可证服务器繁忙时会提示稍后再试，这期间最多 7 天照常可用，不会再因此失去激活。"
+}

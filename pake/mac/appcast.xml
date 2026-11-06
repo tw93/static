@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Pake Updates</title>
+    <description>Pake for Mac updates</description>
+    <language>en</language>
+    <item>
+      <title>Version 1.2.2</title>
+      <sparkle:version>7</sparkle:version>
+      <sparkle:shortVersionString>1.2.2</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <pubDate>Wed, 04 Nov 2026 09:32:57 GMT</pubDate>
+      <description xml:lang="en"><![CDATA[
+<ul>
+  <li>The top of the window now shows whether Pake is activated, Create shows how many free apps are left, and ⇧⌘L opens the license card.</li>
+  <li>When the license server is busy, Pake asks you to try again later and keeps working offline for up to 7 days, instead of ending the license.</li>
+</ul>
+      ]]></description>
+      <description xml:lang="zh-Hans"><![CDATA[
+<ul>
+  <li>窗口顶部会显示 Pake 是否已激活，创建按钮下面会写还剩几个免费应用，按 ⇧⌘L 就能打开许可证。</li>
+  <li>许可证服务器繁忙时会提示稍后再试，这期间最多 7 天照常可用，不会再因此失去激活。</li>
+</ul>
+      ]]></description>
+      <enclosure
+        url="https://pake.run/updates/mac/Pake-1.2.2.dmg"
+        sparkle:edSignature="BmHLNazLCzcUxLj1vI9uLSFEu9uNxnWSC2vDX9WqapqZDPrYYbbqSixS7vNp6xeG6YFLNB9roR2EqmcyZ9lUDQ=="
+        length="11727276"
+        type="application/octet-stream"
+      />
+    </item>
+    <item>
+      <title>Version 1.2.1</title>
+      <sparkle:version>6</sparkle:version>
+      <sparkle:shortVersionString>1.2.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <pubDate>Tue, 03 Nov 2026 15:42:36 GMT</pubDate>
+      <description xml:lang="en"><![CDATA[
+<ul>
+  <li>The field on the home page now leads with pasting a web address, so it reads as the place to start an app rather than a search box.</li>
+</ul>
+      ]]></description>
+      <description xml:lang="zh-Hans"><![CDATA[
+<ul>
+  <li>首页的输入框改成先说粘贴网址，一看就知道是从这里开始创建应用，不再像一个搜索框。</li>
+</ul>
+      ]]></description>
+      <enclosure
+        url="https://pake.run/updates/mac/Pake-1.2.1.dmg"
+        sparkle:edSignature="NwveWS/T3KTWjOD2tIfd9deNkzcd2cUmf2oAaSU5TLII9fJR+fh+h7wITDgAHqrB8YKWAOKg3Y1LqRo2po2nAA=="
+        length="11719112"
+        type="application/octet-stream"
+      />
+    </item>
+    <item>
+      <title>Version 1.2.0</title>
+      <sparkle:version>5</sparkle:version>
+      <sparkle:shortVersionString>1.2.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <pubDate>Tue, 03 Nov 2026 13:36:23 GMT</pubDate>
+      <description xml:lang="en"><![CDATA[
+<ul>
+  <li>Pake now runs on Linux too, and one license covers Mac, Windows and Linux on up to 3 devices.</li>
+</ul>
+      ]]></description>
+      <description xml:lang="zh-Hans"><![CDATA[
+<ul>
+  <li>Pake 现在也有 Linux 版本了，同一个许可证在 Mac、Windows 和 Linux 上通用，最多 3 台设备。</li>
+</ul>
+      ]]></description>
+      <enclosure
+        url="https://pake.run/updates/mac/Pake-1.2.0.dmg"
+        sparkle:edSignature="M/LoyfjFi2BPr1MsFt+HT5JshQM4/ekzn+FzauvuEEV1c4bbnDfwiqo2wktuR+rR7nfn7yBQqhJIxaKvF0wUCQ=="
+        length="11718700"
+        type="application/octet-stream"
+      />
+    </item>
+    <item>
+      <title>Version 1.1.2</title>
+      <sparkle:version>4</sparkle:version>
+      <sparkle:shortVersionString>1.1.2</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <pubDate>Tue, 03 Nov 2026 10:11:41 GMT</pubDate>
+      <description xml:lang="en"><![CDATA[
+<ul>
+  <li>Buy License now opens a one-page checkout, with your email and payment on the same screen. In Simplified Chinese it charges in yuan and shows WeChat Pay up front.</li>
+  <li>The License card explains itself in plainer words, and its button for every device is now called Deactivate All.</li>
+</ul>
+      ]]></description>
+      <description xml:lang="zh-Hans"><![CDATA[
+<ul>
+  <li>点「购买许可证」会打开单页结账，邮箱和付款在同一页填完，简体中文按人民币结算，微信支付放在最前面。</li>
+  <li>许可证卡片上的说明改得更直白了。</li>
+</ul>
+      ]]></description>
+      <enclosure
+        url="https://pake.run/updates/mac/Pake-1.1.2.dmg"
+        sparkle:edSignature="JGaWm/hKu1p1j9IDm1sYmDwJsN+DodNwGWo1ovNx9fumdHg41AsT2YbUf0ToGQcii6jkUvi+YAPt0VSOaffOBg=="
+        length="11718455"
+        type="application/octet-stream"
+      />
+    </item>
+    <item>
+      <title>Version 1.1.1</title>
+      <sparkle:version>3</sparkle:version>
+      <sparkle:shortVersionString>1.1.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <pubDate>Fri, 30 Oct 2026 00:47:26 GMT</pubDate>
+      <description xml:lang="en"><![CDATA[
+<ul>
+  <li>A new app icon, a mother holding her baby.</li>
+  <li>On a slow or broken network, looking up a site's name and icon now stops within 15 seconds instead of hanging.</li>
+  <li>The window opens just tall enough to show the whole gallery, until you drag it to a height of your own.</li>
+  <li>Text sizes, shadows and arrows now match throughout the app.</li>
+</ul>
+      ]]></description>
+      <description xml:lang="zh-Hans"><![CDATA[
+<ul>
+  <li>换了新的应用图标，是一位抱着孩子的妈妈。</li>
+  <li>网络慢或者断开时，查网站名称和图标最多等 15 秒，不会再一直卡着。</li>
+  <li>窗口打开时的高度刚好放下整个精选，自己拖过高度之后就按你的来。</li>
+  <li>界面里的字号、阴影和箭头都统一了，看着更整齐。</li>
+</ul>
+      ]]></description>
+      <enclosure
+        url="https://pake.run/updates/mac/Pake-1.1.1.dmg"
+        sparkle:edSignature="ee2ST0sjer7tIlhJ7DnSk+NzuNDkkCzLDspDR+ce70XYydA/x0eZOCvA1NEZFUIL52OpiiggsnmDu18nAmMQAQ=="
+        length="11718811"
+        type="application/octet-stream"
+      />
+    </item>
+    <item>
+      <title>Version 1.1.0</title>
+      <sparkle:version>2</sparkle:version>
+      <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <pubDate>Thu, 29 Oct 2026 14:58:49 GMT</pubDate>
+      <description xml:lang="en"><![CDATA[
+<ul>
+  <li>Paste any website address and Pake names the app for you, using the site's official app icon when it has one.</li>
+  <li>Nearly a hundred popular sites, such as Slack, Gmail and Feishu, now open with tuned settings and a matching icon.</li>
+  <li>Fixed garbled app names from some Chinese websites.</li>
+  <li>A refreshed app icon, with clearer text and finer borders throughout.</li>
+</ul>
+      ]]></description>
+      <description xml:lang="zh-Hans"><![CDATA[
+<ul>
+  <li>粘贴任意网址，Pake 会自动起好应用名称，网站有官方 App 时直接用它的图标。</li>
+  <li>Slack、Gmail、飞书等近百个常用网站，打开就带好调过的设置和对应图标。</li>
+  <li>修复部分中文网站取到的应用名称是乱码的问题。</li>
+  <li>更新了应用图标，界面文字层次和描边也更清晰。</li>
+</ul>
+      ]]></description>
+      <enclosure
+        url="https://pake.run/updates/mac/Pake-1.1.0.dmg"
+        sparkle:edSignature="eD7hkKg88f0vS1BPGuJ3Lt6NnWGVMHtEpDvtq0A57myrz/GssrS/FZVoe7A21hlrzL+Ac1GoI08ZLecko+ifBQ=="
+        length="11942088"
+        type="application/octet-stream"
+      />
+    </item>
+    <item>
+      <title>Version 1.0.0</title>
+      <sparkle:version>1</sparkle:version>
+      <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <pubDate>Sun, 25 Oct 2026 12:36:12 GMT</pubDate>
+      <description xml:lang="en"><![CDATA[
+<ul>
+  <li>Create desktop apps from website addresses or the built-in gallery, without installing developer tools.</li>
+  <li>Customize windows, styles and scripts, and keep separate apps for different accounts.</li>
+  <li>Export app settings and import them on another computer to recreate your apps.</li>
+</ul>
+      ]]></description>
+      <description xml:lang="zh-Hans"><![CDATA[
+<ul>
+  <li>输入网址或从应用库选择网站，即可创建桌面应用，无需安装开发工具。</li>
+  <li>按需调整窗口、样式和脚本，同一网站可创建多份应用，分别登录不同账号。</li>
+  <li>导入导出应用设置，便于在另一台电脑上重新创建应用。</li>
+</ul>
+      ]]></description>
+      <enclosure
+        url="https://pake.run/updates/mac/Pake-1.0.0.dmg"
+        sparkle:edSignature="8lR6Vh/v+a2DPVJwpGH9g4B2MHBfOjK2+q1JJjHQ1FOR/DNiccKvKDR5exfVWyILvBdYaQCZeimRnJMallS0Aw=="
+        length="12881414"
+        type="application/octet-stream"
+      />
+    </item>
+  </channel>
+</rss>
