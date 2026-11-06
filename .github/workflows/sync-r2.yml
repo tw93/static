@@ -1,0 +1,89 @@
+name: Sync to R2
+
+# Pushes to main upload every added or changed file to the R2 bucket tw93, which serves
+# cdn.tw93.fun. It only uploads: the bucket also holds files this repository does not track
+# (Mole's DMGs and Windows packages, some under an R2 Bucket Lock), so nothing is ever deleted
+# there. Run it by hand to upload any tracked file that differs from R2.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: sync-r2
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      RCLONE_CONFIG_R2_TYPE: s3
+      RCLONE_CONFIG_R2_PROVIDER: Cloudflare
+      RCLONE_CONFIG_R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      RCLONE_CONFIG_R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      RCLONE_CONFIG_R2_ENDPOINT: https://7f6acbc1590d877081b880608a039338.r2.cloudflarestorage.com
+      RCLONE_CONFIG_R2_ACL: private
+      RCLONE_CONFIG_R2_NO_CHECK_BUCKET: "true"
+      MAX_BYTES: "20971520"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: List files to upload
+        env:
+          BEFORE: ${{ github.event.before }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT" = push ] && [ -n "$BEFORE" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            git diff --name-only --diff-filter=AMR -z "$BEFORE" HEAD | tr '\0' '\n' > all.txt
+          else
+            git ls-files > all.txt
+          fi
+          grep -v -E '^(\.github/|\.gitignore$|AGENTS\.md$|README\.md$|vercel\.json$)' all.txt > files.txt || true
+          : > big.txt
+          : > upload.txt
+          while IFS= read -r f; do
+            [ -f "$f" ] || continue
+            if [ "$(stat -c %s "$f")" -gt "$MAX_BYTES" ]; then echo "$f" >> big.txt; else echo "$f" >> upload.txt; fi
+          done < files.txt
+          echo "to upload: $(wc -l < upload.txt), over 20 MB: $(wc -l < big.txt)"
+          cat upload.txt
+
+      - name: Install rclone
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq rclone && rclone version | head -1
+
+      - name: Upload
+        run: |
+          grep -v -x 'clash/fclash_override.js' upload.txt > plain.txt || true
+          if [ -s plain.txt ]; then
+            rclone copy . r2:tw93 --files-from plain.txt --checksum --s3-no-check-bucket -v
+          fi
+          # FlClash fetches this script by a fixed URL; without a short max-age Cloudflare keeps .js for 4 hours.
+          if grep -q -x 'clash/fclash_override.js' upload.txt; then
+            rclone copyto clash/fclash_override.js r2:tw93/clash/fclash_override.js --checksum --s3-no-check-bucket \
+              --header-upload "Cache-Control: public, max-age=300" -v
+          fi
+
+      - name: Verify the CDN serves the pushed bytes
+        run: |
+          fail=0
+          while IFS= read -r f; do
+            enc=$(python3 -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1]))' "$f")
+            want=$(sha256sum "$f" | cut -d' ' -f1)
+            got=$(curl -fsSL "https://cdn.tw93.fun/$enc?v=$GITHUB_SHA" | sha256sum | cut -d' ' -f1) || got=missing
+            if [ "$want" = "$got" ]; then echo "ok $f"; else echo "::error::$f differs on cdn.tw93.fun"; fail=1; fi
+          done < upload.txt
+          exit $fail
+
+      - name: Refuse files over 20 MB
+        run: |
+          if [ -s big.txt ]; then
+            while IFS= read -r f; do echo "::error::$f is over 20 MB; upload large files to R2 directly instead of committing them"; done < big.txt
+            exit 1
+          fi
