@@ -240,6 +240,8 @@ dns!:
   - DOMAIN-SUFFIX,tc.qq.com,DIRECT
 
   # === Apple / iCloud 直连 ===
+  # App Store Connect 直连东京 Akamai 时 TLS 握手 0.4 到 29 秒不等，单独走代理
+  - DOMAIN,appstoreconnect.apple.com,HK
   - DOMAIN-SUFFIX,apple.com,DIRECT
   - DOMAIN-SUFFIX,apple.com.cn,DIRECT
   - DOMAIN-SUFFIX,apple-relay.akamaized.net,DIRECT
