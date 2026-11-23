@@ -105,6 +105,10 @@ dns!:
   # Apple 代码签名时间戳服务: 走代理会让 codesign --timestamp 失败
   - DOMAIN,timestamp.apple.com,DIRECT
 
+  # === Cloudflare R2 上传 ===
+  # 经香港节点的长上传在 35 到 60 MB 处被掐断，西雅图节点 122 MB 一次传完 (2026-11-24)
+  - DOMAIN-SUFFIX,r2.cloudflarestorage.com,AI
+
   # === Reddit ===
   - DOMAIN-SUFFIX,reddit.com,AI
   - DOMAIN-SUFFIX,redd.it,AI
