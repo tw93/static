@@ -83,14 +83,16 @@ dns!:
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
+  # Foreign DoH goes through Proxies: the home network cannot reach 1.1.1.1 or 8.8.8.8 directly, and every
+  # answer outside CN waited 5 s for the fallback, then failed (R2 uploads, apple.com direct, 2026-11-24).
   nameserver-policy:
-    "+.reddit.com": [https://1.1.1.1/dns-query, https://8.8.8.8/dns-query]
-    "+.redd.it": [https://1.1.1.1/dns-query, https://8.8.8.8/dns-query]
-    "+.redditmedia.com": [https://1.1.1.1/dns-query, https://8.8.8.8/dns-query]
-    "+.redditstatic.com": [https://1.1.1.1/dns-query, https://8.8.8.8/dns-query]
+    "+.reddit.com": ["https://1.1.1.1/dns-query#Proxies", "https://8.8.8.8/dns-query#Proxies"]
+    "+.redd.it": ["https://1.1.1.1/dns-query#Proxies", "https://8.8.8.8/dns-query#Proxies"]
+    "+.redditmedia.com": ["https://1.1.1.1/dns-query#Proxies", "https://8.8.8.8/dns-query#Proxies"]
+    "+.redditstatic.com": ["https://1.1.1.1/dns-query#Proxies", "https://8.8.8.8/dns-query#Proxies"]
   fallback:
-    - https://8.8.8.8/dns-query
-    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query#Proxies
+    - https://1.1.1.1/dns-query#Proxies
   fallback-filter:
     geoip: true
     geoip-code: CN
