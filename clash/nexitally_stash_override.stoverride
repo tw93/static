@@ -336,6 +336,9 @@ rules: #!replace
 
   # === Private ranges ===
   - GEOIP,private,DIRECT,no-resolve
+  # Multicast (mDNS 224.0.0.251) fell to MATCH and left through Hong Kong.
+  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
+  - IP-CIDR6,ff00::/8,DIRECT,no-resolve
 
   # === Apple / Apple Music direct ===
   # App Store Connect 直连东京 Akamai 时 TLS 握手 0.4 到 29 秒不等，单独走代理

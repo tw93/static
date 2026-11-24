@@ -187,6 +187,9 @@ rules: #!replace
 
   # === Private ranges ===
   - GEOIP,private,DIRECT,no-resolve
+  # Multicast (mDNS 224.0.0.251) fell to MATCH and left through Hong Kong.
+  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
+  - IP-CIDR6,ff00::/8,DIRECT,no-resolve
 
   # === Force Hong Kong ===
   # Apple relay/push and wx.qq.com moved to DIRECT to match the Nexitally
