@@ -240,6 +240,11 @@ rules: #!replace
   - DOMAIN-SUFFIX,midjourney.com,Proxies
   - DOMAIN-SUFFIX,workers.dev,Proxies
 
+  # === Overseas sites ===
+  # Named so they never depend on what the Final group points at.
+  - DOMAIN-SUFFIX,v2ex.com,Proxies
+  - DOMAIN-SUFFIX,v2ex.co,Proxies
+
   # === AI session / risk-control (must share exit with claude.ai) ===
   - DOMAIN,challenges.cloudflare.com,AI
   - DOMAIN-SUFFIX,workos.com,AI
