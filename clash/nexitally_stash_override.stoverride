@@ -141,12 +141,12 @@ rules: #!replace
   - PROCESS-NAME,bird,DIRECT
   - PROCESS-NAME,cloudd,DIRECT
   - DOMAIN-SUFFIX,qoder.sh,DIRECT
-  # Apple code-signing RFC3161 timestamp server goes through Proxies. It was
-  # DIRECT after the proxy group failed 17 of 30 requests on 2026-09-25, but
-  # from 2026-11-24 the DIRECT path cut about one reply in five short (a 200
-  # with a truncated body; 46 of 60 `codesign --timestamp` runs passed on
-  # 2026-11-25) and two Preview builds died at archive signing.
-  - DOMAIN,timestamp.apple.com,Proxies
+  # Apple code-signing RFC3161 timestamp server stays DIRECT. Routing it through
+  # the proxy group broke release signing on 2026-09-25: through Stash's HTTP
+  # port the group path failed 17 of 30 requests while apple.com DIRECT paths
+  # passed 30 of 30 (ocsp) and 25 of 30 (www), and `codesign --timestamp`
+  # reported "The timestamp service is not available" on three builds.
+  - DOMAIN,timestamp.apple.com,DIRECT
 
   # === Reddit ===
   - DOMAIN-SUFFIX,reddit.com,AI
